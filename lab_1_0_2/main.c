@@ -25,7 +25,7 @@ int main()
     c = c_side(a, b, h);
 
     float p;
-    
+
     p = perimeter(a, b, c);
 
     printf("Trapezoid perimeter: %f", p);
@@ -38,9 +38,9 @@ float c_side(float a, float b, float h)
     float c;
 
     if (b > a)
-        c = sqrt(0.25 * (b*b - 2*a*b + a*a) + h*h);
+        c = sqrt(0.25 * (b *b - 2 *a *b + a *a) + h *h);
     else
-        c = sqrt(0.25 * (a*a - 2*a*b + b*b) + h*h);
+        c = sqrt(0.25 * (a *a - 2 *a *b + b *b) + h *h);
     
     return c;
 }

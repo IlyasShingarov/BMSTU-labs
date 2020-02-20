@@ -23,6 +23,7 @@ int main()
 
     printf("Trapezoid perimeter: %f", p);
 
+    return 0;
 }
 
 float c_side(float a, float b, float h)

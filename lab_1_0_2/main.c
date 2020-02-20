@@ -9,16 +9,23 @@ int main()
     float a, b, h;
 
     printf("Input base 1:\n");
+
     scanf("%f", &a);
+
     printf("Input base 2:\n");
+
     scanf("%f", &b);
+
     printf("Input height:\n");
+
     scanf("%f", &h);
 
     float c;
+
     c = c_side(a, b, h);
 
     float p;
+    
     p = perimeter(a, b, c);
 
     printf("Trapezoid perimeter: %f", p);

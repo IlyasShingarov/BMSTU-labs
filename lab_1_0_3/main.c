@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 float mass(float h, float t);
-float mass_index(float m, float h);
+int mass_index(float m, float h);
 
 int main()
 {
@@ -18,10 +18,10 @@ int main()
     
     float m = mass(h, t);
 
-    float imt = mass_index(m, h);
+    int imt = mass_index(m, h);
 
     printf("Mass: %f\n", m);
-    printf("Body mass index: %f\n", imt);
+    printf("Body mass index: %d\n", imt);
 
     return 0;
 }
@@ -34,9 +34,9 @@ float mass(float h, float t)
     return m;
 }
 
-float mass_index(float m, float h)
+int mass_index(float m, float h)
 {
-    float imt;
+    int imt;
 
     h = h / 100;
     imt = m / (h * h);

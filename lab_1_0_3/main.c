@@ -8,8 +8,13 @@ int main()
     float h, t;
     printf("Input height:\n");
     scanf("%f", &h);
+    if (h <= 0)
+        return 1;
+
     printf("Input chest diameter:\n");
     scanf("%f", &t);
+    if (t <= 0)
+        return 1;
     
     float m = mass(h, t);
 

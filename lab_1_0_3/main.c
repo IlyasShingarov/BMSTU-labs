@@ -6,7 +6,7 @@ float mass_index(float m, float h);
 int main()
 {
     float h, t;
-    printf("Input mass:\n");
+    printf("Input height:\n");
     scanf("%f", &h);
     printf("Input chest diameter:\n");
     scanf("%f", &t);
@@ -32,7 +32,7 @@ float mass(float h, float t)
 float mass_index(float m, float h)
 {
     float imt;
-    imt = 0.1 * m / (h * h);
+    imt = 0.01 * m / (h * h);
 
     return imt;
 }

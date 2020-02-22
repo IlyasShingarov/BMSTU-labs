@@ -33,7 +33,7 @@ float weight(float h, float t)
 
 float mass_index(float m, float h)
 {
-    int imt;
+    float imt;
 
     h = h / 100;
     imt = m / (h * h);

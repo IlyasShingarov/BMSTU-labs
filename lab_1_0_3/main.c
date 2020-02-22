@@ -32,7 +32,9 @@ float mass(float h, float t)
 float mass_index(float m, float h)
 {
     float imt;
-    imt = 0.01 * m / (h * h);
+
+    h = h / 100;
+    imt = m / (h * h);
 
     return imt;
 }

@@ -15,7 +15,7 @@ int main()
 
     float w = weight(h, t);
 
-    int imt = mass_index(m, h);
+    float imt = mass_index(m, h);
 
     printf("Weight: %f\n", w);
     printf("Body mass index: %f\n", imt);

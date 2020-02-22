@@ -1,37 +1,34 @@
 #include <stdio.h>
 
-float mass(float h, float t);
+float weigh(float h, float t);
 int mass_index(float m, float h);
 
 int main()
 {
-    float h, t;
+    float h, t, m;
     printf("Input height:\n");
     scanf("%f", &h);
-    if (h <= 0)
-        return 1;
-
     printf("Input chest diameter:\n");
     scanf("%f", &t);
-    if (t <= 0)
-        return 1;
-    
-    float m = mass(h, t);
+    printf("Input mass:\n");
+    scanf("%f", &m);
+
+    float w = weigh(h, t);
 
     int imt = mass_index(m, h);
 
-    printf("Mass: %f\n", m);
+    printf("Weight: %f\n", w);
     printf("Body mass index: %d\n", imt);
 
     return 0;
 }
 
-float mass(float h, float t)
+float weigh(float h, float t)
 {
-    float m;
-    m = h * t / 240;
+    float w;
+    w = h * t / 240;
 
-    return m;
+    return w;
 }
 
 int mass_index(float m, float h)

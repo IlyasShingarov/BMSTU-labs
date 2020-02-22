@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-float weigh(float h, float t);
-int mass_index(float m, float h);
+float weight(float h, float t);
+float mass_index(float m, float h);
 
 int main()
 {
@@ -13,7 +13,7 @@ int main()
     printf("Input mass:\n");
     scanf("%f", &m);
 
-    float w = weigh(h, t);
+    float w = weight(h, t);
 
     int imt = mass_index(m, h);
 
@@ -23,7 +23,7 @@ int main()
     return 0;
 }
 
-float weigh(float h, float t)
+float weight(float h, float t)
 {
     float w;
     w = h * t / 240;
@@ -31,7 +31,7 @@ float weigh(float h, float t)
     return w;
 }
 
-int mass_index(float m, float h)
+float mass_index(float m, float h)
 {
     int imt;
 

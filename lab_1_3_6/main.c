@@ -52,13 +52,14 @@ int main(void)
 
     float linex, liney, pointx, pointy;
     linex = x2 - x1; liney = y2 - y1;
-    if (fabsf(linex) <= 1e-7 && fabsf(linex) <= 1e-7)
+    pointx = xa - x1; pointy = ya - y1;
+
+    if (fabsf(linex) <= 1e-7 && fabsf(liney) <= 1e-7)
     {
         printf("Error");
         return 2;
     }
 
-    pointx = xa - x1; pointy = ya - y1;
 
     if (external_product(linex, liney, pointx, pointy) > 0)
     {

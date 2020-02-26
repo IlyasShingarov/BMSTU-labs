@@ -53,3 +53,11 @@ Test #12
 Test #13
     IN: 1, 1, 1, 1, 1, 1, a
     OUT: incorrect data
+
+Test #14
+    IN: 0, 0, 0, 0, 1, 1
+    OUT: Error
+
+Test #15
+    IN: 5, 5, 5, 5, 1, 1
+    OUT: Error

@@ -5,7 +5,7 @@ float external_product(float x1, float y1, float x2, float y2);
 
 int main(void)
 {
-    float x1, x2, y1, y2, xA, yA;
+    float x1, x2, y1, y2, xa, ya;
     int state;
 
     printf("Input x1:\n");
@@ -37,14 +37,14 @@ int main(void)
     }
 
     printf("Input xA:\n");
-    if (scanf("%f", &xA) != 1)
+    if (scanf("%f", &xa) != 1)
     {
         printf("Incorrect data");
         return 1;
     }
 
     printf("Input yA:\n");
-    if (scanf("%f", &yA) != 1)
+    if (scanf("%f", &ya) != 1)
     {
         printf("Incorrect data");
         return 1;
@@ -52,7 +52,13 @@ int main(void)
 
     float linex, liney, pointx, pointy;
     linex = x2 - x1; liney = y2 - y1;
-    pointx = xA - x1; pointy = yA - y1;
+    if (fabsf(linex) <= 1e-7 && fabsf(linex) <= 1e-7)
+    {
+        printf("Error");
+        return 2;
+    }
+
+    pointx = xa - x1; pointy = ya - y1;
 
     if (external_product(linex, liney, pointx, pointy) > 0)
     {

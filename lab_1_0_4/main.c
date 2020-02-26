@@ -3,7 +3,7 @@
 int buy(int s);
 int sell(int bottles);
 
-int main()
+int main(void)
 {   
     int s;
     

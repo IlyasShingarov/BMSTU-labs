@@ -4,7 +4,7 @@
 float c_side(float a, float b, float h);
 float perimeter(float a, float b, float c);
 
-int main()
+int main(void)
 {
     float a, b, h;
 

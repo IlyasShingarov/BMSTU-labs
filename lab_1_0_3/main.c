@@ -3,7 +3,7 @@
 float weight(float h, float t);
 float mass_index(float m, float h);
 
-int main()
+int main(void)
 {
     float h, t, m;
     printf("Input height:\n");

@@ -2,7 +2,7 @@
 
 int gcd(int a, int b);
 
-int main()
+int main(void)
 {
     int a, b;
 

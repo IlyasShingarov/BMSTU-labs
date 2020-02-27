@@ -9,14 +9,14 @@ int main(void)
 {
     double x, eps;
     printf("Input x:\n");
-    if (scanf("%f", &x) != 1 || (-1 <= x && x <= 1))
+    if (scanf("%lf", &x) != 1 || (-1 <= x && x <= 1))
     {
         printf("Wrong data");
         return 1;
     }
 
     printf("Input eps:\n");
-    if (scanf("%f", &eps) != 1 || (0 < eps && eps < 1))
+    if (scanf("%lf", &eps) != 1 || (0 < eps && eps < 1))
     {
         printf("Wrong data");
         return 1;
@@ -35,10 +35,10 @@ int main(void)
     rerror = rel_error(s, f);
 
 
-    printf("%f", s);
-    printf("%f", f);
-    printf("%f", aerror);
-    printf("%f", rerror);
+    printf("%lf", s);
+    printf("%lf", f);
+    printf("%lf", aerror);
+    printf("%lf", rerror);
 
     return 0;
 }

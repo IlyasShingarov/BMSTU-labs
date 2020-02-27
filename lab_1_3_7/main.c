@@ -50,7 +50,7 @@ float s_func(float x, float eps)
 
     s = sprev;
 
-    for (int i = 3; sprev > eps ; i += 2)
+    for (int i = 3; (sprev / i) > eps ; i += 2)
     {
         snext = sprev * (-1) * x * x;
         s += snext / i;

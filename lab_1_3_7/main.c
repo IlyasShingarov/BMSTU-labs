@@ -9,7 +9,7 @@ int main(void)
 {
     float x, eps;
     printf("Input x:\n");
-    if (scanf("%f", &x) != 1 || (-1 < x && x < 1))
+    if (scanf("%f", &x) != 1 || (-1 <= x && x <= 1))
     {
         printf("Wrong data");
         return 1;
@@ -52,8 +52,8 @@ float s_func(float x, float eps)
 
     for (int i = 3; sprev > eps ; i += 2)
     {
-        snext = sprev * (-1) * x * x / i;
-        s += snext;
+        snext = sprev * (-1) * x * x;
+        s += snext / i;
         sprev = snext;
     }
 

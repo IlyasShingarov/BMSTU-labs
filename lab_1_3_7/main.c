@@ -9,14 +9,14 @@ int main(void)
 {
     float x, eps;
     printf("Input x:\n");
-    if (scanf("%f", &x) != 1 || -1 < x < 1)
+    if (scanf("%f", &x) != 1 || (-1 < x && x < 1))
     {
         printf("Wrong data");
         return 1;
     }
 
     printf("Input eps:\n");
-    if (scanf("%f", &eps) != 1 || 0 < eps < 1)
+    if (scanf("%f", &eps) != 1 || (0 < eps && eps < 1))
     {
         printf("Wrong data");
         return 1;
@@ -35,10 +35,10 @@ int main(void)
     rerror = rel_error(s, f);
 
 
-    printf("f%", s);
-    printf("f%", f);
-    printf("f%", aerror);
-    printf("f%", rerror);
+    printf("%f", s);
+    printf("%f", f);
+    printf("%f", aerror);
+    printf("%f", rerror);
 
     return 0;
 }
@@ -64,12 +64,16 @@ float abs_error(float s, float f)
 {
     float result;
 
+    result = fabsf(f - s);
+
     return result;
 }
 
 float rel_error(float s, float f)
 {
     float result;
+
+    result = fabsf((f - s) / f);
 
     return result;
 }

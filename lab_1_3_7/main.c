@@ -49,13 +49,14 @@ float s_func(float x, float eps)
     float snext, s;
 
     s = sprev;
-
-    for (int i = 3; (sprev / i) > eps ; i += 2)
-    {
-        snext = sprev * (-1) * x * x;
-        s += snext / i;
-        sprev = snext;
-    }
+	
+	int i = 1
+	while ((sprev / i) > eps)
+	{
+		snext = sprev * (-1) * x * x;
+		s += snext / i;
+		i += 2;
+	}
 
     return s;
 }

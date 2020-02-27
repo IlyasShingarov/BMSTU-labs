@@ -7,16 +7,18 @@ double rel_error(double s, double f);
 
 int main(void)
 {
+    setbuf(stdout ,NULL);
+
     double x, eps;
     printf("Input x:\n");
-    if (scanf("%lf", &x) != 1 || (-1 <= x && x <= 1))
+    if (scanf("%lf", &x) != 1 || fabs(x) > 1)
     {
         printf("Wrong data");
         return 1;
     }
 
     printf("Input eps:\n");
-    if (scanf("%lf", &eps) != 1 || (0 < eps && eps < 1))
+    if (scanf("%lf", &eps) != 1 || 0 > eps || eps > 1)
     {
         printf("Wrong data");
         return 1;

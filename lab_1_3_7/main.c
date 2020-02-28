@@ -56,7 +56,7 @@ int main(void)
 double s_func(double x, double eps)
 {
     double sprev, snext, numerator, s;
-    int i;
+    int i = 1;
 
     sprev = numerator = s = x;
     

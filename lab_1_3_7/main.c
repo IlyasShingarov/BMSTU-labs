@@ -1,79 +1,82 @@
 # include <stdio.h>
 # include <math.h>
 
-float s_func(float x, float eps);
-float abs_error(float s, float f);
-float rel_error(float s, float f);
+double s_func(double x, double eps);
+double abs_error(double s, double f);
+double rel_error(double s, double f);
 
 int main(void)
 {
-    float x, eps;
+    double x, eps;
     printf("Input x:\n");
-    if (scanf("%f", &x) != 1 || (-1 <= x && x <= 1))
+    if (scanf("%lf", &x) != 1 || (-1 <= x && x <= 1))
     {
         printf("Wrong data");
         return 1;
     }
 
     printf("Input eps:\n");
-    if (scanf("%f", &eps) != 1 || (0 < eps && eps < 1))
+    if (scanf("%lf", &eps) != 1 || (0 < eps && eps < 1))
     {
         printf("Wrong data");
         return 1;
     }
 
-    float s;
+    double s;
     s = s_func(x, eps);
 
-    float f;
-    f = atanf(x);
+    double f;
+    f = atan(x);
 
-    float aerror;
+    double aerror;
     aerror = abs_error(s, f);
 
-    float rerror;
+    double rerror;
     rerror = rel_error(s, f);
 
 
-    printf("%f", s);
-    printf("%f", f);
-    printf("%f", aerror);
-    printf("%f", rerror);
+    printf("%lf\n", s);
+    printf("%lf\n", f);
+    printf("%lf\n", aerror);
+    printf("%lf", rerror);
 
     return 0;
 }
 
-float s_func(float x, float eps)
+double s_func(double x, double eps)
 {
-    float sprev = x;
-    float snext, s;
+    double sprev, snext, numerator, s;
+    int i;
 
-    s = sprev;
-
-    for (int i = 3; (sprev / i) > eps ; i += 2)
+    sprev = numerator = s = x;
+    
+    while (fabs(sprev) > eps)
     {
-        snext = sprev * (-1) * x * x;
-        s += snext / i;
+        i += 2;
+        numerator *= -1 * x * x;
+        snext = numerator / i;
+        s += snext;
         sprev = snext;
     }
+
 
     return s;
 }
 
-float abs_error(float s, float f)
+double abs_error(double s, double f)
 {
-    float result;
+    double result;
 
-    result = fabsf(f - s);
+    result = fabs(f - s);
 
     return result;
 }
 
-float rel_error(float s, float f)
+double rel_error(double s, double f)
 {
-    float result;
+    double result;
 
-    result = fabsf((f - s) / f);
+    result = fabs((f - s) / f);
 
     return result;
 }

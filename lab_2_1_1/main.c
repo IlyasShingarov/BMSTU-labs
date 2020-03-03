@@ -1,29 +1,27 @@
 #include <stdio.h>
 
-void array_input(int *a);
 int odd_product(int *a);
 
 int main(void)
 {
     int a[10];
-    array_input(a);
+    for (int i = 0; i < 10; i++)
+    {
+        if (scanf("%d", &a[i]) != 1)
+        {
+            printf("Invalid input");
+            return 1;
+        };
+    }
 
     int result = odd_product(a);
 
     if (result == 0)
-        printf("There's no odd elements");
+        printf("There's no odd elements => %d", result);
     else
         printf("Product of all uneven: %d", result);
 
     return 0;
-}
-
-void array_input(int *a)
-{
-    for (int i = 0; i < 10; i++)
-    {
-        scanf("%d", &a[i]);
-    }
 }
 
 int odd_product(int *a)

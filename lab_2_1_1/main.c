@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int array_input(int *a);
+void array_input(int *a);
 int odd_product(int *a);
 
 int main(void)
@@ -18,7 +18,7 @@ int main(void)
     return 0;
 }
 
-int array_input(int *a)
+void array_input(int *a)
 {
     for (int i = 0; i < 10; i++)
     {

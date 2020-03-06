@@ -49,8 +49,7 @@ int prime_array(int *in_array, int *out_array, int n)
         {
             out_array[j] = in_array[i];
             j++;
-        }
-            
+        }    
     }
 
     return j;
@@ -61,7 +60,7 @@ int is_prime(int x)
 {
     int state = 0;
     for (int i = 2; i <= sqrt(x); i++)
-        if(x % i == 0)
+        if (x % i == 0)
         {
             state = 1;
             i += x;

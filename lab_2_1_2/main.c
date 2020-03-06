@@ -64,11 +64,11 @@ int is_prime(int x)
     if (x > 0)
     {
         for (int i = 2; i <= sqrt(x); i++)
-        if (x % i == 0)
-        {
-            state = 1;
-            i += x;
-        }
+            if (x % i == 0)
+            {
+                state = 1;
+                i += x;
+            }
     }
     else
     {

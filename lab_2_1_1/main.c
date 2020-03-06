@@ -1,7 +1,4 @@
 #include <stdio.h>
-/* Сначала размер массива -- макс 10
-Элементы -- целочисл
-*/
 
 int arr_in(int *a, int n);
 int odd_product(int *a, int n);
@@ -20,7 +17,7 @@ int main(void)
         return 1;
     }
 
-    int a[n];
+    int a[10];
     if (arr_in(a, n) == 0)
     {
         if (odd_product(a, n) == 0)

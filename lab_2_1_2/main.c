@@ -22,6 +22,8 @@ int main(void)
             int no = prime_array(inarr, outarr, ni); // Number of elems in output array
             if (no > 0)
                 error = arr_print(outarr, no);
+            else
+                printf("There's no prime elements");
         }
     }
     
@@ -59,13 +61,20 @@ int prime_array(int *in_array, int *out_array, int n)
 int is_prime(int x)
 {
     int state = 0;
-    for (int i = 2; i <= sqrt(x); i++)
+    if (x > 0)
+    {
+        for (int i = 2; i <= sqrt(x); i++)
         if (x % i == 0)
         {
             state = 1;
             i += x;
         }
-
+    }
+    else
+    {
+        state = 1;
+    }
+    
     return state;
 }
 

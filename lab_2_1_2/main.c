@@ -7,7 +7,7 @@ long is_prime(long x);                                     // Check if number is
 long prime_array(long *in_array, long *out_array, long n); //Form new array with primes
 long arr_print(long *array, long n);                       // printarr_print an array
 
-long main(void)
+int main(void)
 {
     int error = 1;
 

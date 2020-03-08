@@ -26,7 +26,7 @@ int main(void)
                 printf("There's no prime elements");
         }
     }
-
+    
     return error;
 }
 

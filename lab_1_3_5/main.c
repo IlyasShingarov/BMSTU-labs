@@ -4,27 +4,22 @@ int gcd(int a, int b);
 
 int main(void)
 {
-    int a, b;
+    int a, b, error = 0;
 
-    printf("Input a:\n");
-    if (scanf("%d", &a) != 1 || a < 1)
+    printf("Input a, b:\n");
+    if (scanf("%d%d", &a, &b) != 2 || a < 1 || b < 1)
     {
         printf("Incorrect input data");
-        return 1;    
+        error = 1;    
     }
-    
-    printf("Input b:\n");
-    if (scanf("%d", &b) != 1 || b < 1)
+
+    if (error == 0)
     {
-        printf("Incorrect input data");
-        return 1;
+        int common_divisor = gcd(a, b);
+        printf("gcd: %d", common_divisor);
     }
 
-    int common_divisor = gcd(a, b);
-
-    printf("gcd: %d", common_divisor);
-
-    return 0;
+    return error;
 }
 
 int gcd(int a, int b)

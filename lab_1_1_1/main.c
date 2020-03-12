@@ -2,9 +2,10 @@
 
 int main(void)
 {
- int s;
+    int s;
 
- s = 56;
- printf("Year has %d weeks", s);
+    s = 56;
+    printf("Year has %d weeks", s);
 
+    return 0;
 }

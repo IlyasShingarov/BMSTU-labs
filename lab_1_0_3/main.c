@@ -20,7 +20,9 @@ int main(void)
 }
 
 float weight(float h, float t)
-    return w = h * t / 240;
+{
+    return h * t / 240;
+}
 
 float mass_index(float m, float h)
 {

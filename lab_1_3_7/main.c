@@ -66,10 +66,14 @@ double s_func(double x, double eps)
 }
 
 double abs_error(double s, double f)
+{
     return fabs(f - s);
+}
 
 double rel_error(double s, double f)
+{
     return fabs((f - s) / f);
+}
 
 void output(int s, int f, int a, int r)
 {

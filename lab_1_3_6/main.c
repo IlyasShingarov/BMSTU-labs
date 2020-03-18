@@ -40,5 +40,6 @@ int main(void)
 }
 
 float external_product(float x1, float y1, float x2, float y2)
+{
     return x1 * y2 - x2 * y1;
-
+}

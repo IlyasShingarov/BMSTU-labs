@@ -8,15 +8,15 @@ int main(void)
     float x1, x2, y1, y2, xa, ya;
     int state, error = 0;
 
-    printf("Input x1, y2:\n");
+    printf("Input x, y of the first point:\n");
     if (scanf("%f%f", &x1, &y1) != 2)
         error = 1;
 
-    printf("Input x2, y2:\n");
+    printf("Input x, y of the second point:\n");
     if (scanf("%f%f", &x2, &y2) != 2)
         error = 1;
 
-    printf("Input xA, yA:\n");
+    printf("Input x, y of the external point:\n");
     if (scanf("%f%f", &xa, &ya) != 2)
         error = 1;
 
@@ -38,6 +38,9 @@ int main(void)
             printf("State: %d", state);
         }
     }
+
+    if (error != 0)
+        printf("Incorrect data");
     
     return error;
 }

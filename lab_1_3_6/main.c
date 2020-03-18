@@ -26,7 +26,9 @@ int main(void)
         linex = x2 - x1; liney = y2 - y1;
         pointx = xa - x1; pointy = ya - y1;
 
-        if (fabsf(linex) > 1e-7 && fabsf(liney) > 1e-7)
+        if (fabsf(linex) <= 1e-7 && fabsf(liney) <= 1e-7)
+            error = 1;
+        else
         {
             if (external_product(linex, liney, pointx, pointy) > 0)
                 state = 0;
@@ -37,8 +39,6 @@ int main(void)
 
             printf("State: %d", state);
         }
-        else
-            error = 1;
     }
 
     if (error != 0)

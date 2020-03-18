@@ -38,10 +38,7 @@ int main(void)
             printf("State: %d", state);
         }
         else
-        {
             error = 1;
-        }
-        
     }
 
     if (error != 0)

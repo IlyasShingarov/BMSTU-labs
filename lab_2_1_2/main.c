@@ -58,7 +58,7 @@ long prime_array(long *in_array, long *out_array, long n)
 long is_prime(long x)
 {
     long state = 0;
-    if (x > 0)
+    if (x > 1)
     {
         for (long i = 2; i <= sqrt(x); i++)
             if (x % i == 0)

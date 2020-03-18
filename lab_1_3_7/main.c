@@ -4,7 +4,7 @@
 double s_func(double x, double eps);
 double abs_error(double s, double f);
 double rel_error(double s, double f);
-void output(int s, int f, int a, int r);
+void output(double s, double f, double a, double r);
 
 int main(void)
 {
@@ -75,7 +75,7 @@ double rel_error(double s, double f)
     return fabs((f - s) / f);
 }
 
-void output(int s, int f, int a, int r)
+void output(double s, double f, double a, double r)
 {
     printf("%lf\n", s);
     printf("%lf\n", f);

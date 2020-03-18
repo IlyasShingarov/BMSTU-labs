@@ -13,11 +13,11 @@ int main(void)
         error = 1;
 
     printf("Input x2, y2:\n");
-    if (scanf("%f%f", x2, &y2) != 2)
+    if (scanf("%f%f", &x2, &y2) != 2)
         error = 1;
 
     printf("Input xA, yA:\n");
-    if (scanf("%f", &xa, ya) != 2)
+    if (scanf("%f%f", &xa, &ya) != 2)
         error = 1;
 
     float linex, liney, pointx, pointy;

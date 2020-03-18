@@ -34,7 +34,8 @@ int main(void)
     else
         state = 2;
 
-    printf("State: %d", state);
+    if (error == 0)
+        printf("State: %d", state);
 
     return error;
 }

@@ -20,23 +20,23 @@ int main(void)
     if (scanf("%f%f", &xa, &ya) != 2)
         error = 1;
 
-    float linex, liney, pointx, pointy;
-    linex = x2 - x1; liney = y2 - y1;
-    pointx = xa - x1; pointy = ya - y1;
-
-    if (fabsf(linex) <= 1e-7 && fabsf(liney) <= 1e-7)
-        error = 2;
-
     if (error == 0)
     {
-        if (external_product(linex, liney, pointx, pointy) > 0)
-            state = 0;
-        else if (fabsf(external_product(linex, liney, pointx, pointy)) <= 1e-7)
-            state = 1;
-        else
-            state = 2;
-    
-        printf("State: %d", state);
+        float linex, liney, pointx, pointy;
+        linex = x2 - x1; liney = y2 - y1;
+        pointx = xa - x1; pointy = ya - y1;
+
+        if (fabsf(linex) > 1e-7 && fabsf(liney) > 1e-7)
+        {
+            if (external_product(linex, liney, pointx, pointy) > 0)
+                state = 0;
+            else if (fabsf(external_product(linex, liney, pointx, pointy)) <= 1e-7)
+                state = 1;
+            else
+                state = 2;
+
+            printf("State: %d", state);
+        }
     }
     
     return error;

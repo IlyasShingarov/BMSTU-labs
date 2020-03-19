@@ -1,10 +1,10 @@
 #include <stdio.h>
 
-long n_input(void);
-long arr_in(long *a, long n);
-long arr_print(long *array, long n);
-int shift(long *pstart, long n);
-int array_transform(long *a, long n);
+int n_input(void);
+int arr_in(long *a, int n);
+int arr_print(long *array, int n);
+int shift(long *pstart, int n);
+int array_transform(long *a, int n);
 
 int main(void)
 {
@@ -27,7 +27,7 @@ int main(void)
 }
 
 
-int array_transform(long *a, long n)
+int array_transform(long *a, int n)
 {
     int counter = 0;
     int fib1 = 0;
@@ -35,12 +35,13 @@ int array_transform(long *a, long n)
 
     for (int i = 0; i < n; i++)
     {   
-        if (a[i] %  3 == 0)
+        if (a[i] % 3 == 0)
         {
             i++; counter++;
             n = shift((a + i), n);
+
             if (counter == 1)
-                a[i] = fib1;
+                a[i] = 0;
             else if (counter == 2)
                 a[i] = 1;
             else
@@ -52,16 +53,14 @@ int array_transform(long *a, long n)
             }
         }
     }
-    
+
     return n;
 }
 
 
-int shift(long *pstart, long n)
+int shift(long *pstart, int n)
 {
-    long* pend = pstart + n;
-
-    for (; pend >= pstart; pend--)
+    for (long *pend = pstart + n; pend >= pstart; pend--)
     {
         *(pend + 1) = *pend;
     }
@@ -69,11 +68,11 @@ int shift(long *pstart, long n)
     return n + 1;
 }
 
-long arr_in(long *a, long n)
+int arr_in(long *a, int n)
 {
     printf("Input array elements:\n");
 
-    for (long i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         if (scanf("%ld", &a[i]) != 1)
         {
@@ -86,11 +85,11 @@ long arr_in(long *a, long n)
 }
 
 
-long n_input(void)
+int n_input(void)
 {
-    long n;
+    int n;
     printf("Input amount of elements: ");
-    if (scanf("%ld", &n) != 1 || n > 10 || n < 1)
+    if (scanf("%d", &n) != 1 || n > 10 || n < 1)
     {
         printf("Icorrect data");
         return -1;
@@ -100,7 +99,7 @@ long n_input(void)
 }
 
 
-long arr_print(long *array, long n)
+int arr_print(long *array, int n)
 {
     printf("\nOut:\n");
 

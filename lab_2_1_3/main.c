@@ -3,7 +3,7 @@
 int n_input(void);
 int arr_in(long *a, int n);
 int arr_print(long *array, int n);
-int shift(long *pstart, int n);
+int shift(long *pstart, int n, int i);
 int array_transform(long *a, int n);
 
 int main(void)
@@ -23,10 +23,8 @@ int main(void)
         }
     }
     else
-    {
         error = 1;
-    }
-
+    
     return error;
 }
 
@@ -42,7 +40,7 @@ int array_transform(long *a, int n)
         if (a[i] % 3 == 0)
         {
             i++; counter++;
-            n = shift((a + i), n);
+            n = shift((a + i), n, i);
 
             if (counter == 1)
                 a[i] = 0;
@@ -62,15 +60,16 @@ int array_transform(long *a, int n)
 }
 
 
-int shift(long *pstart, int n)
+int shift(long *pstart, int n, int i)
 {
-    for (long *pend = pstart + n; pend >= pstart; pend--)
+    for (long *pend = pstart + n - i; pend >= pstart; pend--)
     {
         *(pend + 1) = *pend;
     }
 
     return n + 1;
 }
+
 
 int arr_in(long *a, int n)
 {
@@ -107,7 +106,7 @@ int arr_print(long *array, int n)
 {
     printf("\nOut:\n");
 
-    for (long i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
         printf("%ld ", array[i]);
 
     return 0;

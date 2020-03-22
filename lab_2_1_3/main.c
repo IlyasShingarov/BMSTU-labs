@@ -9,12 +9,12 @@ int array_transform(long *a, int n);
 int main(void)
 {
     int error = 0;
-    long array[20];
 
     int n = n_input();
     
     if (n > 0)
-    {
+    {   
+        long array[20];
         error = arr_in(array, n);
         if (error == 0)
         {
@@ -39,7 +39,7 @@ int array_transform(long *a, int n)
 
     for (int i = 0; i < n; i++)
     {   
-        if (a[i] != 0 && a[i] % 3 == 0)
+        if (a[i] % 3 == 0)
         {
             i++; counter++;
             n = shift((a + i), n);

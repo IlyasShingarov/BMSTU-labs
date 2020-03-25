@@ -1,52 +1,87 @@
 #include <stdio.h>
 
-int n_input(void);
-int arr_in(long *a, int n);
-int arr_print(long *array, int n);
+int input_array(long long *array, long long **end);
+int process_array(long long *array, long long *end, long long *result);
+void print_result(long long result);
 
 int main(void)
 {
-    int error = 0;
+    int err = 0;
 
-    return error;
+    long long array[10] = { 0 };
+    long long *end = 0;
+    long long result = 0;
+
+    if (!err)
+        err = input_array(array, &end);
+    
+    if (!err)
+        err = process_array(array, end, &result);
+    
+    if (!err)
+        print_result(result);
+    else
+        printf("error\n");
+    
+    return err;
 }
 
-int arr_in(long *a, int n)
+int input_array(long long *array, long long **end)
 {
-    printf("Input array elements:\n");
+    if (!array || !end)
+        return -2;
+    
+    int err = -1;
 
-    for (int i = 0; i < n; i++)
+    int lenght = 0;
+
+    printf("Input array length: ");
+
+    if (scanf("%d", &lenght) != 1 || lenght <= 0 || lenght > 10)
+        err = -1;
+    
+    if (!err)
+        printf("Input array elements: ");
+    
+    *end = array + lenght;
+    
+    for (long long *i = array; i != *end && !err; i++)
     {
-        if (scanf("%ld", &a[i]) != 1)
-        {
-            printf("Incorrect data");
-            return 1;
-        }
+        if (scanf("%lld", i) != 1)
+            err = -1; 
     }
-
-    return 0;
+    
+    return err;
 }
 
-int n_input(void)
+int process_array(long long *array, long long *end, long long *result)
 {
-    int n;
-    printf("Input amount of elements: ");
-    if (scanf("%d", &n) != 1 || n > 10 || n < 1)
-    {
-        printf("Icorrect data");
-        return -1;
+    if (!array || !end || !result)
+        return -2;
+    
+    *result = 0;
+
+    long long *i = array;
+    long long *j = end - 1;
+
+    while (i < end && j > array)
+    {        
+        while (*i >= 0 && i < end) 
+            i++;
+        while (*j <= 0 && j > array) 
+            j--;
+        
+        if (i < end && j > array)
+            *result += (*i) * (*j);
+        
+        i++;
+        j--;
     }
-
-    return n;
+    
+    return *result == 0;
 }
 
-int arr_print(long *array, int n)
+void print_result(long long result)
 {
-    printf("\nOut:\n");
-
-    for (int i = 0; i < n; i++)
-        printf("%ld ", array[i]);
-
-    return 0;
+    printf("Result is %lld\n", result);
 }
-

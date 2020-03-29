@@ -2,7 +2,6 @@
 
 int array_in(long *array, long **end);
 int process_array(long *array, long *end, long *result);
-void print_result(long result);
 
 int main(void)
 {
@@ -19,9 +18,9 @@ int main(void)
         err = process_array(array, end, &result);
     
     if (!err)
-        print_result(result);   
+        printf("Result is %ld\n", result);
     else
-        printf("error\n");
+        printf("Error\n");
     
     return err;
 }
@@ -30,9 +29,8 @@ int array_in(long *array, long **end)
 {   
     int err = 0;
 
-    int length;
+    int length = 0;
     printf("Input array length: ");
-
     if (scanf("%d", &length) != 1 || length <= 0 || length > 10)
         err = -1;
     
@@ -72,9 +70,4 @@ int process_array(long *array, long *end, long *result)
     }
     
     return *result == 0;
-}
-
-void print_result(long result)
-{
-    printf("Result is %ld\n", result);
 }

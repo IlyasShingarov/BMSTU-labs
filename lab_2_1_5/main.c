@@ -1,68 +1,61 @@
 #include <stdio.h>
 
-int input_array(long long *array, long long **end);
-int process_array(long long *array, long long *end, long long *result);
-void print_result(long long result);
+int array_in(long *array, long **end);
+int process_array(long *array, long *end, long *result);
+void print_result(long result);
 
 int main(void)
 {
     int err = 0;
 
-    long long array[10] = { 0 };
-    long long *end = 0;
-    long long result = 0;
+    long array[10] = { 0 };
+    long *end = 0;
+    long result = 0;
 
     if (!err)
-        err = input_array(array, &end);
+        err = array_in(array, &end);
     
     if (!err)
         err = process_array(array, end, &result);
     
     if (!err)
-        print_result(result);
+        print_result(result);   
     else
         printf("error\n");
     
     return err;
 }
 
-int input_array(long long *array, long long **end)
-{
-    if (!array || !end)
-        return -2;
-    
-    int err = -1;
+int array_in(long *array, long **end)
+{   
+    int err = 0;
 
-    int lenght = 0;
-
+    int length;
     printf("Input array length: ");
 
-    if (scanf("%d", &lenght) != 1 || lenght <= 0 || lenght > 10)
+    if (scanf("%d", &length) != 1 || length <= 0 || length > 10)
         err = -1;
     
     if (!err)
         printf("Input array elements: ");
     
-    *end = array + lenght;
+    *end = array + length;
     
-    for (long long *i = array; i != *end && !err; i++)
+    for (long *i = array; i != *end && !err; i++)
     {
-        if (scanf("%lld", i) != 1)
+        if (scanf("%ld", i) != 1)
             err = -1; 
     }
     
     return err;
 }
 
-int process_array(long long *array, long long *end, long long *result)
-{
-    if (!array || !end || !result)
-        return -2;
-    
+int process_array(long *array, long *end, long *result)
+{   
     *result = 0;
 
-    long long *i = array;
-    long long *j = end - 1;
+    long *i = array;
+    long *j = end - 1;
 
     while (i < end && j > array)
     {        
@@ -81,7 +74,7 @@ int process_array(long long *array, long long *end, long long *result)
     return *result == 0;
 }
 
-void print_result(long long result)
+void print_result(long result)
 {
-    printf("Result is %lld\n", result);
+    printf("Result is %ld\n", result);
 }

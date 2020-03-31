@@ -3,3 +3,5 @@
 *.md
 *lab_1*
 *.vscode
+*.g*
+*.py

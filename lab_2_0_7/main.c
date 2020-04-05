@@ -14,7 +14,7 @@ int main(void)
 
     if (n > 0)
     {   
-        long array[100000];
+        long array[10000];
         error = arr_in(array, n);
         if (error == 0)
         {

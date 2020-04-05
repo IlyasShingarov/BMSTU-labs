@@ -5,3 +5,6 @@
 *.vscode
 *.g*
 *.py
+*.out
+*out*
+*prof*

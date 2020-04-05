@@ -1,0 +1,37 @@
+Тестовые данные для lab_1_3_5
+Входные данные: a, b
+Выходные данные: gcd
+
+Test #1
+    IN : 16, 8
+    OUT : 8
+
+Test #2
+    IN : 96, 44
+    OUT : 4
+
+Test #3
+    IN : -2
+    OUT : Incorrect input data
+
+Test #
+    IN : 0
+    OUT : Incorrect input data
+
+Test #
+    IN : a
+    OUT : Incorrect input data
+
+Test #
+    IN : 1, -1
+    OUT : Incorrect input data
+
+Test #
+    IN : 1, 0
+    OUT : Incorrect input data
+
+Test #
+    IN : 1, a
+    OUT : Incorrect input data
+
+Покрытие тестами: 100%

@@ -8,3 +8,5 @@
 *.out
 *out*
 *prof*
+*.json
+

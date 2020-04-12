@@ -1,0 +1,7 @@
+*.py
+*.o
+*.exe
+*.md
+lab_1_*
+lab_2_*
+*vscode*

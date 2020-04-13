@@ -115,9 +115,9 @@ int is_symmetrical(int *row, int len)
 {
     int state = 1;
 
-    int *pend = row + len;
+    int *pend = row + len - 1 ;
 
-    for (int *pstart = row; pstart < pend - 1; pstart++, pend--)
+    for (int *pstart = row; pstart < pend; pstart++, pend--)
         if (*pstart != *pend)
             state = 0;
     

@@ -30,7 +30,7 @@ int main(void)
 {
     int error = 0;
     int matrix[MAX_ROWS][MAX_COLS] = { { 0 } };
-    int outarr[MAX_ROWS];
+    int outarr[MAX_ROWS] = { 0 };
     
     int rows, columns = 0;
 
@@ -43,7 +43,7 @@ int main(void)
         error = mat_process(matrix, rows, columns, outarr);
 
     if (!error)
-        error = array_out(outarr, columns);
+        error = array_out(outarr, rows);
 
     if (error)
         printf("Error!\n");
@@ -113,16 +113,13 @@ int mat_process(int (*mat)[MAX_COLS], int rows, int columns, int *outarr)
 int is_symmetrical(int *row, int len)
 {
     int state = 1;
-    if (len == 1)
-        state = 0;
-    else
-    {
+
     int *pend = row + len - 1;
 
     for (int *pstart = row; pstart < pend; pstart++, pend--)
         if (*pstart != *pend)
             state = 0;
-    }
-
+    
     return state;
 }
+

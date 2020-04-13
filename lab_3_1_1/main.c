@@ -100,26 +100,29 @@ int mat_in(int (*mat)[MAX_COLS], int rows, int columns)
 
 int mat_process(int (*mat)[MAX_COLS], int rows, int columns, int *outarr)
 {
-    int error = 0;
 
-    for (int i = 0; i < rows && !error; i++)
+    for (int i = 0; i < rows; i++)
     {
         int state = is_symmetrical(mat[i], columns);
         outarr[i] = state;
     }
 
-    return error;
+    return 0;
 }
 
 int is_symmetrical(int *row, int len)
 {
     int state = 1;
-
-    int *pend = row + len - 1 ;
+    if (len == 1)
+        state = 0;
+    else
+    {
+    int *pend = row + len - 1;
 
     for (int *pstart = row; pstart < pend; pstart++, pend--)
         if (*pstart != *pend)
             state = 0;
-    
+    }
+
     return state;
 }

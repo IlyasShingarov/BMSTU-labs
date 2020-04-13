@@ -18,7 +18,7 @@ int array_in(int *arr, int len);
 int array_out(const int *array, int len);
 
 //Работа с двумерным массивом
-int mat_size_in(int* rows, int* columns);
+int mat_size_in(int *rows, int *columns);
 int mat_in(int (*mat)[MAX_COLS], int rows, int columns);
 int mat_out(int (*matrix)[MAX_COLS], int rows, int cols);
 
@@ -29,7 +29,7 @@ int is_symmetrical(int *row, int len);
 int main(void)
 {
     int error = 0;
-    int matrix[MAX_ROWS][MAX_COLS];
+    int matrix[MAX_ROWS][MAX_COLS] = { { 0 } };
     int outarr[MAX_ROWS];
     
     int rows, columns = 0;
@@ -75,12 +75,12 @@ int array_out(const int *array, int len)
     return 0;
 }
 
-int mat_size_in(int* rows, int* columns)
+int mat_size_in(int *rows, int *columns)
 {
     int error = 0;
 
     printf("Input rows, columns: ");
-    if(scanf("%d%d", rows, columns) != 2 || *rows <= 0 || *rows > MAX_ROWS || *columns <= 0 || *columns > MAX_COLS)
+    if (scanf("%d%d", rows, columns) != 2 || *rows <= 0 || *rows > MAX_ROWS || *columns <= 0 || *columns > MAX_COLS)
         error = 1;
 
     return error;
@@ -117,7 +117,7 @@ int is_symmetrical(int *row, int len)
 
     int *pend = row + len;
 
-    for(int *pstart = row; pstart < pend - 1; pstart++ , pend--)
+    for (int *pstart = row; pstart < pend - 1; pstart++, pend--)
         if (*pstart != *pend)
             state = 0;
     

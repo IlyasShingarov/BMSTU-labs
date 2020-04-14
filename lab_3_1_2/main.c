@@ -29,8 +29,10 @@ int main(void)
         error = mat_in(mat, rows, columns);
 
     if (!error)
-    {   
         error = find_min_digit_sum(mat, rows, columns, &min_i, &min_j);
+    
+    if (!error)
+    {
         columns = delete_column(mat, rows, columns, min_j);
         rows = delete_row(mat, rows, columns, min_i);
 

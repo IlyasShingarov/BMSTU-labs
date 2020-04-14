@@ -1,6 +1,6 @@
 #include "freq.h"
 #include "stdio.h"
-#include "math.h"
+#include "stdlib.h"
 
 //Работа со столбцами матрицы
 int column_shift(int (*mat)[MAX_COLS], int rows, int index);

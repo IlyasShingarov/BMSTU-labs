@@ -14,4 +14,4 @@ int mat_out(int (*matrix)[MAX_COLS], int rows, int cols);
 
 void swap(int *xp, int *yp);
 
-#endif // __FREQ__H__
+#endif

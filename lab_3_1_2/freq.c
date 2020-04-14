@@ -61,7 +61,7 @@ int mat_out(int (*matrix)[MAX_COLS], int rows, int cols)
 
 void swap(int *xp, int *yp)
 {
-    long temp = *xp; 
+    int temp = *xp; 
     *xp = *yp; 
     *yp = temp; 
 }

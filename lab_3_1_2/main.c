@@ -25,19 +25,17 @@ int main(void)
 
     error = mat_size_in(&rows, &columns);
 
+    if (rows == 1 || columns == 1)
+        error = 1;
+    
     if (!error)
         error = mat_in(mat, rows, columns);
 
     if (!error)
+    {   
         error = find_min_digit_sum(mat, rows, columns, &min_i, &min_j);
-    
-    if (!error)
-    {
         columns = delete_column(mat, rows, columns, min_j);
         rows = delete_row(mat, rows, columns, min_i);
-
-        if (columns == 0 && rows == 0)
-            error = 1;
     }
         
     if (!error)
@@ -102,22 +100,17 @@ int find_min_digit_sum(int (*mat)[MAX_COLS], int rows, int columns, int *min_i, 
 {   
     int min_sum = digit_sum(mat[0][0]);
 
-    int error = 0;
-
     for (int i = 0; i < rows; i++)
         for (int j = 0; j < columns; j++)
         {
             int sum = digit_sum(abs(mat[i][j]));
-            if (sum < min_sum)
+            if (sum <= min_sum)
             {
-                error = 0;
                 min_sum = sum;
                 *min_j = j;
                 *min_i = i;
             }
-            else if (sum == min_sum)
-                error = 1;
         }
 
-    return error;
+    return 0;
 }

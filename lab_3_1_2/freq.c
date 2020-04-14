@@ -31,7 +31,7 @@ int mat_size_in(int *rows, int *columns)
     int error = 0;
 
     printf("Input rows, columns: ");
-    if(scanf("%d%d", rows, columns) != 2 || *rows <= 0 || *rows > MAX_ROWS || *columns <= 0 || *columns > MAX_COLS)
+    if (scanf("%d%d", rows, columns) != 2 || *rows <= 0 || *rows > MAX_ROWS || *columns <= 0 || *columns > MAX_COLS)
         error = 1;
 
     return error;

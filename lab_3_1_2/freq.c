@@ -26,7 +26,7 @@ int array_out(const int *array, int len)
     return 0;
 }
 
-int mat_size_in(int* rows, int* columns)
+int mat_size_in(int *rows, int *columns)
 {
     int error = 0;
 

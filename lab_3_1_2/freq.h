@@ -8,7 +8,7 @@
 int array_in(int *arr, int len);
 int array_out(const int *array, int len);
 
-int mat_size_in(int* rows, int* columns);
+int mat_size_in(int *rows, int *columns);
 int mat_in(int (*mat)[MAX_COLS], int rows, int columns);
 int mat_out(int (*matrix)[MAX_COLS], int rows, int cols);
 

@@ -11,7 +11,7 @@ int row_shift(int (*mat)[MAX_COLS], int rows, int index);
 int delete_row(int(*mat)[MAX_COLS], int rows, int columns, int index);
  
 // Поиск элемента
-int find_min_digit_sum(const int (*mat)[MAX_COLS], int rows, int columns, int *min_i, int *min_j);
+int find_min_digit_sum(int (*mat)[MAX_COLS], int rows, int columns, int *min_i, int *min_j);
 
 
 int main(void)
@@ -96,7 +96,7 @@ int delete_row(int(*mat)[MAX_COLS], int rows, int columns, int index)
 }
 
 
-int find_min_digit_sum(const int (*mat)[MAX_COLS], int rows, int columns, int *min_i, int *min_j)
+int find_min_digit_sum(int (*mat)[MAX_COLS], int rows, int columns, int *min_i, int *min_j)
 {   
     int min_sum = digit_sum(mat[0][0]);
 

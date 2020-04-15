@@ -19,10 +19,10 @@ int main(void)
         error = mat_in(matrix, rows, columns);
     
     if (!error)
-        {
-            mat_preprocess(matrix, rows, columns);
-            mat_process(matrix, rows, columns);
-        }
+    {
+        mat_preprocess(matrix, rows, columns);
+        mat_process(matrix, rows, columns);
+    }
 
     if (!error)
         mat_out(matrix, rows, columns);
@@ -49,7 +49,7 @@ int mat_process(int (*mat)[MAX_COLS], int rows, int cols)
     while (!state)
     {
         state = 1;
-        for(int i = 0; i < rows - 1; i++)
+        for (int i = 0; i < rows - 1; i++)
             if (mat[i][cols] < mat[i + 1][cols])
             {
                 row_shift(mat, cols, i);

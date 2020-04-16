@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#define ARRAY_SIZE 100000
+
 int n_input(void);
 int arr_in(long *a, int n);
 int arr_print(long *array, int n);
@@ -14,7 +16,7 @@ int main(void)
 
     if (n > 0)
     {   
-        long array[10000];
+        long array[ARRAY_SIZE];
         error = arr_in(array, n);
         if (error == 0)
         {
@@ -78,7 +80,7 @@ int n_input(void)
 {
     int n;
     printf("Input amount of elements: ");
-    if (scanf("%d", &n) != 1 || n > 100000 || n < 1)
+    if (scanf("%d", &n) != 1 || n > ARRAY_SIZE || n < 1)
     {
         printf("Icorrect data");
         return -1;

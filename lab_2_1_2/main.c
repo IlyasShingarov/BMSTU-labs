@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 
+#define MAX_ARRAY_SIZE 10
+
 long n_input(void);                                        // Input number of elements
 long arr_in(long *a, long n);                              // Input array elements
 long is_prime(long x);                                     // Check if number is prime
@@ -14,11 +16,11 @@ int main(void)
     long ni = n_input(); // Arraysize variable
     if (ni > 0)
     {
-        long inarr[10]; // Initial array
+        long inarr[MAX_ARRAY_SIZE]; // Initial array
 
         if (arr_in(inarr, ni) == 0)
         {
-            long outarr[10];                          // Output array
+            long outarr[MAX_ARRAY_SIZE];                          // Output array
             long no = prime_array(inarr, outarr, ni); // Number of elems in output array
             if (no > 0)
                 error = arr_print(outarr, no);
@@ -95,7 +97,7 @@ long n_input(void)
 {
     long n;
     printf("Input amount of elements: ");
-    if (scanf("%ld", &n) != 1 || n > 10 || n < 1)
+    if (scanf("%ld", &n) != 1 || n > MAX_ARRAY_SIZE || n < 1)
     {
         printf("Icorrect data");
         return -1;

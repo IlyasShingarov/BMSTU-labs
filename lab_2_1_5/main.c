@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#define MAX_ARRAY_SIZE 10
+
 int array_in(long *array, long **end);
 int process_array(long *array, long *end, long *result);
 
@@ -7,7 +9,7 @@ int main(void)
 {
     int err = 0;
 
-    long array[10] = { 0 };
+    long array[MAX_ARRAY_SIZE] = { 0 };
     long *end = 0;
     long result = 0;
 
@@ -31,7 +33,7 @@ int array_in(long *array, long **end)
 
     int length = 0;
     printf("Input array length: ");
-    if (scanf("%d", &length) != 1 || length <= 0 || length > 10)
+    if (scanf("%d", &length) != 1 || length <= 0 || length > MAX_ARRAY_SIZE)
         err = -1;
     
     if (!err)

@@ -2,9 +2,16 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
+#define SIZE_1 10
+#define SIZE_2 100
+#define SIZE_3 500
+#define SIZE_4 1000
+#define SIZE_5 10000
+#define SIZE_6 100000
+
 int copy_array(long *arrout, const long *arrin, const int len);
-void random_array(long *array, size_t len);
-void print_table(size_t repeats, size_t size, long time_1, long time_2, long time_3);
+void random_array(long *array, long len);
+void print_table(long repeats, long size, long time_1, long time_2, long time_3);
 
 long elapsed_time(struct timeval time_start, struct timeval time_stop);
 
@@ -20,12 +27,12 @@ int main(void)
 {
     int err = 0;
 
-    size_t iter_count[] = {10, 100, 500, 1000, 10000, 100000};
-    size_t sizes[] = {10, 100, 500, 1000, 10000, 100000};
+    long iter_count[] = {10, 100, 500, 1000, 10000, 100000};
+    long sizes[] = {SIZE_1, SIZE_2, SIZE_3, SIZE_4, SIZE_5, SIZE_6};
     
-    long array1[100000] = { 0 };
-    long array2[100000] = { 0 };
-    long array3[100000] = { 0 };
+    long array1[SIZE_6] = { 0 };
+    long array2[SIZE_6] = { 0 };
+    long array3[SIZE_6] = { 0 };
 
     struct timeval time = { 0 };
     gettimeofday(&time, 0);
@@ -34,15 +41,15 @@ int main(void)
 
     printf("|%7s|%7s|%7s|%7s|%7s|\n", "Repeats", "Size", "a[i]", "*(a+i)", "Pointer");
 
-    for (size_t i = 0; i < sizeof(iter_count) / sizeof(*iter_count) && !err; i++)
-        for (size_t j = 0; j < sizeof(sizes) / sizeof(*sizes) && !err; j++)
+    for (unsigned long i = 0; i < sizeof(iter_count) / sizeof(*iter_count) && !err; i++)
+        for (unsigned long j = 0; j < sizeof(sizes) / sizeof(*sizes) && !err; j++)
         {  
-            size_t repeats = iter_count[i];
-            size_t size = sizes[j];
+            long repeats = iter_count[i];
+            long size = sizes[j];
 
             long final_time_1 = 0, final_time_2 = 0, final_time_3 = 0;
 
-            for (size_t k = 0; k < repeats && !err; k++)
+            for (long k = 0; k < repeats && !err; k++)
             {
                 random_array(array1, size);
                 copy_array(array2, array1, size);
@@ -148,9 +155,9 @@ int copy_array(long *arrout, const long *arrin, const int len)
     return 0;
 }
 
-void random_array(long *array, size_t len)
+void random_array(long *array, long len)
 {
-    for (size_t i = 0; i < len; i++)
+    for (long i = 0; i < len; i++)
         array[i] = rand(); 
 }
 
@@ -205,7 +212,7 @@ int test3(long *array, int size, long *time)
     return 0;
 }
 
-void print_table(size_t repeats, size_t size, long time_1, long time_2, long time_3)
+void print_table(long repeats, long size, long time_1, long time_2, long time_3)
 {
-    printf("|%7d|%7d|%7ld|%7ld|%7ld|\n", repeats, size, time_1, time_2, time_3);
+    printf("|%7ld|%7ld|%7ld|%7ld|%7ld|\n", repeats, size, time_1, time_2, time_3);
 }

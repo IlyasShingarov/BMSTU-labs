@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#define MAX_ARRAY_SIZE 10
+
 int n_input(void);
 int arr_in(int *a, int n);
 int odd_product(int *a, int n);
@@ -12,7 +14,7 @@ int main(void)
 
     int n = n_input();
 
-    int a[10];
+    int a[MAX_ARRAY_SIZE];
     if (arr_in(a, n) == 0)
     {
         if (odd_product(a, n) < 1)
@@ -68,7 +70,7 @@ int n_input(void)
 {
     int n;
     printf("Input amount of elements: ");
-    if (scanf("%d", &n) != 1 || n > 10 || n < 1)
+    if (scanf("%d", &n) != 1 || n > MAX_ARRAY_SIZE || n < 1)
     {
         printf("Icorrect data");
         return -1;

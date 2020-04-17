@@ -1,6 +1,8 @@
 # include <stdio.h>
 # include <math.h>
 
+#define ZERO 1e-7
+
 double s_func(double x, double eps);
 double abs_error(double s, double f);
 double rel_error(double s, double f);
@@ -34,7 +36,7 @@ int main(void)
         double aerror = abs_error(s, f);
 
         double rerror;
-        if (fabs(f) > 1e-7)
+        if (fabs(f) > ZERO)
             rerror = rel_error(s, f);
         else
             rerror = 0;

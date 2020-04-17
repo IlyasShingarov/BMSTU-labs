@@ -17,9 +17,11 @@ int main(void)
     int a[MAX_ARRAY_SIZE];
     if (arr_in(a, n) == 0)
     {
-        if (odd_product(a, n) < 1)
+        int result = odd_product(a, n);
+        if (!result)
             printf("There's no odd elements");
         else
+            printf("Result: %d", result);
             err = 0;
     }
 
@@ -29,18 +31,20 @@ int main(void)
 
 int arr_in(int *a, int n)
 {   
+    int error = 0;
+
     printf("Input array elements:\n");
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n && !error; i++)
     {   
         if (scanf("%d", &a[i]) != 1)
         {
             printf("Incorrect data");
-            return 1;
+            error = 1;
         }
     }
 
-    return 0;
+    return error;
 }
 
 
@@ -56,13 +60,11 @@ int odd_product(int *a, int n)
             counter++;
         }
     }
-    
-    if (counter > 0)
-    {
-        printf("Result: %d", prod);
-    }
 
-    return counter;
+    if (counter == 0)
+        prod = 0;
+
+    return prod;
 }
 
 
@@ -73,7 +75,7 @@ int n_input(void)
     if (scanf("%d", &n) != 1 || n > MAX_ARRAY_SIZE || n < 1)
     {
         printf("Icorrect data");
-        return -1;
+        n = -1;
     }
 
     return n;

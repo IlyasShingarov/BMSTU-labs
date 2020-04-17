@@ -7,7 +7,7 @@ long n_input(void);                                        // Input number of el
 long arr_in(long *a, long n);                              // Input array elements
 long is_prime(long x);                                     // Check if number is prime
 long prime_array(long *in_array, long *out_array, long n); //Form new array with primes
-long arr_print(long *array, long n);                       // printarr_print an array
+void arr_print(long *array, long n);                       // printarr_print an array
 
 int main(void)
 {
@@ -23,7 +23,7 @@ int main(void)
             long outarr[MAX_ARRAY_SIZE];                          // Output array
             long no = prime_array(inarr, outarr, ni); // Number of elems in output array
             if (no > 0)
-                error = arr_print(outarr, no);
+                arr_print(outarr, no);
             else
                 printf("There's no prime elements");
         }
@@ -32,14 +32,12 @@ int main(void)
     return error;
 }
 
-long arr_print(long *array, long n)
+void arr_print(long *array, long n)
 {
     printf("Out:\n");
 
     for (long i = 0; i < n; i++)
-        printf("%ld ", array[i]);
-
-    return 0;
+        printf("%ld ", array[i]);\
 }
 
 long prime_array(long *in_array, long *out_array, long n)
@@ -79,18 +77,20 @@ long is_prime(long x)
 
 long arr_in(long *a, long n)
 {
+    int error = 0;
+
     printf("Input array elements:\n");
 
-    for (long i = 0; i < n; i++)
+    for (long i = 0; i < n && !error; i++)
     {
         if (scanf("%ld", &a[i]) != 1)
         {
             printf("Incorrect data");
-            return 1;
+            error = 1;
         }
     }
 
-    return 0;
+    return error;
 }
 
 long n_input(void)
@@ -100,7 +100,7 @@ long n_input(void)
     if (scanf("%ld", &n) != 1 || n > MAX_ARRAY_SIZE || n < 1)
     {
         printf("Icorrect data");
-        return -1;
+        n = -1;
     }
 
     return n;

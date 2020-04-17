@@ -8,6 +8,8 @@
 #define SIZE_4 1000
 #define SIZE_5 10000
 #define SIZE_6 100000
+#define TIME_CONVERT 1000000LL
+
 
 int copy_array(long *arrout, const long *arrin, const int len);
 void random_array(long *array, long len);
@@ -164,7 +166,7 @@ void random_array(long *array, long len)
 long elapsed_time(struct timeval time_start, struct timeval time_stop)
 {
     return 
-        (time_stop.tv_sec - time_start.tv_sec) * 1000000LL +
+        (time_stop.tv_sec - time_start.tv_sec) * TIME_CONVERT +
         (time_stop.tv_usec - time_start.tv_usec);
 }
 

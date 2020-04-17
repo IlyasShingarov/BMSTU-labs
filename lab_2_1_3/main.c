@@ -4,7 +4,7 @@
 
 int n_input(void);
 int arr_in(long *a, int n);
-int arr_print(long *array, int n);
+void arr_print(long *array, int n);
 int shift(long *pstart, int n, int i);
 int array_transform(long *a, int n);
 
@@ -97,19 +97,17 @@ int n_input(void)
     if (scanf("%d", &n) != 1 || n > MAX_ARRAY_SIZE || n < 1)
     {
         printf("Icorrect data");
-        return -1;
+        n = -1;
     }
 
     return n;
 }
 
 
-int arr_print(long *array, int n)
+void arr_print(long *array, int n)
 {
     printf("\nOut:\n");
 
     for (int i = 0; i < n; i++)
         printf("%ld ", array[i]);
-
-    return 0;
 }

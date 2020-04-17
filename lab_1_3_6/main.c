@@ -1,38 +1,37 @@
 #include <stdio.h>
 #include <math.h>
 
+#define ZERO 1e-7
+
 float external_product(float x1, float y1, float x2, float y2);
+int point_input(float *p1, float *p2);
 
 int main(void)
 {
     float x1, x2, y1, y2, xa, ya;
     int state, error = 0;
 
-    printf("Input x, y of the first point:\n");
-    if (scanf("%f%f", &x1, &y1) != 2)
-        error = 1;
+    error = point_input(&x1, &y1);
 
-    printf("Input x, y of the second point:\n");
-    if (scanf("%f%f", &x2, &y2) != 2)
-        error = 1;
+    if (!error)
+        error = point_input(&x2, &y2);
 
-    printf("Input x, y of the external point:\n");
-    if (scanf("%f%f", &xa, &ya) != 2)
-        error = 1;
+    if (!error)
+        error = point_input(&xa, &ya);
 
-    if (error == 0)
+    if (!error)
     {
         float linex, liney, pointx, pointy;
         linex = x2 - x1; liney = y2 - y1;
         pointx = xa - x1; pointy = ya - y1;
 
-        if (fabsf(linex) <= 1e-7 && fabsf(liney) <= 1e-7)
+        if (fabsf(linex) <= ZERO && fabsf(liney) <= ZERO)
             error = 1;
         else
         {
             if (external_product(linex, liney, pointx, pointy) > 0)
                 state = 0;
-            else if (fabsf(external_product(linex, liney, pointx, pointy)) <= 1e-7)
+            else if (fabsf(external_product(linex, liney, pointx, pointy)) <= ZERO)
                 state = 1;
             else
                 state = 2;
@@ -41,7 +40,7 @@ int main(void)
         }
     }
 
-    if (error != 0)
+    if (error)
         printf("Incorrect data");
     
     return error;
@@ -50,4 +49,15 @@ int main(void)
 float external_product(float x1, float y1, float x2, float y2)
 {
     return x1 * y2 - x2 * y1;
+}
+
+
+int point_input(float *p1, float *p2)
+{
+    int error = 0;
+    printf("Input x, y of the point:\n");
+    if (scanf("%f%f", &p1, &p2) != 2)
+        error = 1;
+    
+    return error;
 }

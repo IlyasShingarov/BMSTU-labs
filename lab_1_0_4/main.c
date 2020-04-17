@@ -2,7 +2,7 @@
 
 int get_amount(void);
 int count_bottles(int s);
-int print_bottles(n);
+int print_bottles(int n);
 
 int main(void)
 {   
@@ -26,7 +26,7 @@ int count_bottles(int s)
     return (s - 20) / 25;
 }
 
-int print_bottles(n)
+int print_bottles(int n)
 {
     printf("Amount of bought bottles will be: %d", n);
     

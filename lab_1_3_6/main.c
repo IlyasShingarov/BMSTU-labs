@@ -56,7 +56,7 @@ int point_input(float *p1, float *p2)
 {
     int error = 0;
     printf("Input x, y of the point:\n");
-    if (scanf("%f%f", &p1, &p2) != 2)
+    if (scanf("%f%f", p1, p2) != 2)
         error = 1;
     
     return error;

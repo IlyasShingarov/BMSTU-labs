@@ -21,8 +21,10 @@ int main(void)
         if (!result)
             printf("There's no odd elements");
         else
+        {
             printf("Result: %d", result);
             err = 0;
+        }
     }
 
     return err;

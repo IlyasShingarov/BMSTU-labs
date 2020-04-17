@@ -23,7 +23,10 @@ int main(void)
             long outarr[MAX_ARRAY_SIZE];                          // Output array
             long no = prime_array(inarr, outarr, ni); // Number of elems in output array
             if (no > 0)
-                arr_print(outarr, no);
+                {
+                    error = 0;
+                    arr_print(outarr, no);
+                }
             else
                 printf("There's no prime elements");
         }
@@ -37,7 +40,7 @@ void arr_print(long *array, long n)
     printf("Out:\n");
 
     for (long i = 0; i < n; i++)
-        printf("%ld ", array[i]);\
+        printf("%ld ", array[i]);
 }
 
 long prime_array(long *in_array, long *out_array, long n)

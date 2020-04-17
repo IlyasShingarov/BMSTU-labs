@@ -21,7 +21,7 @@ int main(void)
         if (error == 0)
         {
             n = array_transform(array, n);
-            error = arr_print(array, n);
+            arr_print(array, n);
         }
     }
     else

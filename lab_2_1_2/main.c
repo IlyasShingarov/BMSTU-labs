@@ -23,10 +23,10 @@ int main(void)
             long outarr[MAX_ARRAY_SIZE];                          // Output array
             long no = prime_array(inarr, outarr, ni); // Number of elems in output array
             if (no > 0)
-                {
-                    error = 0;
-                    arr_print(outarr, no);
-                }
+            {
+                error = 0;
+                arr_print(outarr, no);
+            }
             else
                 printf("There's no prime elements");
         }

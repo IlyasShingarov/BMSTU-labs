@@ -11,6 +11,8 @@ int main(void)
     int rows, columns = 0;
 
     error = mat_size_in(&rows, &columns);
+    if(rows < 2)
+        error = 1;
 
     if (!error)
         error = mat_in(matrix, rows, columns);

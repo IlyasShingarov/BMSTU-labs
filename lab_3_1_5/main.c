@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "freq.h"
 
 #define SHIFT_COUNT 3
@@ -59,7 +60,7 @@ int form_array(int (*mat)[MAX_COLS], int rows, int columns, int *array)
 
     for (int i = 0; i < rows; i++)
         for (int j = 0; j < columns; j++)
-            if (digit_sum(mat[i][j]) > 10)
+            if (digit_sum(abs(mat[i][j])) > 10)
             {
                 array[n] = mat[i][j];
                 n++;
@@ -86,7 +87,7 @@ void return_elements(int (*mat)[MAX_COLS], int rows, int columns, int *array)
     int counter = 0;
     for (int i = 0; i < rows; i++)
         for (int j = 0; j < columns; j++)
-            if (digit_sum(mat[i][j]) > 10)
+            if (digit_sum(abs(mat[i][j])) > 10)
             {
                 mat[i][j] = array[counter];
                 counter++;

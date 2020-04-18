@@ -12,7 +12,7 @@ int main(void)
 
     error = mat_size_in(&rows, &columns);
 
-    if (rows == columns)
+    if (rows != columns)
         error = 1;
 
     if (!error)

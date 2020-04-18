@@ -25,6 +25,8 @@ int test1(long *array, int size, long *time);
 int test2(long *array, int size, long *time);
 int test3(long *array, int size, long *time);
 
+void main_test(long *array1, long *array2, long *array3 ,long size, long repeats, long *final_time_1, long *final_time_2, long *final_time_3);
+
 int main(void)
 {
     int err = 0;
@@ -48,28 +50,9 @@ int main(void)
         {  
             long repeats = iter_count[i];
             long size = sizes[j];
-
             long final_time_1 = 0, final_time_2 = 0, final_time_3 = 0;
 
-            for (long k = 0; k < repeats && !err; k++)
-            {
-                random_array(array1, size);
-                copy_array(array2, array1, size);
-                copy_array(array3, array1, size); 
-                
-                long time_1 = 0, time_2 = 0, time_3 = 0;
-
-                err = test1(array1, size, &time_1);
-                if(!err)
-                    err = test2(array2, size, &time_2);
-
-                if(!err)
-                    err = test3(array3, size, &time_3);
-                
-                final_time_1 += time_1;
-                final_time_2 += time_2;
-                final_time_3 += time_3;
-            }
+            main_test(array1, array2, array3, size, repeats, &final_time_1, &final_time_2, &final_time_3);
 
             print_table(repeats, size, final_time_1, final_time_2, final_time_3);
         }
@@ -217,4 +200,24 @@ int test3(long *array, int size, long *time)
 void print_table(long repeats, long size, long time_1, long time_2, long time_3)
 {
     printf("|%7ld|%7ld|%7ld|%7ld|%7ld|\n", repeats, size, time_1, time_2, time_3);
+}
+
+void main_test(long *array1, long *array2, long *array3, long size, long repeats, long *final_time_1, long *final_time_2, long *final_time_3)
+{
+    for (long k = 0; k < repeats ; k++)
+    {
+        random_array(array1, size);
+        copy_array(array2, array1, size);
+        copy_array(array3, array1, size); 
+        
+        long time_1 = 0, time_2 = 0, time_3 = 0;
+        
+        test1(array1, size, &time_1);
+        test2(array2, size, &time_2);
+        test3(array3, size, &time_3);
+        
+        *final_time_1 += time_1;
+        *final_time_2 += time_2;
+        *final_time_3 += time_3;
+    }
 }

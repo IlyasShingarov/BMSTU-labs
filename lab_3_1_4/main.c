@@ -11,7 +11,8 @@ int main(void)
     int rows, columns = 0;
 
     error = mat_size_in(&rows, &columns);
-    if(rows < 2)
+
+    if (rows == columns)
         error = 1;
 
     if (!error)

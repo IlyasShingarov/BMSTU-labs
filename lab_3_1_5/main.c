@@ -28,10 +28,10 @@ int main(void)
         error = 1;
 
     if (!error)
-        {
-            shift_left(array, n, SHIFT_COUNT);
-            return_elements(matrix, rows, columns, array);
-        }
+    {
+        shift_left(array, n, SHIFT_COUNT);
+        return_elements(matrix, rows, columns, array);
+    }
 
     if (error)
         printf("Error!");

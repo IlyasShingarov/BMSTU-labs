@@ -6,21 +6,23 @@
 #define MAX_ARRAY_LENGTH 100
 
 void shift_left(int *array, int len, int times);
-int form_array(int (*mat)[MAX_COLS], int rows, int columns, int *array);
+int form_array(int **mat, int rows, int columns, int *array);
 int digit_sum(int x);
-void return_elements(int (*mat)[MAX_COLS], int rows, int columns, int *array);
+void return_elements(int **mat, int rows, int columns, int *array);
 
 
 int main(void)
 {
     int error = 0;
-    int matrix[MAX_ROWS][MAX_COLS] = { { 0 } };
-    int array[MAX_ARRAY_LENGTH] = { 0 };
-    int rows = 0, columns = 0, n = 0;
 
-    error = mat_size_in(&rows, &columns);
-    if (!error)
-        error = mat_in(matrix, rows, columns);
+    int *matrix[MAX_ROWS];
+    int buffer[MAX_ROWS][MAX_COLS];
+    transform(matrix, *buffer, MAX_ROWS, MAX_COLS);
+    
+    int array[MAX_ARRAY_LENGTH] = { 0 };
+    int rows, columns, n = 0;
+
+    error = mat_in(matrix, &rows, &columns);
     
     if (!error)
         n = form_array(matrix, rows, columns, array);
@@ -54,7 +56,7 @@ void shift_left(int *array, int len, int times)
     }
 }
 
-int form_array(int (*mat)[MAX_COLS], int rows, int columns, int *array)
+int form_array(int **mat, int rows, int columns, int *array)
 {
     int n = 0;
 
@@ -82,7 +84,7 @@ int digit_sum(int x)
     return sum;
 }
 
-void return_elements(int (*mat)[MAX_COLS], int rows, int columns, int *array)
+void return_elements(int **mat, int rows, int columns, int *array)
 {
     int counter = 0;
     for (int i = 0; i < rows; i++)

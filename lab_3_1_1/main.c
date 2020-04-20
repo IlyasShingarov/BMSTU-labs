@@ -14,30 +14,28 @@
 
 
 //Работа с одномерными массивами
-int array_in(int *arr, int len);
 int array_out(const int *array, int len);
 
 //Работа с двумерным массивом
-int mat_size_in(int *rows, int *columns);
-int mat_in(int (*mat)[MAX_COLS], int rows, int columns);
-int mat_out(int (*matrix)[MAX_COLS], int rows, int cols);
-
+void transform(int **a, int *buffer, int n, int m);
+int mat_in(int **a, int *n, int *m);
 //Для конкретной лаб. работы
-int mat_process(int (*mat)[MAX_COLS], int rows, int columns, int *outarr);
+int mat_process(int **mat, int rows, int columns, int *outarr);
 int is_symmetrical(int *row, int len);
 
 int main(void)
 {
     int error = 0;
-    int matrix[MAX_ROWS][MAX_COLS] = { { 0 } };
-    int outarr[MAX_ROWS] = { 0 };
+
+    int rows, columns;
+    int *matrix[MAX_ROWS];
+    int buffer[MAX_ROWS][MAX_COLS];
     
-    int rows, columns = 0;
+    int outarr[MAX_ROWS] = { 0 };
 
-    error = mat_size_in(&rows, &columns);
+    transform(matrix, *buffer, MAX_ROWS, MAX_COLS);
 
-    if (!error)
-        error = mat_in(matrix, rows, columns);
+    error = mat_in(matrix, &rows, &columns);
     
     if (!error)
         error = mat_process(matrix, rows, columns, outarr);
@@ -51,16 +49,25 @@ int main(void)
     return error;
 }
 
-int array_in(int *arr, int len)
+void transform(int **a, int *buffer, int n, int m)
+{
+    for (int i = 0; i < n; i++)
+        a[i] = buffer + m * i;  
+}
+
+int mat_in(int **a, int *n, int *m)
 {
     int error = 0;
 
-    printf("Input elements: ");
-    for (int i = 0; i < len && !error; i++)
-    {
-        error = scanf("%d", &arr[i]) != 1;
-    }
-    
+    printf("Input rows, columns and matrix values: \n");
+    if (scanf("%d%d", n, m) != 2 || *n < 1 || *n > MAX_ROWS || *m < 1 || *m > MAX_COLS)
+        error = 1;
+
+    for (int i = 0; i < *n && !error; i++)
+        for (int j = 0; j < *m && !error; j++)
+            if (scanf("%d", *(a + i) + j) != 1)
+                error = 1;
+
     return error;
 }
 
@@ -75,30 +82,7 @@ int array_out(const int *array, int len)
     return 0;
 }
 
-int mat_size_in(int *rows, int *columns)
-{
-    int error = 0;
-
-    printf("Input rows, columns: ");
-    if (scanf("%d%d", rows, columns) != 2 || *rows <= 0 || *rows > MAX_ROWS || *columns <= 0 || *columns > MAX_COLS)
-        error = 1;
-
-    return error;
-}
-
-int mat_in(int (*mat)[MAX_COLS], int rows, int columns)
-{
-    int error = 0;
-
-    for (int i = 0; i < rows && !error; i++)
-    {
-        error = array_in(mat[i], columns);
-    }
-
-    return error;
-}
-
-int mat_process(int (*mat)[MAX_COLS], int rows, int columns, int *outarr)
+int mat_process(int **mat, int rows, int columns, int *outarr)
 {
 
     for (int i = 0; i < rows; i++)

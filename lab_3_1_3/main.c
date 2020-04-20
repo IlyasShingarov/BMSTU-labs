@@ -2,21 +2,21 @@
 #include "freq.h"
 
 int find_max(int *array, int n);
-int mat_preprocess(int (*mat)[MAX_COLS], int rows, int cols);
-int mat_process(int (*mat)[MAX_COLS], int rows, int cols);
-int row_shift(int (*mat)[MAX_COLS], int columns, int index);
+void mat_preprocess(int **mat, int rows, int cols);
+void mat_process(int **mat, int rows, int cols);
+int row_shift(int **mat, int columns, int index);
 
 int main(void)
 {
     int error = 0;
 
-    int matrix[MAX_ROWS][MAX_COLS] = { { 0 } };
-    int rows, columns = 0;
+    int rows, columns;
+    int *matrix[MAX_ROWS];
+    int buffer[MAX_ROWS][MAX_COLS];
 
-    error = mat_size_in(&rows, &columns);
+    transform(matrix, *buffer, MAX_ROWS, MAX_COLS);
 
-    if (!error)
-        error = mat_in(matrix, rows, columns);
+    error = mat_in(matrix, &rows, &columns);
     
     if (!error)
     {
@@ -33,17 +33,13 @@ int main(void)
     return error;
 }
 
-int mat_preprocess(int (*mat)[MAX_COLS], int rows, int cols)
+void mat_preprocess(int **mat, int rows, int cols)
 {
     for (int i = 0; i < rows; i++)
-    {
         mat[i][cols] = find_max(mat[i], cols);
-    }
-
-    return 0;
 }
 
-int mat_process(int (*mat)[MAX_COLS], int rows, int cols)
+void mat_process(int **mat, int rows, int cols)
 {
     int state = 0;
     while (!state)
@@ -56,11 +52,9 @@ int mat_process(int (*mat)[MAX_COLS], int rows, int cols)
                 state = 0;
             }
     }
-        
-    return 0;
 }
 
-int row_shift(int (*mat)[MAX_COLS], int columns, int index)
+int row_shift(int **mat, int columns, int index)
 {
     for (int i = 0; i < columns + 1; i++)
         swap(&mat[index][i], &mat[index + 1][i]);

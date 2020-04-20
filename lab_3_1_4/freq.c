@@ -40,9 +40,6 @@ int mat_in(int **a, int *n, int *m)
     if (scanf("%d%d", n, m) != 2 || *n < 1 || *n > MAX_ROWS || *m < 1 || *m > MAX_COLS)
         error = 1;
 
-    if (n != m)
-        error = 1;
-
     for (int i = 0; i < *n && !error; i++)
         for (int j = 0; j < *m && !error; j++)
             if (scanf("%d", *(a + i) + j) != 1)

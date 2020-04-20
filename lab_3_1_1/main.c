@@ -84,7 +84,6 @@ int array_out(const int *array, int len)
 
 int mat_process(int **mat, int rows, int columns, int *outarr)
 {
-
     for (int i = 0; i < rows; i++)
     {
         int state = is_symmetrical(mat[i], columns);

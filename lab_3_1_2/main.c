@@ -3,45 +3,40 @@
 #include "stdlib.h"
 
 //Работа со столбцами матрицы
-int column_shift(int (*mat)[MAX_COLS], int rows, int index);
-int delete_column(int (*mat)[MAX_COLS], int rows, int columns, int index);
+int column_shift(int **mat, int rows, int index);
+int delete_column(int **mat, int rows, int columns, int index);
 
 //Работа со строками матрицы
-int row_shift(int (*mat)[MAX_COLS], int rows, int index);
-int delete_row(int(*mat)[MAX_COLS], int rows, int columns, int index);
+int row_shift(int **mat, int rows, int index);
+int delete_row(int **mat, int rows, int columns, int index);
  
 // Поиск элемента
-int find_min_digit_sum(int (*mat)[MAX_COLS], int rows, int columns, int *min_i, int *min_j);
+void find_min_digit_sum(int **mat, int rows, int columns, int *min_i, int *min_j);
 
 
 int main(void)
 {
     setbuf(stdout, NULL);
     int error = 0;
-    int mat[MAX_ROWS][MAX_COLS] = { { 0 } };
+    int rows, columns;
+    int *matrix[MAX_ROWS];
+    int buffer[MAX_ROWS][MAX_COLS];
     
-    int min_i, min_j = 0;
-    int rows, columns = 0;
+    transform(matrix, *buffer, MAX_ROWS, MAX_COLS);
 
-    error = mat_size_in(&rows, &columns);
+    int min_i, min_j = 0;
+
+    error = mat_in(matrix, &rows, &columns);
 
     if (rows == 1 || columns == 1)
         error = 1;
-    
-    if (!error)
-        error = mat_in(mat, rows, columns);
 
     if (!error)
     {   
-        error = find_min_digit_sum(mat, rows, columns, &min_i, &min_j);
-        columns = delete_column(mat, rows, columns, min_j);
-        rows = delete_row(mat, rows, columns, min_i);
-    }
-        
-    if (!error)
-    {
-        printf("Out:\n");
-        mat_out(mat, rows, columns);
+        find_min_digit_sum(matrix, rows, columns, &min_i, &min_j);
+        columns = delete_column(matrix, rows, columns, min_j);
+        rows = delete_row(matrix, rows, columns, min_i);
+        mat_out(matrix, rows, columns);
     }
     
     if (error)
@@ -63,7 +58,7 @@ int digit_sum(int x)
     return sum;
 }
 
-int column_shift(int (*mat)[MAX_COLS], int rows, int index)
+int column_shift(int **mat, int rows, int index)
 {   
     for (int i = 0; i < rows ; i++)
         swap(&mat[i][index], &mat[i][index + 1]);
@@ -71,7 +66,7 @@ int column_shift(int (*mat)[MAX_COLS], int rows, int index)
     return ++index;
 }
 
-int delete_column(int (*mat)[MAX_COLS], int rows, int columns, int index)
+int delete_column(int **mat, int rows, int columns, int index)
 {
     while (index != columns)
         index = column_shift(mat, rows, index);
@@ -79,7 +74,7 @@ int delete_column(int (*mat)[MAX_COLS], int rows, int columns, int index)
     return --columns;
 }
 
-int row_shift(int (*mat)[MAX_COLS], int columns, int index)
+int row_shift(int **mat, int columns, int index)
 {
     for (int i = 0; i < columns; i++)
         swap(&mat[index][i], &mat[index + 1][i]);
@@ -87,7 +82,7 @@ int row_shift(int (*mat)[MAX_COLS], int columns, int index)
     return ++index;
 }
 
-int delete_row(int(*mat)[MAX_COLS], int rows, int columns, int index)
+int delete_row(int **mat, int rows, int columns, int index)
 {
     while (index != rows)
         index = row_shift(mat, columns, index);
@@ -96,7 +91,7 @@ int delete_row(int(*mat)[MAX_COLS], int rows, int columns, int index)
 }
 
 
-int find_min_digit_sum(int (*mat)[MAX_COLS], int rows, int columns, int *min_i, int *min_j)
+void find_min_digit_sum(int **mat, int rows, int columns, int *min_i, int *min_j)
 {   
     int min_sum = digit_sum(mat[0][0]);
 
@@ -111,6 +106,4 @@ int find_min_digit_sum(int (*mat)[MAX_COLS], int rows, int columns, int *min_i, 
                 *min_i = i;
             }
         }
-
-    return 0;
 }

@@ -26,37 +26,37 @@ int array_out(const int *array, int len)
     return 0;
 }
 
-int mat_size_in(int *rows, int *columns)
+void transform(int **a, int *buffer, int n, int m)
+{
+    for (int i = 0; i < n; i++)
+        a[i] = buffer + m * i;  
+}
+
+int mat_in(int **a, int *n, int *m)
 {
     int error = 0;
 
-    printf("Input rows, columns: ");
-    if (scanf("%d%d", rows, columns) != 2 || *rows <= 0 || *rows > MAX_ROWS || *columns <= 0 || *columns > MAX_COLS)
+    printf("Input rows, columns and matrix values: \n");
+    if (scanf("%d%d", n, m) != 2 || *n < 1 || *n > MAX_ROWS || *m < 1 || *m > MAX_COLS)
         error = 1;
 
-    return error;
-}
-
-int mat_in(int (*mat)[MAX_COLS], int rows, int columns)
-{
-    int error = 0;
-
-    for (int i = 0; i < rows && !error; i++)
-    {
-        error = array_in(mat[i], columns);
-    }
+    for (int i = 0; i < *n && !error; i++)
+        for (int j = 0; j < *m && !error; j++)
+            if (scanf("%d", *(a + i) + j) != 1)
+                error = 1;
 
     return error;
 }
 
-int mat_out(int (*matrix)[MAX_COLS], int rows, int cols)
+void mat_out(int **matrix, int rows, int cols)
 {
+    printf("Matrix: \n");
     for (int i = 0; i < rows; i++)
     {
-        array_out(matrix[i], cols);
+        for (int j = 0; j < cols; j++)
+            printf("%d", matrix[i][j]);
+        printf("\n");
     }
-    
-    return 0;
 }
 
 void swap(int *xp, int *yp)

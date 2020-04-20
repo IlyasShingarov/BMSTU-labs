@@ -11,7 +11,7 @@
 #define TIME_CONVERT 1000000LL
 
 
-int copy_array(long *arrout, const long *arrin, const int len);
+void copy_array(long *arrout, const long *arrin, const int len);
 void random_array(long *array, long len);
 void print_table(long repeats, long size, long time_1, long time_2, long time_3);
 
@@ -132,12 +132,10 @@ int process_2(long *array, int len, long *result)
     return *result == 0;
 }
 
-int copy_array(long *arrout, const long *arrin, const int len)
+void copy_array(long *arrout, const long *arrin, const int len)
 {
     for (int i = 0; i < len; i++)
         arrout[i] = arrin[i];
-    
-    return 0;
 }
 
 void random_array(long *array, long len)

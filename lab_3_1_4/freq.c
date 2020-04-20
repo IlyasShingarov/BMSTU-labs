@@ -15,15 +15,13 @@ int array_in(int *arr, int len)
     return error;
 }
 
-int array_out(const int *array, int len)
+void array_out(const int *array, int len)
 {    
     for (int i = 0; i < len; i++)
     {
         printf("%d ", array[i]);
     }
     printf("\n");
-    
-    return 0;
 }
 
 void transform(int **a, int *buffer, int n, int m)
@@ -37,16 +35,14 @@ int mat_in(int **a, int *n, int *m)
     int error = 0;
 
     printf("Input rows, columns and matrix values: \n");
-    if (scanf("%d%d", n, m) != 2 || *n < 1 || *n > MAX_ROWS || *m < 1 || *m > MAX_COLS)
+    if (scanf("%d%d", n, m) != 2 || *n < 1 || *n > MAX_ROWS || *m < 1 || *m > MAX_COLS || *n != *m)
         error = 1;
     
-    if (*n != *m)
-        error = 1;
-
-    for (int i = 0; i < *n && !error; i++)
-        for (int j = 0; j < *m && !error; j++)
-            if (scanf("%d", *(a + i) + j) != 1)
-                error = 1;
+    if (!error)
+        for (int i = 0; i < *n && !error; i++)
+            for (int j = 0; j < *m && !error; j++)
+                if (scanf("%d", *(a + i) + j) != 1)
+                    error = 1;
 
     return error;
 }

@@ -14,8 +14,6 @@ int main(void)
     transform(matrix, *buffer, MAX_ROWS, MAX_COLS);
 
     error = mat_in(matrix, &rows, &columns);
-    if (rows != columns)
-        error = 1;
 
     if (!error)
         swap_rows(matrix, rows, columns);

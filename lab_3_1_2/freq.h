@@ -6,7 +6,7 @@
 #define MAX_COLS 10
 
 int array_in(int *arr, int len);
-int array_out(const int *array, int len);
+void array_out(const int *array, int len);
 
 void transform(int **a, int *buffer, int n, int m);
 int mat_in(int **a, int *n, int *m);

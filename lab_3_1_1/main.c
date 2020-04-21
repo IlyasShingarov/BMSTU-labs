@@ -14,13 +14,13 @@
 
 
 //Работа с одномерными массивами
-int array_out(const int *array, int len);
+void array_out(const int *array, int len);
 
 //Работа с двумерным массивом
 void transform(int **a, int *buffer, int n, int m);
 int mat_in(int **a, int *n, int *m);
 //Для конкретной лаб. работы
-int mat_process(int **mat, int rows, int columns, int *outarr);
+void mat_process(int **mat, int rows, int columns, int *outarr);
 int is_symmetrical(int *row, int len);
 
 int main(void)
@@ -38,10 +38,10 @@ int main(void)
     error = mat_in(matrix, &rows, &columns);
     
     if (!error)
-        error = mat_process(matrix, rows, columns, outarr);
-
-    if (!error)
-        error = array_out(outarr, rows);
+    {
+        mat_process(matrix, rows, columns, outarr);
+        array_out(outarr, rows);
+    }
 
     if (error)
         printf("Error!\n");
@@ -71,26 +71,22 @@ int mat_in(int **a, int *n, int *m)
     return error;
 }
 
-int array_out(const int *array, int len)
+void array_out(const int *array, int len)
 {    
     for (int i = 0; i < len; i++)
     {
         printf("%d ", array[i]);
     }
     printf("\n");
-    
-    return 0;
 }
 
-int mat_process(int **mat, int rows, int columns, int *outarr)
+void mat_process(int **mat, int rows, int columns, int *outarr)
 {
     for (int i = 0; i < rows; i++)
     {
         int state = is_symmetrical(mat[i], columns);
         outarr[i] = state;
     }
-
-    return 0;
 }
 
 int is_symmetrical(int *row, int len)

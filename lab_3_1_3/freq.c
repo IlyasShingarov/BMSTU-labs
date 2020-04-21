@@ -15,15 +15,13 @@ int array_in(int *arr, int len)
     return error;
 }
 
-int array_out(const int *array, int len)
+void array_out(const int *array, int len)
 {    
     for (int i = 0; i < len; i++)
     {
         printf("%d ", array[i]);
     }
     printf("\n");
-    
-    return 0;
 }
 
 void transform(int **a, int *buffer, int n, int m)

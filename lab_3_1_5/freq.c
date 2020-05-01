@@ -35,7 +35,7 @@ int mat_in(int **a, int *n, int *m)
     int error = 0;
 
     printf("Input rows, columns and matrix values: \n");
-    if (scanf("%d%d", n, m)  != 2 || *n < 1 || *n > MAX_ROWS || *m < 1 || *m > MAX_COLS)
+    if (scanf("%d%d", n, m) != 2 || *n < 1 || *n > MAX_ROWS || *m < 1 || *m > MAX_COLS)
         error = 1;
 
     for (int i = 0; i < *n && !error; i++)

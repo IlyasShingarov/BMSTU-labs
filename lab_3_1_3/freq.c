@@ -9,7 +9,7 @@ int array_in(int *arr, int len)
     printf("Input elements: ");
     for (int i = 0; i < len && !error; i++)
     {
-        error = scanf("%d", &arr[i]) != 1;
+        error = scanf("%d", arr + i) != 1;
     }
     
     return error;

@@ -61,7 +61,7 @@ int digit_sum(int x)
 int column_shift(int **mat, int rows, int index)
 {   
     for (int i = 0; i < rows ; i++)
-        swap(&mat[i][index], &mat[i][index + 1]);
+        swap(*(mat + i) + index, *(mat + i) + index + 1);
     
     return ++index;
 }
@@ -77,7 +77,7 @@ int delete_column(int **mat, int rows, int columns, int index)
 int row_shift(int **mat, int columns, int index)
 {
     for (int i = 0; i < columns; i++)
-        swap(&mat[index][i], &mat[index + 1][i]);
+        swap(*(mat + index) + i, *(mat + index + 1) + i);
     
     return ++index;
 }

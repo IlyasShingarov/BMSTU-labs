@@ -57,7 +57,7 @@ void mat_process(int **mat, int rows, int cols)
 int row_shift(int **mat, int columns, int index)
 {
     for (int i = 0; i < columns + 1; i++)
-        swap(&mat[index][i], &mat[index + 1][i]);
+        swap(*(mat + index) + i, *(mat + index + 1) + i);
     
     return ++index;
 }

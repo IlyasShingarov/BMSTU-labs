@@ -7,17 +7,17 @@
 
 int main(void)
 {
-	printf("%zu", my_strspn("123456789", "123"));
-	printf("%zu", strspn("123456789", "123"));
+	printf("%zu\n", my_strspn("123456789", "123"));
+	printf("%zu\n", strspn("123456789", "123"));
 	
-	printf("%zu", my_strspn("123456789", "321"));
-	printf("%zu", strspn("123456789", "321"));
+	printf("\n%zu\n", my_strspn("123456789", "321"));
+	printf("%zu\n", strspn("123456789", "321"));
 
-	printf("%zu", my_strspn("0123456", "321"));
-	printf("%zu", strspn("0123456", "321"));
+	printf("\n%zu\n", my_strspn("0123456", "321"));
+	printf("%zu\n", strspn("0123456", "321"));
 
-	printf("%zu", my_strspn("1254231", "23"));
-	printf("%zu", strspn("1254231", "23"));
+	printf("\n%zu\n", my_strspn("1254231", "23"));
+	printf("%zu\n", strspn("1254231", "23"));
 
 	return 0;
 }

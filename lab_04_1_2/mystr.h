@@ -21,5 +21,9 @@ void line_out(char **words, size_t word_count);
 
 void remove_duplicates(char **words, size_t *word_count);
 
+void sort_words(char **words, size_t word_count);
+
+void swap(char *xp, char *yp);
+
 
 #endif //_MYSTR_H_

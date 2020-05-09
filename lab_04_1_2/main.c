@@ -22,18 +22,9 @@ int main(void)
 
     if (!error)    
         remove_duplicates(words, &word_count);
+        sort_words(words, word_count);
         line_out(words, word_count);
-    
-    printf("%d", error);
 
     return error;
-
-
-
-
-
-
-
-
 
 }

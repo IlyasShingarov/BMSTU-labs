@@ -78,18 +78,6 @@ int line_to_array(char **words, const char *line, size_t *word_counter)
     return error;
 }
 
-size_t my_strcmp(char *word1, char *word2)
-{
-    while (*word1 == *word2)
-    {
-        if (!(*word1) || !(*word2))
-            break;
-        word1++; word2++;
-    }
-
-    return !(*word1) && !(*word2);
-}
-
 size_t delete_word(size_t index, char **words, size_t word_counter)
 {
     words[index] = words[word_counter - 1];
@@ -113,7 +101,31 @@ void remove_duplicates(char **words, size_t *word_count)
     for (size_t i = 0; i < *word_count; i++)
         for (size_t j = i + 1; j < *word_count; j++)
         {
-            if (my_strcmp(words[i], words[j]))
+            if (strcmp(words[i], words[j]) == 0)
                 *word_count = delete_word(j, words, *word_count);
         }
 }
+
+void swap(char *xp, char *yp)
+{
+    char temp = *xp; 
+    *xp = *yp; 
+    *yp = temp; 
+}
+
+void sort_words(char **words, size_t word_count) 
+{ 
+    size_t swapped; 
+    for (size_t i = 0; i < word_count - 1; i++) 
+    { 
+        swapped = 0; 
+        for (size_t j = 0; j < word_count - i - 1; j++)  
+            if (strcmp(words[j], words[j + 1]) > 0) 
+            { 
+                swap(words[j], words[j + 1]); 
+                swapped = 1; 
+            }
+    if (swapped == 0) 
+        break;
+    } 
+} 

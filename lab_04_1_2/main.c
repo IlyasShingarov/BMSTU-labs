@@ -13,6 +13,21 @@ int main(void)
 
     transform(words, *buffer, MAX_WORD_COUNT, MAX_WORD_LEN + 1);
 
+    int error = 0;
+    error = str_in(line, sizeof(line));
+
+    if (!error)
+        error = line_to_array(words, line, &word_count);
+
+
+    if (!error)    
+        remove_duplicates(words, &word_count);
+        line_out(words, word_count);
+    
+    printf("%d", error);
+
+    return error;
+
 
 
 

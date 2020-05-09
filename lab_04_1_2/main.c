@@ -28,5 +28,4 @@ int main(void)
     }
 
     return error;
-
 }

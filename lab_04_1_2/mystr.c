@@ -45,21 +45,21 @@ int line_to_array(char **words, const char *line, size_t *word_counter)
     size_t word_length = 0; *word_counter = 0;
 
 
-    while (*line && !error) // Пока не достигнут конец строки и не присутствует ошибок выполнения
+    while (*line && !error)
     {
-        if (word_length) // Перед считыванием нового слова, заканчиваем старое
+        if (word_length)
         {
             words[*word_counter][word_length] = '\0';
             (*word_counter)++;
             error = *word_counter > MAX_WORD_COUNT;
         }
 
-        word_length = 0; // Изначально длинна слова пустая
+        word_length = 0;
 
-        while (is_divider(*line) && *line && !error) // Пропуск разделителей
+        while (is_divider(*line) && *line && !error)
             line++;
 
-        while (!is_divider(*line) && *line && !error) // Считывание символов
+        while (!is_divider(*line) && *line && !error)
         {
             words[*word_counter][word_length] = *line;
             line++; word_length++;
@@ -67,7 +67,7 @@ int line_to_array(char **words, const char *line, size_t *word_counter)
         }
     }
 
-    if (!error && word_length) // Закончить последнее слово, если оно есть.
+    if (!error && word_length)
     {
         words[*word_counter][word_length] = '\0';
         (*word_counter)++;

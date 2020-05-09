@@ -19,13 +19,14 @@ int main(void)
     if (!error)
         error = line_to_array(words, line, &word_count);
 
-
-    if (!error)
+    if (!error && word_count)
     {
         remove_duplicates(words, &word_count);
         sort_words(words, word_count);
         line_out(words, word_count);
     }
-
+    else
+        printf("Error");
+    
     return error;
 }

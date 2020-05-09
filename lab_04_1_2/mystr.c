@@ -44,7 +44,6 @@ int line_to_array(char **words, const char *line, size_t *word_counter)
     int error = 0;
     size_t word_length = 0; *word_counter = 0;
 
-
     while (*line && !error)
     {
         if (word_length)

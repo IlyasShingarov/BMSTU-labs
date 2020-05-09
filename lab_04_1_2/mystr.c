@@ -86,7 +86,7 @@ size_t delete_word(size_t index, char **words, size_t word_counter)
 
 void line_out(char **words, size_t word_count)
 {
-    printf("Result:");
+    printf("Result: ");
     for (size_t i = 0; i < word_count; i++)
     {
         printf("%s", words[i]);

@@ -7,7 +7,7 @@
 
 int str_in(char *line, size_t line_size);
 
-void transform(char **a ,  char *buffer, size_t n, size_t m);
+void transform(char **a, char *buffer, size_t n, size_t m);
 
 size_t is_divider(char character);
 

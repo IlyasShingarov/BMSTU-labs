@@ -20,10 +20,9 @@ int str_in(char *line, size_t line_size)
         *(line + i) = '\0';
     
     return i == 0 || i >= line_size;
-    
 }
 
-void transform(char **a ,  char *buffer, size_t n, size_t m)
+void transform(char **a, char *buffer, size_t n, size_t m)
 {
     for (size_t i = 0; i < n; i++)
         *(a + i) = buffer + i * m;
@@ -34,7 +33,7 @@ size_t is_divider(char character)
     char dividers[] = { ' ', ',', ';', ':', '-', '.', '!', '?' };
     size_t result = 0;
 
-    for (size_t i = 0; i < sizeof(dividers) & result == 0; i++)
+    for (size_t i = 0; i < sizeof(dividers) && result == 0; i++)
         result = character == *(dividers + i);
     
     return result;
@@ -125,7 +124,7 @@ void sort_words(char **words, size_t word_count)
                 swap(words[j], words[j + 1]); 
                 swapped = 1; 
             }
-    if (swapped == 0) 
-        break;
+        if (swapped == 0) 
+            break;
     } 
 } 

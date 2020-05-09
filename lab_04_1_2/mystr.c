@@ -100,7 +100,7 @@ void remove_duplicates(char **words, size_t *word_count)
     for (size_t i = 0; i < *word_count; i++)
         for (size_t j = i + 1; j < *word_count; j++)
         {
-            if (strcmp(words[i], words[j]) == 0)
+            if (strncmp(words[i], words[j], MAX_WORD_LEN) == 0)
                 *word_count = delete_word(j, words, *word_count);
         }
 }
@@ -119,7 +119,7 @@ void sort_words(char **words, size_t word_count)
     { 
         swapped = 0; 
         for (size_t j = 0; j < word_count - i - 1; j++)  
-            if (strcmp(words[j], words[j + 1]) > 0) 
+            if (strncmp(words[j], words[j + 1], MAX_WORD_LEN) > 0) 
             { 
                 swap(words[j], words[j + 1]); 
                 swapped = 1; 

@@ -16,25 +16,20 @@ int main(void)
     int error = 0;
     error = str_in(line, sizeof(line));
 
-    if (!error)
+    if (!error && word_count)
         error = line_to_array(words, line, &word_count);
     
-    if (!error)
-        error = !word_count;
-    
-    if (!error)
+    if (!error && word_count)
         remove_word(words, words[word_count - 1], &word_count);
-
-    if (!error)
-        error = !word_count;
-
-    if (!error)
         make_string(line, words, word_count);
 
-    if (!error)
+    if (!error && word_count)
         printf("Result: %s\n", line);
     else
+    {
+        error = 1;
         printf("Error: %d\n", error);
+    }
 
     return error;
 }

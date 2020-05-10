@@ -96,8 +96,8 @@ void delete_element(char **words, size_t index, size_t *word_count)
 
 void make_string(char *str, char **words, size_t word_count)
 {
-    str[0] = '\0';
-    for (size_t i = word_count - 1; i; i--)
+    *str = '\0';
+    for (size_t i = word_count; i; --i)
     {
         modify_word(words[i]);
         strncat(str, words[i], MAX_STR_LEN);
@@ -122,3 +122,5 @@ void delete_letter(char *word, size_t index)
     for (char *i = word + index; *i; i++)
         *i = *(i + 1);
 }
+
+

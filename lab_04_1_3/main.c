@@ -30,3 +30,11 @@ int main(void)
 
     if (!error)
         make_string(line, words, word_count);
+
+    if (!error)
+        printf("Result: %s\n", line);
+    else
+        printf("Error: %d\n", error);
+
+    return error;
+}

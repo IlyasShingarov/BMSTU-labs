@@ -81,7 +81,7 @@ void remove_word(char **words, char *word, size_t *word_count)
     for (size_t i = 0; i < *word_count; i++)
         if (!strncmp(words[i], word, MAX_WORD_LEN))
         {
-            delete_element(i, words, word_count);
+            delete_element(words, i, word_count);
             i--;
         }
 }
@@ -97,11 +97,28 @@ void delete_element(char **words, size_t index, size_t *word_count)
 void make_string(char *str, char **words, size_t word_count)
 {
     str[0] = '\0';
-    for (size_t i = word_count - 1; i > 1; i--)
+    for (size_t i = word_count - 1; i; i--)
     {
         modify_word(words[i]);
         strncat(str, words[i], MAX_STR_LEN);
-        strncat(str, " ", MAX_STR_LEN);
+        if (i > 1)
+            strncat(str, " ", MAX_STR_LEN);
     }
-    strncat(str, words, MAX_STR_LEN);
+}
+
+void modify_word(char *word)
+{
+    for (char *i = word; *i; i++)
+        for (char *j = i + 1; *j; j++)
+            if (*i == *j)
+            {
+                delete_letter(word, j - word);
+                j--;
+            }
+}
+
+void delete_letter(char *word, size_t index)
+{
+    for (char *i = word + index; *i; i++)
+        *i = *(i + 1);
 }

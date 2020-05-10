@@ -17,7 +17,10 @@ void remove_word(char **words, char *word, size_t *word_count);
 
 void delete_element(char **words, size_t index, size_t *word_count);
 
+void make_string(char *str, char **words, size_t word_count);
 
+void modify_word(char *word);
 
+void delete_letter(char *word, size_t index);
 
 #endif //_MYSTR_H_

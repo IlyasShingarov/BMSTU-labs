@@ -26,7 +26,10 @@ int main(void)
         line_out(words, word_count);
     }
     else
-        printf("Error");
+    {
+        error = 1;
+        printf("Error %d", error);
+    }
     
     return error;
 }

@@ -20,8 +20,10 @@ int main(void)
         error = line_to_array(words, line, &word_count);
     
     if (!error && word_count)
+    {
         remove_word(words, words[word_count - 1], &word_count);
         make_string(line, words, word_count);
+    }
 
     if (!error && word_count)
         printf("Result: %s\n", line);

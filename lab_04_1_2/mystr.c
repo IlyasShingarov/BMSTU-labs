@@ -93,7 +93,6 @@ void remove_duplicates(char **words, size_t *word_count)
                 delete_word(j, words, word_count);
                 j--;
             }
-                
         }
 }
 

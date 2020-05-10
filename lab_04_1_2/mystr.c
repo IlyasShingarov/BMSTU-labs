@@ -76,31 +76,24 @@ int line_to_array(char **words, const char *line, size_t *word_counter)
     return error;
 }
 
-size_t delete_word(size_t index, char **words, size_t word_counter)
+void delete_word(size_t index, char **words, size_t *word_counter)
 {
-    words[index] = words[word_counter - 1];
-
-    return word_counter - 1;
+    words[index] = words[(*word_counter) - 1];
+    (*word_counter)--;
 }
 
-void line_out(char **words, size_t word_count)
-{
-    printf("Result: ");
-    for (size_t i = 0; i < word_count; i++)
-    {
-        printf("%s", words[i]);
-        if (i != word_count - 1)
-            printf(" ");
-    }
-}
 
 void remove_duplicates(char **words, size_t *word_count)
 {
-    for (size_t i = 0; i < *word_count; i++)
+    for (size_t i = 0; i < *word_count - 1; i++)
         for (size_t j = i + 1; j < *word_count; j++)
         {
             if (strncmp(words[i], words[j], MAX_WORD_LEN) == 0)
-                *word_count = delete_word(j, words, *word_count);
+            {
+                delete_word(j, words, word_count);
+                j--;
+            }
+                
         }
 }
 
@@ -126,4 +119,15 @@ void sort_words(char **words, size_t word_count)
         if (swapped == 0) 
             break;
     } 
-} 
+}
+ 
+void line_out(char **words, size_t word_count)
+{
+    printf("Result: ");
+    for (size_t i = 0; i < word_count; i++)
+    {
+        printf("%s", words[i]);
+        if (i != word_count - 1)
+            printf(" ");
+    }
+}

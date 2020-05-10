@@ -15,7 +15,7 @@ int line_to_array(char **words, const char *line, size_t *word_counter);
 
 size_t my_strcmp(char *word1, char *word2);
 
-size_t delete_word(size_t index, char **words, size_t word_counter);
+void delete_word(size_t index, char **words, size_t *word_counter);
 
 void line_out(char **words, size_t word_count);
 

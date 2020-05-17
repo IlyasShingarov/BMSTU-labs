@@ -10,9 +10,9 @@ size_t my_strspn(const char *string, const char *chars)
 	while (*string && *p)
 	{
 		for (p = chars; *p && *p != *string; p++);
-		if (*p != *string)
-			n--;
-		string++, n++;
+		if (*p == *string)
+			n++;
+		string++;
 	}
 
 	return n;

@@ -3,9 +3,6 @@
 #include <string.h>
 #include "my_string.h"
 
-
-
-
 size_t my_strspn(const char *string, const char *chars)
 {
 	size_t n;
@@ -14,9 +11,7 @@ size_t my_strspn(const char *string, const char *chars)
 	{
 		for (p = chars; *p && *p != *string; p++);
 		if (!*p)
-			break;
+			return n;
 	}
-
-	return n;
 }
 

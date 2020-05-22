@@ -9,7 +9,7 @@ int main(void)
     if (!error)
         printf("\nResult: %d\n", count);
     else
-        printf("\nError: %d\n", error);
+        printf("\nError");
 
     return error;
 }

@@ -2,7 +2,7 @@
 
 int process(FILE *file, int *count)
 {
-    if(!file)
+    if (!file)
         return NULL_PTR_ERROR;
     
     int elem;

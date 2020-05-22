@@ -13,6 +13,7 @@ int process(FILE *file, int *count)
     else
     {
         int state = elem >= 0 ? POSITIVE : NEGATIVE;
+        size_t elem_count = 1;
     
         while (fscanf(file, "%d", &elem) == 1)
         {
@@ -25,8 +26,12 @@ int process(FILE *file, int *count)
             {
                 (*count)++;
                 state = POSITIVE;
-            }           
+            }
+            elem_count++;           
         }
+        
+        if (elem_count < 2)
+            error = ELEM_COUNT_ERROR;
     }
 
     return error;

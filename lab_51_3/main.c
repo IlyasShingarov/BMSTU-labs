@@ -31,17 +31,14 @@ int main(int argc, char **argv)
         switch (mode)
         {
             case CREATE_MODE:
-                if((sscanf(argv[2], "%zu", &num_count) == 1))
+                if ((sscanf(argv[2], "%zu", &num_count) == 1))
                     error = create(argv[3], num_count);
                 else
                     error = NUM_COUNT_ERROR;
-
                 break;
-
             case PRINT_MODE:
                 error = print(argv[2]);
                 break;
-
             case SORT_MODE:
                 error = sort(argv[2]);
                 break;

@@ -1,6 +1,6 @@
 #include "functions.h"
 
-int create(const char *dir, int num_count)
+int create(const char *dir, size_t num_count)
 {
     int error = 0;
 
@@ -26,21 +26,23 @@ int create(const char *dir, int num_count)
 
 int print(const char *dir)
 {
-    int error = 0, file_size;
+    int error = 0, file_size, num;
 
     FILE *file = fopen(dir, "rb");
     if (!file)
         error = NULL_PTR_ERROR;
     
     if (!(fseek(file, 0, SEEK_END)))
+    {
         file_size = ftell(file);
+        fseek(file, 0, SEEK_SET);
+    }
     
     if (file_size < 1 || file_size % sizeof(int) != 0)
         error = FILE_ERROR;
 
     if (!error)
     {   
-        int num;
         for (size_t i = 0; i < (file_size / sizeof(int)) && !error; i++)
         {
             if (fread(&num, sizeof(int), 1, file) == 1)
@@ -70,7 +72,10 @@ int sort(const char *dir)
         error = NULL_PTR_ERROR;
     
     if (!(fseek(file, 0, SEEK_END)))
+    {
         file_size = ftell(file);
+        fseek(file, 0, SEEK_SET);
+    }
     
     if (file_size < 1 || file_size % sizeof(int) != 0)
         error = FILE_ERROR;
@@ -80,7 +85,7 @@ int sort(const char *dir)
         int elem1, elem2;
         for (size_t i = 0; i < file_size / sizeof(int); i++)
         {
-            for (size_t j = 0; j < (file_size / sizeof(int)) - 1 - i && !error; i++)
+            for (size_t j = 0; j < (file_size / sizeof(int)) - 1 - i && !error; j++)
             {
                 error = get_number_by_pos(file, j, &elem1);
                 if (!error)
@@ -96,9 +101,6 @@ int sort(const char *dir)
         }    
     }
 
-
-
-
     if (file)
         fclose(file);
     
@@ -108,7 +110,7 @@ int sort(const char *dir)
 int get_number_by_pos(FILE *file, size_t pos, int *num)
 {
     int error = fseek(file, pos * sizeof(int), SEEK_SET);
-    if (!error && fread(&num, sizeof(int), 1, file) != 1)
+    if (!error && fread(num, sizeof(int), 1, file) != 1)
         error = FILE_ERROR;
     return error;
 }

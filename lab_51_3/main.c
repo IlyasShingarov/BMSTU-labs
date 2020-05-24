@@ -27,15 +27,15 @@ int main(int argc, char **argv)
 
     if (!error && mode)
     {
+        size_t num_count;
         switch (mode)
         {
         case CREATE_MODE:
-            size_t num_count;
             if((sscanf(argv[2], "%zu", &num_count) == 1))
                 error = create(argv[3], num_count);
             else
                 error = NUM_COUNT_ERROR;
-                
+
             break;
 
         case PRINT_MODE:

@@ -15,7 +15,7 @@
 #define PRINT_MODE 2
 #define SORT_MODE 3 
 
-int create(const char *dir, int num_count);
+int create(const char *dir, size_t num_count);
 int print(const char *dir);
 int sort(const char *dir);
 

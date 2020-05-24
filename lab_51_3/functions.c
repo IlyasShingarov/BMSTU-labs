@@ -55,7 +55,7 @@ int print(const char *dir)
     if (file)
         fclose(file);
     
-    if(!error)
+    if (!error)
         printf("\n");
     else
         printf("Error");

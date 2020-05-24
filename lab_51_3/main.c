@@ -30,21 +30,21 @@ int main(int argc, char **argv)
         size_t num_count;
         switch (mode)
         {
-        case CREATE_MODE:
-            if((sscanf(argv[2], "%zu", &num_count) == 1))
-                error = create(argv[3], num_count);
-            else
-                error = NUM_COUNT_ERROR;
+            case CREATE_MODE:
+                if((sscanf(argv[2], "%zu", &num_count) == 1))
+                    error = create(argv[3], num_count);
+                else
+                    error = NUM_COUNT_ERROR;
 
-            break;
+                break;
 
-        case PRINT_MODE:
-            error = print(argv[2]);
-            break;
+            case PRINT_MODE:
+                error = print(argv[2]);
+                break;
 
-        case SORT_MODE:
-            error = sort(argv[2]);
-            break;
+            case SORT_MODE:
+                error = sort(argv[2]);
+                break;
         }
     }
 

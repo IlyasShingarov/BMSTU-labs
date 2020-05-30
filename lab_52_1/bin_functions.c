@@ -34,8 +34,51 @@ int get_size(FILE *file, int *size)
     return error;
 }
 
+int sb_sort(FILE *file, int size)
+{
+    student elem_1 = { { "" }, { "" }, { 0, 0, 0, 0 } }, elem_t = { { "" }, { "" }, { 0, 0, 0, 0 } };
+    int pos = 0;
+    int error = 0;
+
+    for (int i = 1; i < size && !error; i++)
+    {
+        pos = i - 1;
+        error = get_struct_by_pos(file, &elem_1, i);
+        if (!error)
+            error = get_struct_by_pos(file, &elem_t, pos);
+
+        while (pos >= 0 && stud_comp(&elem_1, &elem_t) && !error)
+        {
+            error = put_struct_by_pos(file, &elem_t, pos + 1);
+            pos--;
+            if (!error)
+                error = get_struct_by_pos(file, &elem_t, pos);
+        }
+        if (!error)
+            error = set_struct_by_pos(file, &elem_1, pos + 1);
+    }
+
+    return error;
+}                   
 
 
+int fb_print(FILE *file_in, FILE *file_out, int size, const char *str)
+{
+    int error = 0, count = 0;
+    student temp = { { "" }, { "" }, { 0, 0, 0, 0 } };
+    for (int i = 0; i < size && !error; i++)
+    {
+        error = get_struct_by_pos(file_in, &temp, i);
+        char *substr_pos = strstr(temp.surname, str);
+        if (substr_pos && !(substr_pos - temp.surname) && !error)
+        {
+            error = set_struct_by_pos(file_out, &temp, count);
+            count++;
+        }
+    }
+
+    return !count;
+}
 
 
 

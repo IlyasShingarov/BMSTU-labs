@@ -80,7 +80,7 @@ int fb_print(FILE *file_in, FILE *file_out, int size, char *str)
     return !count;
 }
 
-int print_bin_above_avg(FILE *file, const char *filename, int size)
+int print_bin_above_avg(FILE *file, char *filename, int size)
 {
     int error = 0;
     float sum = 0;

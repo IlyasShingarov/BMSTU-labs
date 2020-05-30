@@ -55,14 +55,14 @@ int sb_sort(FILE *file, int size)
                 error = get_struct_by_pos(file, &elem_t, pos);
         }
         if (!error)
-            error = set_struct_by_pos(file, &elem_1, pos + 1);
+            error = put_struct_by_pos(file, &elem_1, pos + 1);
     }
 
     return error;
 }                   
 
 
-int fb_print(FILE *file_in, FILE *file_out, int size, const char *str)
+int fb_print(FILE *file_in, FILE *file_out, int size, char *str)
 {
     int error = 0, count = 0;
     student temp = { { "" }, { "" }, { 0, 0, 0, 0 } };
@@ -72,7 +72,7 @@ int fb_print(FILE *file_in, FILE *file_out, int size, const char *str)
         char *substr_pos = strstr(temp.surname, str);
         if (substr_pos && !(substr_pos - temp.surname) && !error)
         {
-            error = set_struct_by_pos(file_out, &temp, count);
+            error = put_struct_by_pos(file_out, &temp, count);
             count++;
         }
     }
@@ -80,7 +80,40 @@ int fb_print(FILE *file_in, FILE *file_out, int size, const char *str)
     return !count;
 }
 
+int print_bin_above_avg(FILE *file, const char *filename, int size)
+{
+    int error = 0;
+    float sum = 0;
+    student temp = { { "" }, { "" }, { 0, 0, 0, 0 } };
+    for (size_t i = 0; i < size && !error; i++)
+    {
+        error = get_struct_by_pos(file, &temp, i);
+        if (!error)
+            sum += avg_mark(&temp);
+    }
 
+    float avg = sum / size;
+
+    int count = 0;
+    for (size_t i = 0; i < size && !error; i++)
+    {
+        error = get_struct_by_pos(file, &temp, i);
+        if (avg_mark(&temp) >= avg && !error)
+        {
+            error = put_struct_by_pos(file, &temp, count);
+            count++;
+        }
+        else if (fabs(avg_mark(&temp) - avg) <= EPS)
+        {
+            error = put_struct_by_pos(file, &temp, count);
+            count++;
+        }
+    }
+    if (!error)
+        error = truncate(filename, count * sizeof(temp));
+    
+    return error;
+}
 
 
 

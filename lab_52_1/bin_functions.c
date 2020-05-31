@@ -115,39 +115,6 @@ int print_bin_above_avg(FILE *file, char *filename, int size)
     return error;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void print_bin(FILE *file)
 {
     student stud = { { "----" }, { "----" }, { 1, 1, 1, 1 } };

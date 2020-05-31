@@ -102,27 +102,30 @@ int ft_mode(const char *dir_in, const char *dir_out, const char *substr)
     if (!file_in || !file_out)
         error = NULL_PTR_ERROR;
     
-    student students[MAX_STUDENTS];
-    student_zero(students);
-    /*
-    for (size_t i = 0; i < MAX_STUDENTS; i++)
-    {
-        for (size_t j = 0; j < SURN_LEN; j++)
-            students[i].surname[j] = '\0';
-        for (size_t j = 0; j < NAME_LEN; j++)
-            students[i].name[j] = '\0';
-        for (size_t j = 0; j < MARK_COUNT; j++)
-            students[i].marks[j] = 0;
-    }
-    */
-
-    int size = st_readall(file_in, students, MAX_STUDENTS);
-
-    if (size <= 0)
-        error = FILE_ERROR;
-    
     if (!error)
-        error = ft_print(file_out, students, size, substr);
+    {
+        student students[MAX_STUDENTS];
+        student_zero(students);
+        /*
+        for (size_t i = 0; i < MAX_STUDENTS; i++)
+        {
+            for (size_t j = 0; j < SURN_LEN; j++)
+                students[i].surname[j] = '\0';
+            for (size_t j = 0; j < NAME_LEN; j++)
+                students[i].name[j] = '\0';
+            for (size_t j = 0; j < MARK_COUNT; j++)
+                students[i].marks[j] = 0;
+        }
+        */
+   
+        int size = st_readall(file_in, students, MAX_STUDENTS);
+    
+        if (size <= 0)
+            error = FILE_ERROR;
+        
+        if (!error)
+            error = ft_print(file_out, students, size, substr);
+    }
     
     if (file_in)
         fclose(file_in);

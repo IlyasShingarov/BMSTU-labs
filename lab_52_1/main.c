@@ -8,6 +8,7 @@ int main(int argc, char **argv)
     int error = 0;
     if (argc < 3 && strlen(argv[1]) != 2)
         error = ARG_ERROR;
+
     if (!error)
         switch (argv[1][0])
         {

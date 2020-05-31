@@ -19,8 +19,6 @@ int ft_mode(const char *dir_in, const char *dir_out, const char *substr);
 int db_mode(const char *dir);
 int dt_mode(const char *dir);
 
-
-
-
+void student_zero(student *stud);
 
 #endif

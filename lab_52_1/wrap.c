@@ -36,6 +36,8 @@ int st_mode(const char *dir)
     if (!error)
     {
         student students[MAX_STUDENTS];
+        student_zero(students);
+        /*
         for (int i = 0; i < MAX_STUDENTS; i++)
         {
             for (size_t j = 0; j < SURN_LEN; j++)
@@ -45,6 +47,7 @@ int st_mode(const char *dir)
             for (size_t j = 0; j < MARK_COUNT; j++)
                 students[i].marks[j] = 0;
         }
+        */
         
         int size = st_readall(file, students, MAX_STUDENTS);
 
@@ -58,10 +61,10 @@ int st_mode(const char *dir)
             for (int i = 0; i < size; i++)
                 print_to_console(students_t[i]);
         }
-
-        if (file)
-            fclose(file);
     }
+
+    if (file)
+        fclose(file);
 
     return error;
 }
@@ -100,6 +103,8 @@ int ft_mode(const char *dir_in, const char *dir_out, const char *substr)
         error = NULL_PTR_ERROR;
     
     student students[MAX_STUDENTS];
+    student_zero(students);
+    /*
     for (size_t i = 0; i < MAX_STUDENTS; i++)
     {
         for (size_t j = 0; j < SURN_LEN; j++)
@@ -109,6 +114,7 @@ int ft_mode(const char *dir_in, const char *dir_out, const char *substr)
         for (size_t j = 0; j < MARK_COUNT; j++)
             students[i].marks[j] = 0;
     }
+    */
 
     int size = st_readall(file_in, students, MAX_STUDENTS);
 
@@ -127,37 +133,83 @@ int ft_mode(const char *dir_in, const char *dir_out, const char *substr)
     return error;
 }
 
+int db_mode(const char *dir)
+{
+    int error = 0;
+    FILE *file = fopen(dir, "rb+");
+    if (!file)
+        error = NULL_PTR_ERROR;
+    
+    if (!error)
+    {
+        int size;
+        if (!get_size(file, &size) && size > 0 && size % SIZE_STUDENT == 0)
+            error = print_bin_above_avg(file, dir, size / SIZE_STUDENT);
+        else
+            error = FILE_ERROR;
+    }
 
+    if (file)
+        fclose(file);
 
+    return error;
+}
 
+int dt_mode(const char *dir)
+{
+    int error = 0;
+    FILE *file = fopen(dir, "r");
+    if (!file)
+        error = NULL_PTR_ERROR;
+    
+    if (!error)
+    {
+        student students[MAX_STUDENTS];
+        student_zero(students);
+        /*
+        for (size_t i = 0; i < MAX_STUDENTS; i++)
+        {
+            for (size_t j = 0; j < SURN_LEN; j++)
+                students[i].surname[j] = '\0';
+            for (size_t j = 0; j < NAME_LEN; j++)
+                students[i].name[j] = '\0';
+            for (size_t j = 0; j < MARK_COUNT; j++)
+                students[i].marks[j] = 0;
+        }
+        */
 
+        int size = st_readall(file, students, MAX_STUDENTS);
 
+        if (size <= 0)
+            error = FILE_ERROR;
+        
+        if (!error)
+        {
+            if (file)
+                fclose(file);
+            file = fopen(dir, "w");
+            if (!file)
+                error = NULL_PTR_ERROR;
+            
+            error = print_above_avg(file, students, size);
+        }
+    }
 
+    if (file)
+        fclose(file);
 
+    return error;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-int db_mode();
-int dt_mode();
-
-
-
-
-
-
-
-
-
-
-
-
+void student_zero(student *stud)
+{
+    for (size_t i = 0; i < MAX_STUDENTS; i++)
+    {
+        for (size_t j = 0; j < SURN_LEN; j++)
+            stud[i].surname[j] = '\0';
+        for (size_t j = 0; j < NAME_LEN; j++)
+            stud[i].name[j] = '\0';
+        for (size_t j = 0; j < MARK_COUNT; j++)
+            stud[i].marks[j] = 0;
+    }
+}

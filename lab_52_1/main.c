@@ -31,7 +31,7 @@ int main(int argc, char **argv)
                 }
                 else if (argv[1][1] == 't' && argc == 5)
                 {
-
+                    ft_mode(argv[2], argv[3], argv[4]);
                 }
                 else
                     error = ARG_ERROR;
@@ -40,11 +40,11 @@ int main(int argc, char **argv)
             case 'd':
                 if (argv[1][1] == 'b' && argc == 3)
                 {
-
+                    db_mode(argv[2]);
                 }
                 else if (argv[1][1] == 't' && argc == 3)
                 {
-
+                    dt_mode(argv[2]);
                 }
                 else
                     error = ARG_ERROR;

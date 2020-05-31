@@ -26,7 +26,7 @@ int get_size(FILE *file, int *size)
     if (s >= 0)
     {
         *size = s;
-        error = fseek(file, 0L, SEEK_SET);
+        error = fseek(file, 0, SEEK_SET);
     }
     else
         error = FILE_ERROR;
@@ -62,7 +62,7 @@ int sb_sort(FILE *file, int size)
 }                   
 
 
-int fb_print(FILE *file_in, FILE *file_out, int size, char *str)
+int fb_print(FILE *file_in, FILE *file_out, int size, const char *str)
 {
     int error = 0, count = 0;
     student temp = { { "" }, { "" }, { 0, 0, 0, 0 } };
@@ -80,12 +80,12 @@ int fb_print(FILE *file_in, FILE *file_out, int size, char *str)
     return !count;
 }
 
-int print_bin_above_avg(FILE *file, char *filename, int size)
+int print_bin_above_avg(FILE *file, const char *filename, int size)
 {
     int error = 0;
     float sum = 0;
     student temp = { { "" }, { "" }, { 0, 0, 0, 0 } };
-    for (size_t i = 0; i < size && !error; i++)
+    for (int i = 0; i < size && !error; i++)
     {
         error = get_struct_by_pos(file, &temp, i);
         if (!error)
@@ -95,7 +95,7 @@ int print_bin_above_avg(FILE *file, char *filename, int size)
     float avg = sum / size;
 
     int count = 0;
-    for (size_t i = 0; i < size && !error; i++)
+    for (int i = 0; i < size && !error; i++)
     {
         error = get_struct_by_pos(file, &temp, i);
         if (avg_mark(&temp) >= avg && !error)
@@ -103,7 +103,7 @@ int print_bin_above_avg(FILE *file, char *filename, int size)
             error = put_struct_by_pos(file, &temp, count);
             count++;
         }
-        else if (fabs(avg_mark(&temp) - avg) <= EPS)
+        else if (fabsf(avg_mark(&temp) - avg) <= EPS)
         {
             error = put_struct_by_pos(file, &temp, count);
             count++;
@@ -119,7 +119,7 @@ void print_bin(FILE *file)
 {
     student stud = { { "----" }, { "----" }, { 1, 1, 1, 1 } };
     int size;
-    int error = get_file_size(file, &size);
+    int error = get_size(file, &size);
     for (size_t i = 0; i < (size / sizeof(stud)) && !error; i++)
     {
         error = get_struct_by_pos(file, &stud, i);

@@ -49,7 +49,7 @@ void st_sort(student **st_arr, int size)
         elem = st_arr[i];
         pos = i - 1;
 
-        while (pos >= 0 && compare(elem, st_arr[pos]))
+        while (pos >= 0 && stud_comp(elem, st_arr[pos]))
         {
             swap(st_arr + pos + 1, st_arr + pos);
             pos--;
@@ -77,10 +77,10 @@ int print_above_avg(FILE *file_out, student *students, int size)
     return error;
 }
 
-int ft_print(FILE *file, student *students, int size, char *field)
+int ft_print(FILE *file, student *students, int size, const char *field)
 {
     int error = 0, count = 0;
-    for (size_t i = 0; i < size && !error; i++)
+    for (int i = 0; i < size && !error; i++)
     {
         char *substr_pos = strstr(students[i].surname, field);
         if (substr_pos && !(substr_pos - students[i].surname))

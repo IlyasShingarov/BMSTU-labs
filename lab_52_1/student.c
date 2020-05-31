@@ -16,9 +16,11 @@ int stud_comp(student *st_1, student *st_2)
 void stud_print(student *st)
 {
     printf("%s\n%s\n", st->surname, st->name);
-    for (size_t i = 0 < i < MARK_COUNT; i++)
+    
+    for (size_t i = 0; i < MARK_COUNT; i++)
         printf("%u ", st->marks[i]);
-    prinf("\n");
+    
+    printf("\n");
 }
 
 float avg_mark(student *st)

@@ -13,7 +13,7 @@ int sb_mode(const char *dir)
         int size;
         if (!get_size(file, &size) && size > 0 && size % SIZE_STUDENT == 0)
         {
-            error = sort_structs(file, size / SIZE_STUDENT);
+            error = sb_sort(file, size / SIZE_STUDENT);
             print_bin(file);
         }
         else
@@ -57,13 +57,14 @@ int st_mode(const char *dir)
             for (int i = 0; i < size; i++)
                 students_t[i] = &students[i];
         
-            sort_array(students_t, size);
+            st_sort(students_t, size);
             for (int i = 0; i < size; i++)
-                print_to_console(students_t[i]);
+                stud_print(students_t[i]);
         }
     }
 
     if (file)
+
         fclose(file);
 
     return error;
@@ -117,12 +118,12 @@ int ft_mode(const char *dir_in, const char *dir_out, const char *substr)
                 students[i].marks[j] = 0;
         }
         */
-   
+
         int size = st_readall(file_in, students, MAX_STUDENTS);
-    
+
         if (size <= 0)
             error = FILE_ERROR;
-        
+
         if (!error)
             error = ft_print(file_out, students, size, substr);
     }

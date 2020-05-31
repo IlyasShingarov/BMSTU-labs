@@ -13,6 +13,6 @@ int st_add(FILE *file, student *student);
 int st_readall(FILE *file, student *students, int max_size);
 void st_sort(student **st_arr, int size);
 int print_above_avg(FILE *file_out, student *students, int size);
-int ft_print(FILE *file, student *students, int size, char *field);
+int ft_print(FILE *file, student *students, int size, const char *field);
 
 #endif

@@ -15,7 +15,7 @@ int get_struct_by_pos(FILE *file, student *students, int pos);
 int put_struct_by_pos(FILE *file, student *students, int pos);
 int sb_sort(FILE *file, int size);
 int get_size(FILE *file, int *size);
-int fb_print(FILE *file_in, FILE *file_out, int size,const char *str);
+int fb_print(FILE *file_in, FILE *file_out, int size, const char *str);
 int print_bin_above_avg(FILE *file, const char *filename, int size);
 
 #endif

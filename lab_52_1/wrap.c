@@ -37,17 +37,6 @@ int st_mode(const char *dir)
     {
         student students[MAX_STUDENTS];
         student_zero(students);
-        /*
-        for (int i = 0; i < MAX_STUDENTS; i++)
-        {
-            for (size_t j = 0; j < SURN_LEN; j++)
-                students[i].surname[j] = '\0';
-            for (size_t j = 0; j < NAME_LEN; j++)
-                students[i].name[j] = '\0';
-            for (size_t j = 0; j < MARK_COUNT; j++)
-                students[i].marks[j] = 0;
-        }
-        */
         
         int size = st_readall(file, students, MAX_STUDENTS);
 
@@ -64,7 +53,6 @@ int st_mode(const char *dir)
     }
 
     if (file)
-
         fclose(file);
 
     return error;
@@ -107,17 +95,6 @@ int ft_mode(const char *dir_in, const char *dir_out, const char *substr)
     {
         student students[MAX_STUDENTS];
         student_zero(students);
-        /*
-        for (size_t i = 0; i < MAX_STUDENTS; i++)
-        {
-            for (size_t j = 0; j < SURN_LEN; j++)
-                students[i].surname[j] = '\0';
-            for (size_t j = 0; j < NAME_LEN; j++)
-                students[i].name[j] = '\0';
-            for (size_t j = 0; j < MARK_COUNT; j++)
-                students[i].marks[j] = 0;
-        }
-        */
 
         int size = st_readall(file_in, students, MAX_STUDENTS);
 
@@ -170,17 +147,6 @@ int dt_mode(const char *dir)
     {
         student students[MAX_STUDENTS];
         student_zero(students);
-        /*
-        for (size_t i = 0; i < MAX_STUDENTS; i++)
-        {
-            for (size_t j = 0; j < SURN_LEN; j++)
-                students[i].surname[j] = '\0';
-            for (size_t j = 0; j < NAME_LEN; j++)
-                students[i].name[j] = '\0';
-            for (size_t j = 0; j < MARK_COUNT; j++)
-                students[i].marks[j] = 0;
-        }
-        */
 
         int size = st_readall(file, students, MAX_STUDENTS);
 

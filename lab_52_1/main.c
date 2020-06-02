@@ -10,6 +10,7 @@ int main(int argc, char **argv)
         error = ARG_ERROR;
 
     if (!error)
+    {
         switch (argv[1][0])
         {
             case 's':
@@ -23,7 +24,6 @@ int main(int argc, char **argv)
                 }
                 else
                     error = ARG_ERROR;
-                
                 break;
             case 'f':
                 if (argv[1][1] == 'b' && argc == 5)
@@ -36,7 +36,6 @@ int main(int argc, char **argv)
                 }
                 else
                     error = ARG_ERROR;
-                
                 break;
             case 'd':
                 if (argv[1][1] == 'b' && argc == 3)
@@ -49,13 +48,13 @@ int main(int argc, char **argv)
                 }
                 else
                     error = ARG_ERROR;
-                
                 break;
 
             default:
                 error = ARG_ERROR;
                 break;
         }
+    }
 
     return error;
 }

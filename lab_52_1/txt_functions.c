@@ -69,7 +69,7 @@ int print_above_avg(FILE *file_out, student *students, int size)
     float avg = sum / size;
 
     for (int i = 0; i < size && !error; i++)
-        if (avg_mark(students + i ) >= avg)
+        if (avg_mark(students + i) >= avg)
             error = st_add(file_out, students + i);
         else if (fabs(avg_mark(students + i) - avg) <= EPS)
             error = st_add(file_out, students + i);

@@ -49,7 +49,6 @@ int main(int argc, char **argv)
                 else
                     error = ARG_ERROR;
                 break;
-
             default:
                 error = ARG_ERROR;
                 break;

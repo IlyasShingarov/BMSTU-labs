@@ -34,17 +34,13 @@ int get_size(FILE *file, int *size)
     return error;
 }
 
-void sb_sort(FILE *file, int size)
+int sb_sort(FILE *file, int size)
 {   
-    int s;
-    get_size(file, &s);
-    printf("s: %d", s);
     int error = 0;
     for (int i = 0; i < size && !error; i++)
         for (int j = i; j > 0 && cmp_by_pos(file, j, j - 1) && !error; j--)
             error = exchange(file, j, j - 1);
-    get_size(file, &s);
-    printf("s: %d", s);
+    return error;
 }
 
 int cmp_by_pos(FILE *file, int pos1, int pos2)

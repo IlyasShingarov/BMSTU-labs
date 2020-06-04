@@ -13,7 +13,7 @@
 void print_bin(FILE *file);
 int get_struct_by_pos(FILE *file, student *students, int pos);
 int put_struct_by_pos(FILE *file, student *students, int pos);
-void sb_sort(FILE *file, int size);
+int sb_sort(FILE *file, int size);
 int cmp_by_pos(FILE *file, int pos1, int pos2);
 int exchange(FILE *file, int pos1, int pos2);
 int get_size(FILE *file, int *size);

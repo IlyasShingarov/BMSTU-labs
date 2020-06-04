@@ -13,8 +13,9 @@ int sb_mode(const char *dir)
         int size;
         if (!get_size(file, &size) && size > 0 && size % SIZE_STUDENT == 0)
         {
-            sb_sort(file, size / SIZE_STUDENT);
-            print_bin(file);
+            error = sb_sort(file, size / SIZE_STUDENT);
+            if (!error)
+                print_bin(file);
         }
         else
             error = FILE_ERROR;

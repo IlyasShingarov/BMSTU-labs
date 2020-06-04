@@ -3,8 +3,8 @@
 int get_struct_by_pos(FILE *file, student *students, int pos)
 {
     int error = fseek(file, pos * sizeof(*students), SEEK_SET);
-    if (!error && fread(students, sizeof(*students), 1, file) != 1)
-        error = IO_ERROR;
+    if (!error)
+        error = fread(students, sizeof(*students), 1, file) != 1;
 
     return error;
 }
@@ -12,8 +12,8 @@ int get_struct_by_pos(FILE *file, student *students, int pos)
 int put_struct_by_pos(FILE *file, student *students, int pos)
 {
     int error = fseek(file, pos * sizeof(*students), SEEK_SET);
-    if (!error && fwrite(students, sizeof(*students), 1, file) != 1)
-        error = IO_ERROR;
+    if (!error)
+        error = fwrite(students, sizeof(*students), 1, file) != 1;
 
     return error;
 }

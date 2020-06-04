@@ -13,7 +13,9 @@
 void print_bin(FILE *file);
 int get_struct_by_pos(FILE *file, student *students, int pos);
 int put_struct_by_pos(FILE *file, student *students, int pos);
-int sb_sort(FILE *file, int size);
+void sb_sort(FILE *file, int size);
+int cmp_by_pos(FILE *file ,int pos1, int pos2);
+void exchange(FILE *file, int pos1, int pos2);
 int get_size(FILE *file, int *size);
 int fb_print(FILE *file_in, FILE *file_out, int size, const char *str);
 int print_bin_above_avg(FILE *file, const char *filename, int size);

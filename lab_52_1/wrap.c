@@ -64,7 +64,7 @@ int fb_mode(const char *dir_in, const char *dir_out, const char *substr)
     int error = 0;
     FILE *file_in = fopen(dir_in, "rb");
     FILE *file_out = fopen(dir_out, "wb");
-    if (!file_in || file_out)
+    if (!file_in || !file_out)
         error = NULL_PTR_ERROR;
 
     if (!error)

@@ -16,7 +16,8 @@ int main(int argc, char **argv)
             case 's':
                 if (argv[1][1] == 'b' && argc == 3)
                 {
-                    sb_mode(argv[2]);
+                    //sb_mode(argv[2]);
+                    return ARG_ERROR;
                 }
                 else if (argv[1][1] == 't' && argc == 3)
                 {

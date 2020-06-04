@@ -34,41 +34,15 @@ int get_size(FILE *file, int *size)
     return error;
 }
 
-/*
-int sb_sort(FILE *file, int size)
-{
-    student elem_1 = { { "" }, { "" }, { 0, 0, 0, 0 } }, elem_t = { { "" }, { "" }, { 0, 0, 0, 0 } };
-    int pos = 0, error = 0;
-
-    for (int i = 1; i < size && !error; i++)
-    {
-        pos = i - 1;
-        error = get_struct_by_pos(file, &elem_1, i);
-        if (!error)
-            error = get_struct_by_pos(file, &elem_t, pos);
-
-        while (pos >= 0 && stud_comp(&elem_1, &elem_t) && !error)
-        {
-            error = put_struct_by_pos(file, &elem_t, pos + 1);
-            pos--;
-            error = get_struct_by_pos(file, &elem_t, pos);
-        }
-        if (!error)
-            error = put_struct_by_pos(file, &elem_1, pos + 1);
-    }
-
-    return error;
-}                   
-*/
-
 void sb_sort(FILE *file, int size)
-{
-    for (int i = 0; i < size; i++)
-        for (int j = i; j > 0 && cmp_by_pos(file, j, j - 1); j--)
-            exchange(file, j, j - 1);
+{   
+    int error = 0;
+    for (int i = 0; i < size && !error; i++)
+        for (int j = i; j > 0 && cmp_by_pos(file, j, j - 1) && !error; j--)
+            error = exchange(file, j, j - 1);
 }
 
-int cmp_by_pos(FILE *file ,int pos1, int pos2)
+int cmp_by_pos(FILE *file , int pos1, int pos2)
 {
     student elem_1 = { { "" }, { "" }, { 0, 0, 0, 0 } };
     student elem_2 = { { "" }, { "" }, { 0, 0, 0, 0 } };
@@ -82,7 +56,7 @@ int cmp_by_pos(FILE *file ,int pos1, int pos2)
     return error;
 }
 
-void exchange(FILE *file, int pos1, int pos2)
+int exchange(FILE *file, int pos1, int pos2)
 {
     student elem_1 = { { "" }, { "" }, { 0, 0, 0, 0 } };
     student elem_2 = { { "" }, { "" }, { 0, 0, 0, 0 } };
@@ -95,6 +69,8 @@ void exchange(FILE *file, int pos1, int pos2)
         error = put_struct_by_pos(file, &elem_2, pos1);
         error = put_struct_by_pos(file, &elem_1, pos2);
     }
+
+    return error;
 }
 
 

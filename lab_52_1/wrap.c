@@ -51,6 +51,8 @@ int st_mode(const char *dir)
             for (int i = 0; i < size; i++)
                 stud_print(students_t[i]);
         }
+        else
+            error = FILE_ERROR;
     }
 
     if (file)

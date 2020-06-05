@@ -23,7 +23,7 @@ int st_readall(FILE *file, student *students, int max_size)
     while (!error && !end_state && size < max_size)
     {
         end_state = fscanf(file, "%s", students[size].surname) != 1;
-        if (!end_state)
+        if (!end_state && !error)
         {
             error = fscanf(file, "%s", students[size].name) != 1;
             if (!error)

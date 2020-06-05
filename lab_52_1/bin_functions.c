@@ -23,7 +23,7 @@ int get_size(FILE *file, int *size)
     int error = 0, s = 0;
     if (!fseek(file, 0, SEEK_END))
         s = ftell(file);
-    if (s >= 0)
+    if (s > 0)
     {
         *size = s;
         error = fseek(file, 0, SEEK_SET);
@@ -105,26 +105,29 @@ int print_bin_above_avg(FILE *file, const char *filename, int size)
             sum += avg_mark(&temp);
     }
 
-    float avg = sum / size;
-
-    int count = 0;
-    for (int i = 0; i < size && !error; i++)
-    {
-        error = get_struct_by_pos(file, &temp, i);
-        if (avg_mark(&temp) >= avg && !error)
-        {
-            error = put_struct_by_pos(file, &temp, count);
-            count++;
-        }
-        else if (fabsf(avg_mark(&temp) - avg) <= EPS)
-        {
-            error = put_struct_by_pos(file, &temp, count);
-            count++;
-        }
-    }
     if (!error)
-        error = truncate(filename, count * sizeof(temp));
-    
+    {
+        float avg = sum / size;
+        int count = 0;
+        for (int i = 0; i < size && !error; i++)
+        {
+            error = get_struct_by_pos(file, &temp, i);
+            if (avg_mark(&temp) >= avg && !error)
+            {
+                error = put_struct_by_pos(file, &temp, count);
+                count++;
+            }
+            else if (fabsf(avg_mark(&temp) - avg) <= EPS)
+            {
+                error = put_struct_by_pos(file, &temp, count);
+                count++;
+            }
+        }
+
+        if (!error)
+            error = truncate(filename, count * sizeof(temp));
+    }
+
     return error;
 }
 

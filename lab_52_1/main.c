@@ -55,6 +55,5 @@ int main(int argc, char **argv)
         }
     }
 
-    printf("%d", error);
     return error;
 }

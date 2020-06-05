@@ -25,7 +25,7 @@ void stud_print(student *st)
 
 float avg_mark(student *st)
 {
-    float avg;
+    float avg = 0;
     for (size_t i = 0; i < MARK_COUNT; i++)
         avg += st->marks[i];
 

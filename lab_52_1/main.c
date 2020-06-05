@@ -6,7 +6,7 @@
 int main(int argc, char **argv)
 {
     int error = 0;
-    if (argc < 3 && strlen(argv[1]) != 2)
+    if (argc < 3 || strlen(argv[1]) != 2)
         error = ARG_ERROR;
 
     if (!error)
@@ -55,5 +55,6 @@ int main(int argc, char **argv)
         }
     }
 
+    printf("%d", error);
     return error;
 }

@@ -1,0 +1,29 @@
+# Test 1
+    IN: 10 3 4 7 13 3 5 7 13 2 6
+    OUT: 3 7 13 3 5 7 13 2
+
+# Test 2
+    IN: 5 3 -3 -4 -5 5
+    OUT: 3 5
+
+# Test 3
+    IN: 10 4 4 4 4 4 4 4 4 4 4
+    OUT: There's no prime elements
+
+# Test 4
+    IN: 0
+    OUT: Error
+
+# Test 5
+    IN: 1000
+    OUT: Error
+
+# Test 6
+    IN: a
+    OUT: Error
+
+# Test 7
+    IN: 10 a
+    OUT: Incorrect data
+
+Покрытие -- 100%

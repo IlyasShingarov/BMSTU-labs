@@ -1,5 +1,10 @@
-*.exe
+*.exe 
 *.o
 *.md
+*lab_1*
+*.vscode
 *.g*
-*.json
+*.py
+*.out
+*out*
+*prof*

@@ -6,5 +6,9 @@ lab_2_*
 lab_1_*
 *.md
 *RK*
-.vscode
 *.bat
+*vscode*
+*.g*
+*.out
+*out*
+*prof*

@@ -5,4 +5,8 @@
 lab_1_*
 lab_2_*
 *vscode*
-*.gc*
+*.g*
+*.py
+*.out
+*out*
+*prof*

@@ -1,10 +1,8 @@
-*.py
+*.exe 
 *.o
-*.exe
 *.md
-lab_1_*
-lab_2_*
-*vscode*
+*lab_1*
+*.vscode
 *.g*
 *.py
 *.out

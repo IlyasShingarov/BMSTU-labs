@@ -1,11 +1,10 @@
-*.o
-*.exe
-*.py
-*.bat
-*.sh
-*.md
-*vscode*
 *.exe 
+*.o
+*.md
+*lab_1*
+*.vscode
 *.g*
+*.py
+*.out
 *out*
 *prof*

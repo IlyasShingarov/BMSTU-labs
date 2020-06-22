@@ -1,0 +1,12 @@
+tichomirov
+alexander
+33 3 3 3
+kovalev
+igor
+32 22 2 2
+scherbinin
+daniil
+33 3 0 0
+afanasyev
+oleg
+23 23 2 2

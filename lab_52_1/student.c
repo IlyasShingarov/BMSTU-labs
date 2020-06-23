@@ -31,9 +31,3 @@ float avg_mark(student *st)
 
     return avg /= MARK_COUNT;
 }
-
-
-
-
-
-

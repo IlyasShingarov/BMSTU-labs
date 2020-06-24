@@ -1,0 +1,7 @@
+Input rows, columns and matrix values: 
+Matrix: 
+89 97 56 26 34 
+67 23 42 67 12 
+34 56 32 18 45 
+78 34 12 34 97 
+24 99 87 67 43 

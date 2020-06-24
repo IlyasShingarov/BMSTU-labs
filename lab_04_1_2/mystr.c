@@ -96,11 +96,11 @@ void remove_duplicates(char **words, size_t *word_count)
         }
 }
 
-void swap(char **xp, char **xy)
+void swap(char *xp, char *xy)
 {
-    char temp = **xp;
-    **xp = **xy;
-    **xy = temp;
+    char temp = *xp;
+    *xp = *xy;
+    *xy = temp;
 }
 
 void sort_words(char **words, size_t word_count) 

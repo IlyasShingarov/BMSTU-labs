@@ -23,7 +23,7 @@ void remove_duplicates(char **words, size_t *word_count);
 
 void sort_words(char **words, size_t word_count);
 
-void swap(char *xp, char *xy);
+void swap(char **xp, char **xy);
 
 
 #endif //_MYSTR_H_

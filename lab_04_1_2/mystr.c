@@ -96,9 +96,9 @@ void remove_duplicates(char **words, size_t *word_count)
         }
 }
 
-void swap(char *xp, char *xy)
+void swap(char **xp, char **xy)
 {
-    char temp = *xp;
+    char *temp = *xp;
     *xp = *xy;
     *xy = temp;
 }
@@ -112,7 +112,7 @@ void sort_words(char **words, size_t word_count)
         for (size_t j = 0; j < word_count - i - 1; j++)  
             if (strncmp(words[j], words[j + 1], MAX_WORD_LEN) > 0) 
             { 
-                swap(words[j], words[j + 1]); 
+                swap(words + j, words + j + 1); 
                 swapped = 1; 
             }
         if (swapped == 0) 

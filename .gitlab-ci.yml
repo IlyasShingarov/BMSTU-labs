@@ -6,4 +6,4 @@ test:
     - testing
   artifacts:
     paths: [report.txt.enc]
-    when: always
+    when: never

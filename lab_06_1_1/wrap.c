@@ -79,25 +79,6 @@ int title_mode(const char *dir)
     return error;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-
-
-
-
 int name_mode(const char *dir)
 {
     int error = ERR_OK;
@@ -105,10 +86,32 @@ int name_mode(const char *dir)
 
     if (!file)
         error = ERR_NULL_PTR;
-
+    
+    int film_count = 0;
+    film_t films[MAX_FILM_COUNT];
+    film_init(films);
+    
     if (!error)
-    {
+    {   
+        error = read_name(file, films, &film_count);
+        if (!error)
+            print_films(films, film_count);
+    }
 
+    return error;
+}
+
+int read_name(FILE *file, film_t *arr, int *count)
+{
+    int error = ERR_OK;
+    while (!error && (*count) <= MAX_FILM_COUNT && !feof(file))
+    {
+        film_t temp_film;
+        error = make_film(file, &temp_film);
+        if (!error)
+        {
+            error = sorted_insert(temp_film, arr, count, name_cmp);
+        }
     }
 
     return error;
@@ -121,27 +124,33 @@ int year_mode(const char *dir)
 
     if (!file)
         error = ERR_NULL_PTR;
-
+    
+    int film_count = 0;
+    film_t films[MAX_FILM_COUNT];
+    film_init(films);
+    
     if (!error)
-    {
-        
+    {   
+        error = read_year(file, films, &film_count);
+        if (!error)
+            print_films(films, film_count);
     }
 
     return error;
 }
 
-
-
-int read_name()
+int read_year(FILE *file, film_t *arr, int *count)
 {
+    int error = ERR_OK;
+    while (!error && (*count) <= MAX_FILM_COUNT && !feof(file))
+    {
+        film_t temp_film;
+        error = make_film(file, &temp_film);
+        if (!error)
+        {
+            error = sorted_insert(temp_film, arr, count, year_cmp);
+        }
+    }
 
+    return error;
 }
-
-int read_year()
-{
-
-}
-
-
-
-*/

@@ -10,7 +10,10 @@ int title_mode(const char *dir);
 int read_title(FILE *file, film_t *arr, int *count);
 
 int name_mode(const char *dir);
+int read_name(FILE *file, film_t *arr, int *count);
+
 int year_mode(const char *dir);
+int read_year(FILE *file, film_t *arr, int *count);
 
 
 

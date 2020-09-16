@@ -16,9 +16,9 @@ int main(int argc, char **argv)
 		if (!strcmp(argv[2], "title"))
 			error = title_mode(argv[1]); // Тут будет поиск по полю названия
 		else if (!strcmp(argv[2], "name"))
-			;//error = name_mode(argv[1]); // Тут будет поиск по имени режиссера
+			error = name_mode(argv[1]);//error = name_mode(argv[1]); // Тут будет поиск по имени режиссера
 		else if (!strcmp(argv[2], "year"))
-			;//error = year_mode(argv[1]); // Тут будет поиск по году
+			error = year_mode(argv[1]);//error = year_mode(argv[1]); // Тут будет поиск по году
 		else
 			error = ERR_ARG;
 	}

@@ -18,5 +18,7 @@ void print_films(film_t *film_arr, int count);
 void film_init(film_t *arr);
 
 int title_cmp(film_t f_1, film_t f_2);
+int name_cmp(film_t f_1, film_t f_2);
+int year_cmp(film_t f_1, film_t f_2);
 
 #endif

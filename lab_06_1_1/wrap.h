@@ -3,18 +3,13 @@
 
 #include "films.h"
 
-void shift(film_t *arr, int n, int ind);
-int sorted_insert(film_t film, film_t *arr, int *n, int (*comp_func)(film_t f_1, film_t f_2));
-
-int title_mode(const char *dir);
+int title_mode(const char *dir, const char *key);
 int read_title(FILE *file, film_t *arr, int *count);
 
-int name_mode(const char *dir);
+int name_mode(const char *dir, const char *key);
 int read_name(FILE *file, film_t *arr, int *count);
 
-int year_mode(const char *dir);
+int year_mode(const char *dir, const char *key);
 int read_year(FILE *file, film_t *arr, int *count);
-
-
 
 #endif

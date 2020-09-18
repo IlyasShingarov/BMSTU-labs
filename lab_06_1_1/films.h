@@ -4,6 +4,8 @@
 #define MAX_STR_LEN 26
 #define MAX_FILM_COUNT 15
 
+#include <stdio.h>
+
 typedef struct film_t
 {
     char title[MAX_STR_LEN];

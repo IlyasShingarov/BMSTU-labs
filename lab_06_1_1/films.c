@@ -18,7 +18,7 @@ int make_film(FILE *file, film_t *film)
 
     if (!error)
     {
-        if (fgets(film->title, MAX_STR_LEN - 1, file) == NULL)
+        if (fgets(film->title, MAX_STR_LEN, file) == NULL)
             error = ERR_NULL_PTR;
         else
         {
@@ -27,7 +27,7 @@ int make_film(FILE *file, film_t *film)
                 *t_p = '\0';
         }
         
-        if (error || fgets(film->name, MAX_STR_LEN - 1, file) == NULL)
+        if (error || fgets(film->name, MAX_STR_LEN, file) == NULL)
             error = ERR_NULL_PTR;
         else
         {

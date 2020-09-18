@@ -60,9 +60,9 @@ int bin_name_search(film_t *arr, int n, const char *key)
         }
         if (!found)
         {
-            if (strncmp(key, arr[m].title, strlen(arr[m].name)) > 0)
+            if (strncmp(key, arr[m].title, strlen(arr[m].name)) < 0)
                 r = m - 1;
-            else if (strncmp(key, arr[m].title, strlen(arr[m].name)) < 0)
+            else if (strncmp(key, arr[m].title, strlen(arr[m].name)) > 0)
                 l = m + 1;
         }
     }

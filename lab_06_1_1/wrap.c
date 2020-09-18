@@ -28,6 +28,9 @@ int title_mode(const char *dir, const char *key)
             error = bin_title_search(films, film_count, key);
     }
 
+    if (file)
+        fclose(file);
+
     return error;
 }
 
@@ -67,6 +70,9 @@ int name_mode(const char *dir, const char *key)
         else if (!error)
             error = bin_name_search(films, film_count, key);
     }
+
+    if (file)
+        fclose(file);
 
     return error;
 }
@@ -114,6 +120,9 @@ int year_mode(const char *dir, const char *key)
         }
     }
 
+    if (file)
+        fclose(file);
+    
     return error;
 }
 

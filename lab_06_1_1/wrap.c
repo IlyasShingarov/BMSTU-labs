@@ -37,7 +37,7 @@ int title_mode(const char *dir, const char *key)
 int read_title(FILE *file, film_t *arr, int *count)
 {
     int error = ERR_OK;
-    while (!error && (*count) <= MAX_FILM_COUNT && !feof(file))
+    while (!error && (*count) < MAX_FILM_COUNT && !feof(file))
     {
         film_t temp_film;
         error = make_film(file, &temp_film);
@@ -80,7 +80,7 @@ int name_mode(const char *dir, const char *key)
 int read_name(FILE *file, film_t *arr, int *count)
 {
     int error = ERR_OK;
-    while (!error && (*count) <= MAX_FILM_COUNT && !feof(file))
+    while (!error && (*count) < MAX_FILM_COUNT && !feof(file))
     {
         film_t temp_film;
         error = make_film(file, &temp_film);
@@ -129,7 +129,7 @@ int year_mode(const char *dir, const char *key)
 int read_year(FILE *file, film_t *arr, int *count)
 {
     int error = ERR_OK;
-    while (!error && (*count) <= MAX_FILM_COUNT && !feof(file))
+    while (!error && (*count) < MAX_FILM_COUNT && !feof(file))
     {
         film_t temp_film;
         error = make_film(file, &temp_film);

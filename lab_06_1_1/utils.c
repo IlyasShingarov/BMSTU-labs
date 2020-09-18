@@ -24,7 +24,7 @@ int sorted_insert(film_t film, film_t *arr, int *n, int (*comp_func)(film_t f_1,
     {
         for (int i = 0; i <= (*n) && !inserted; i++)
         {
-            if (comp_func(film, arr[i]) <= 0)
+            if (comp_func(film, arr[i]) < 0)
             {
                 shift(arr, *n, i);
                 arr[i] = film;

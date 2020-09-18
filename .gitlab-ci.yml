@@ -1,6 +1,5 @@
 image: testing
 test:
-  when: manual
   tags:
     - testing-docker
   script:

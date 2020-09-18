@@ -60,9 +60,9 @@ int bin_name_search(film_t *arr, int n, const char *key)
         }
         if (!found)
         {
-            if (strncmp(key, arr[m].title, strlen(arr[m].name)) < 0)
+            if (strncmp(key, arr[m].title, strlen(arr[m].name)) > 0)
                 r = m - 1;
-            else
+            else if (strncmp(key, arr[m].title, strlen(arr[m].name)) < 0)
                 l = m + 1;
         }
     }
@@ -95,7 +95,7 @@ int bin_title_search(film_t *arr, int n, const char *key)
         {
             if (strncmp(arr[m].title, key, strlen(arr[m].title)) > 0)
                 r = m - 1;
-            else
+            else if (strncmp(arr[m].title, key, strlen(arr[m].title)) < 0)
                 l = m + 1;
         }
     }

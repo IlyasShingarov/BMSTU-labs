@@ -25,6 +25,9 @@ int make_film(FILE *file, film_t *film)
             t_p = strchr(film->title, '\n');
             if (t_p != NULL)
                 *t_p = '\0';
+
+            if (!strlen(film->title))
+                error = ERR;
         }
         
         if (error || fgets(film->name, MAX_STR_LEN, file) == NULL)
@@ -34,6 +37,9 @@ int make_film(FILE *file, film_t *film)
             t_p = strchr(film->name, '\n');
             if (t_p != NULL)
                 *t_p = '\0';
+
+            if (!strlen(film->name))
+                error = ERR;
         }
     }
 
@@ -43,7 +49,7 @@ int make_film(FILE *file, film_t *film)
     if (!error)
     {
         tmp_num = atoi(tmp_str);
-        if (tmp_num)
+        if (tmp_num > 0)
             film->year = tmp_num;
         else
             error = ERR_ATOI;

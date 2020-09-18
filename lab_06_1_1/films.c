@@ -48,7 +48,7 @@ int make_film(FILE *file, film_t *film)
 
 void film_init(film_t *arr)
 {
-    film_t zero_film = {'\0', '\0', 0};
+    film_t zero_film = {.title = "\0", .name = "\0", .year = 0};
     for (int i = 0; i < MAX_FILM_COUNT; i++)
     {
         arr[i] = zero_film;
@@ -72,7 +72,6 @@ void print_film(film_t film)
 
 int title_cmp(film_t f_1, film_t f_2)
 {
-    int info = strncmp(f_1.title, f_2.title, MAX_STR_LEN);
     return strncmp(f_1.title, f_2.title, MAX_STR_LEN);
 }
 

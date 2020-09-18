@@ -39,6 +39,7 @@ int sorted_insert(film_t film, film_t *arr, int *n, int (*comp_func)(film_t f_1,
             (*n)++;
         }
     }
+    
     return error;
 }
 

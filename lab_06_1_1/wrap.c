@@ -110,7 +110,7 @@ int year_mode(const char *dir, const char *key)
         error = read_year(file, films, &film_count);
         if (!error && key == NULL)
             print_films(films, film_count);
-        else
+        else if (!error)
         {
             int t_key = atoi(key);
             if (!t_key)

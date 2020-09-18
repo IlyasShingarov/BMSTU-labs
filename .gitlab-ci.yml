@@ -1,5 +1,6 @@
 image: testing
 test:
+  when: manual
   tags:
     - testing-docker
   script:
@@ -7,4 +8,3 @@ test:
   artifacts:
     paths: [report.txt.enc]
     when: always
-  when: manual

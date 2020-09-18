@@ -7,7 +7,8 @@
 
 int make_film(FILE *file, film_t *film)
 {
-    char tmp_str[MAX_STR_LEN];
+    char tmp_str[MAX_STR_LEN] = { 0 };
+    char *t_p = NULL;
     int tmp_num;
 
     int error = ERR_OK;
@@ -17,15 +18,23 @@ int make_film(FILE *file, film_t *film)
 
     if (!error)
     {
-        if (fgets(film->title, MAX_STR_LEN, file) == NULL)
+        if (fgets(film->title, MAX_STR_LEN - 1, file) == NULL)
             error = ERR_NULL_PTR;
-        else
-            *strchr(film->title, '\n') = '\0';
+        else if (tmp_str[MAX_STR_LEN])
+        {
+            t_p = strchr(film->title, '\n');
+            if (t_p)
+                *t_p = '\0';
+        }
         
-        if (error || fgets(film->name, MAX_STR_LEN, file) == NULL)
+        if (error || fgets(film->name, MAX_STR_LEN - 1, file) == NULL)
             error = ERR_NULL_PTR;
         else
-            *strchr(film->name, '\n') = '\0';
+        {
+            t_p = strchr(film->name, '\n');
+            if (t_p)
+                *t_p = '\0';
+        }
     }
 
     if (!error)

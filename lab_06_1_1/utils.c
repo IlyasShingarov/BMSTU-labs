@@ -71,7 +71,6 @@ int bin_name_search(film_t *arr, int n, const char *key)
     else
     {
         print_film(result);
-        printf("\n");
     }
 
     return error;
@@ -105,7 +104,6 @@ int bin_title_search(film_t *arr, int n, const char *key)
     else
     {
         print_film(result);
-        printf("\n");
     }
 
     return error;
@@ -139,7 +137,6 @@ int bin_search(film_t *arr, int n, int key)
     else
     {
         print_film(result);
-        printf("\n");
     }
     
     return error;

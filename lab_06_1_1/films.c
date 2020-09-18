@@ -75,8 +75,6 @@ void print_films(film_t *film_arr, int count)
     for (int i = 0; i < count; i++)
     {
         print_film(film_arr[i]);
-        if (i == count - 1)
-            printf("\n");
     }
 }
 

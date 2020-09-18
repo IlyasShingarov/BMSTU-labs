@@ -53,14 +53,14 @@ int bin_name_search(film_t *arr, int n, const char *key)
     while (l <= r && !found)
     {
         int m = (l + r) / 2;
-        if (!strncmp(key, arr[m].name, MAX_STR_LEN))
+        if (!strncmp(key, arr[m].name, strlen(arr[m].name)))
         {
             result = arr[m];
             found = 1;
         }
         if (!found)
         {
-            if (strncmp(key, arr[m].title, MAX_STR_LEN) < 0)
+            if (strncmp(key, arr[m].title, strlen(arr[m].name)) < 0)
                 r = m - 1;
             else
                 l = m + 1;
@@ -86,14 +86,14 @@ int bin_title_search(film_t *arr, int n, const char *key)
     while (l <= r && !found)
     {
         int m = (l + r) / 2;
-        if (!strncmp(arr[m].title, key, MAX_STR_LEN))
+        if (!strncmp(arr[m].title, key, strlen(arr[m].title)))
         {
             result = arr[m];
             found = 1;
         }
         if (!found)
         {
-            if (strncmp(arr[m].title, key, MAX_STR_LEN) > 0)
+            if (strncmp(arr[m].title, key, strlen(arr[m].title)) > 0)
                 r = m - 1;
             else
                 l = m + 1;

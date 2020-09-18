@@ -37,7 +37,7 @@ int make_film(FILE *file, film_t *film)
         if (tmp_num)
             film->year = tmp_num;
         else
-                error = ERR_ATOI;
+            error = ERR_ATOI;
     }
 
     if (error == ERR_EOF)
@@ -48,7 +48,7 @@ int make_film(FILE *file, film_t *film)
 
 void film_init(film_t *arr)
 {
-    film_t zero_film = {.title = "\0", .name = "\0", .year = 0};
+    film_t zero_film = { .title = "\0", .name = "\0", .year = 0 };
     for (int i = 0; i < MAX_FILM_COUNT; i++)
     {
         arr[i] = zero_film;

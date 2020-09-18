@@ -7,7 +7,7 @@
 #include "films.h"
 #include "utils.h"
 
-int title_mode(const char *dir, const char* key)
+int title_mode(const char *dir, const char *key)
 {
     int error = ERR_OK;
     FILE *file = fopen(dir, "r");
@@ -47,7 +47,7 @@ int read_title(FILE *file, film_t *arr, int *count)
     return error;
 }
 
-int name_mode(const char *dir, const char* key)
+int name_mode(const char *dir, const char *key)
 {
     int error = ERR_OK;
     FILE *file = fopen(dir, "r");
@@ -87,7 +87,7 @@ int read_name(FILE *file, film_t *arr, int *count)
     return error;
 }
 
-int year_mode(const char *dir, const char* key)
+int year_mode(const char *dir, const char *key)
 {
     int error = ERR_OK;
     FILE *file = fopen(dir, "r");

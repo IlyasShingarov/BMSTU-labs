@@ -60,6 +60,8 @@ void print_films(film_t *film_arr, int count)
     for (int i = 0; i < count; i++)
     {
         print_film(film_arr[i]);
+        if (i != count - 1)
+            printf("\n");
     }
 }
 
@@ -67,7 +69,7 @@ void print_film(film_t film)
 {
     printf("%s\n", film.title);
     printf("%s\n", film.name);
-    printf("%d\n\n", film.year);
+    printf("%d\n", film.year);
 }
 
 int title_cmp(film_t f_1, film_t f_2)

@@ -6,5 +6,5 @@
 *.g*
 *.py
 *.out
-*out*
+*.out
 *prof*

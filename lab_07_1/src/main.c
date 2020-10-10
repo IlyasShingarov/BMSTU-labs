@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "io.h"
+#include "sort.h"
 
 #define OK 0
 #define ELEM_COUNT_ERR 1
@@ -26,15 +27,18 @@ int main(int argc, char **argv)
             int *array = malloc(element_count * sizeof(int));
             error = read_array(argv[1], array, array + element_count);
 
-            if (!error && argv[3] == 'f')
-                key();
+            if (!error && argv[3] && *argv[3] == 'f')
+                //key();
                 //new_alloc
-                sort();
-
-
+                //sort();
+            
             if (!error)
-                sort();
+            {
+                mysort(array, element_count, sizeof(int), int_cmp);
                 write_array(argv[2], array, array + element_count);
+            }
+            
+            free(array);
         }
     }
 

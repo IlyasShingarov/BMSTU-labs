@@ -1,12 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "io.h"
-
-#define OK 0
-#define NULL_PTR_ERR -1
-#define READ_ERR -2
-
 
 int count_elements(char *directory)
 {

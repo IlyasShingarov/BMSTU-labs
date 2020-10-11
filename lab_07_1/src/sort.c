@@ -1,6 +1,7 @@
-#include "sort.h"
 #include <string.h>
 #include <stdio.h>
+
+#include "sort.h"
 
 int int_cmp(const void *a, const void *b)
 {
@@ -29,7 +30,7 @@ void mysort(void *first, size_t number, size_t size, int (*comparator) (const vo
         }
 
         for (char *cur = p_cur; cur >= left; cur = cur - size)
-            memcpy(cur, cur - size, size);
+            memmove(cur, cur - size, size);
 
         memcpy(left, cur_elem, size);
 	}

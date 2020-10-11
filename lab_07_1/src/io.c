@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "errors.h"
 #include "io.h"
 
 int count_elements(char *directory)
@@ -12,11 +14,13 @@ int count_elements(char *directory)
 
     int counter = 0, temp_num;
     if (!error)
-        while (fscanf(file, "%d", &temp_num) != EOF)
+    {
+        while (fscanf(file, "%d", &temp_num) == 1)
             counter++;
-
-    if (!feof(file) || counter <= 0)
-        error = READ_ERR;
+        
+        if (!feof(file) || counter <= 0)
+            error = READ_ERR;
+    }
     
     if (file)
         fclose(file);
@@ -55,7 +59,7 @@ int write_array(char *directory, int *p_beg, int *p_end)
 
     if (!error)
         for (int *p_temp = p_beg; p_temp != p_end; p_temp++)
-            fprintf(file, "%d", *p_temp);
+            fprintf(file, "%d ", *p_temp);
 
     if (file)
         fclose(file);

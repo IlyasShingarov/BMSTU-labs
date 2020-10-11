@@ -4,12 +4,12 @@ SRCPATH := ./src/
 FUNCTESTSPATH := ./func_tests/
 UNITTESTSPATH := ./unit_tests/
 CC := gcc
-CFLAGS := -std=c99 -Wall -Wextra -Werror -Wpedantic --coverage -g3 -I$(INCPATH)
+CFLAGS := -std=c99 -Wall -Wextra -Werror -Wpedantic -I$(INCPATH)
 OBJS := io.o sort.c
 .PHONY: clean unit func
 
 app.exe : $(OUTPATH)io.o $(OUTPATH)sort.o $(OUTPATH)filter.o $(OUTPATH)main.o
-	$(CC) --coverage $^ -o $@
+	$(CC) $^ -o $@
 
 $(OUTPATH)main.o: $(SRCPATH)main.c
 	mkdir -p $(OUTPATH)
@@ -35,8 +35,9 @@ $(OUTPATH)check_key.o: $(UNITTESTSPATH)check_filter.c
 	mkdir -p $(OUTPATH)
 	$(CC) $(CFLAGS) -c $(SRCPATH)check_key.c -o $(OUTPATH)check_key.o
 
-func: app.exe
-	./test.sh
+#func: $(OUTPATH)io.o $(OUTPATH)sort.o $(OUTPATH)filter.o $(OUTPATH)main.o
+#	$(CC) $^ --coverage -g3 -o app.exe
+#	./test.sh
 
 clean:
 	rm -rf *.exe *.gcov ./out/*.o ./out/*.gcno ./out/*.gcda

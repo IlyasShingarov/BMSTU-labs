@@ -5,11 +5,10 @@ FUNCTESTSPATH := ./func_tests/
 UNITTESTSPATH := ./unit_tests/
 CC := gcc
 CFLAGS := -std=c99 -Wall -Wextra -Werror -Wpedantic -I$(INCPATH)
-OBJS := io.o sort.c
 .PHONY: clean unit func
 
 app.exe : $(OUTPATH)io.o $(OUTPATH)sort.o $(OUTPATH)filter.o $(OUTPATH)main.o
-	$(CC) $^ -o $@
+	$(CC) $^ --coverage -o $@
 
 $(OUTPATH)main.o: $(SRCPATH)main.c
 	mkdir -p $(OUTPATH)

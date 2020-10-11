@@ -1,7 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "sort.h"
+#include "../inc/sort.h"
 
 int int_cmp(const void *a, const void *b)
 {

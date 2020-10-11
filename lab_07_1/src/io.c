@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "errors.h"
-#include "io.h"
+#include "../inc/errors.h"
+#include "../inc/io.h"
 
 int count_elements(char *directory)
 {

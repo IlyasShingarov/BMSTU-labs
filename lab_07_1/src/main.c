@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "errors.h"
-#include "io.h"
-#include "sort.h"
-#include "filter.h"
+#include "../inc/errors.h"
+#include "../inc/io.h"
+#include "../inc/sort.h"
+#include "../inc/filter.h"
 
 int main(int argc, char **argv)
 {

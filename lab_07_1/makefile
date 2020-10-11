@@ -23,7 +23,8 @@ $(OUTPATH)sort.o : $(SRCPATH)sort.c
 $(OUTPATH)filter.o : $(SRCPATH)filter.c
 	$(CC) $(CFLAGS) -c $(SRCPATH)filter.c -o $(OUTPATH)filter.o
 
-#unit:
+unit: $(OUTPATH)check_filter.o $(OUTPATH)check_sort.o $(OUTPATH)check_main.o
+	
 
 func: app.exe
 	./test.sh

@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "filter.h"
-#include "errors.h"
+#include "../inc/filter.h"
+#include "../inc/errors.h"
 
 /*
 void swap(void *a, void *b, size_t size)

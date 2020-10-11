@@ -10,13 +10,13 @@ int int_cmp(const void *a, const void *b)
 
 void mysort(void *first, size_t number, size_t size, int (*comparator) (const void*, const void*))
 {
-	char *p_end = (char*)first + number * size;
-	char cur_elem[size];
+    char *p_end = (char*)first + number * size;
+    char cur_elem[size];
 
-	for (char *p_cur = first; p_cur != p_end; p_cur = p_cur + size)
-	{
-		memcpy(cur_elem, p_cur, size);
-		char *left = first, *right = p_cur - size;
+    for (char *p_cur = first; p_cur != p_end; p_cur = p_cur + size)
+    {
+        memcpy(cur_elem, p_cur, size);
+        char *left = first, *right = p_cur - size;
 
         while (left <= right)
         {
@@ -33,5 +33,5 @@ void mysort(void *first, size_t number, size_t size, int (*comparator) (const vo
             memmove(cur, cur - size, size);
 
         memcpy(left, cur_elem, size);
-	}
+    }
 }

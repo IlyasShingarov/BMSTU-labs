@@ -33,7 +33,7 @@ void fill_arr(const int *pb_src, const int *pe_src, int *pb_dst)
 
     beg++;
 
-    for (;beg <= end; beg++, pb_t++)
+    for (;beg < end; beg++, pb_t++)
         *pb_t = *beg;
 }
 

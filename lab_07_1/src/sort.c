@@ -29,7 +29,7 @@ void mysort(void *first, size_t number, size_t size, int (*comparator) (const vo
                 left = mid + size;
         }
 
-        for (char *cur = p_cur; cur >= left; cur = cur - size)
+        for (char *cur = p_cur; cur > left; cur = cur - size)
             memmove(cur, cur - size, size);
 
         memcpy(left, cur_elem, size);

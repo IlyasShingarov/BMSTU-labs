@@ -1,1 +1,1 @@
-./app.exe ./func_tests/share/pos_09_in.txt ./func_tests/share/fout.txt f
+./app.exe ./func_tests/share/neg_09_in.txt ./func_tests/share/fout.txt f

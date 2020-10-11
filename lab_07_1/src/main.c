@@ -32,7 +32,8 @@ int main(int argc, char **argv)
             if (!error && argv[3] && *argv[3] == 'f')
             {
                 int *t_beg = NULL, *t_end = NULL;
-                if (!key(array, array + element_count, &t_beg, &t_end))
+                error = key(array, array + element_count, &t_beg, &t_end);
+                if (!error)
                 {
                     mysort(t_beg, t_end - t_beg, sizeof(int), int_cmp);
                     write_array(argv[2], t_beg, t_end);

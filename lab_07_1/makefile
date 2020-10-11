@@ -23,5 +23,10 @@ $(OUTPATH)sort.o : $(SRCPATH)sort.c
 $(OUTPATH)filter.o : $(SRCPATH)filter.c
 	$(CC) $(CFLAGS) -c $(SRCPATH)filter.c -o $(OUTPATH)filter.o
 
+#unit:
+
+func: app.exe
+	./test.sh
+
 clean:
-	rm -rf *.exe ./out/*.o ./out/*.gcno ./out/*.gcda
+	rm -rf *.exe *.gcov ./out/*.o ./out/*.gcno ./out/*.gcda

@@ -8,7 +8,7 @@ int int_cmp(const void *a, const void *b)
     return (*(int*)a < *(int*)b) ? -1 : (*(int*)a > *(int*)b);
 }
 
-void mysort(void *first, size_t number, size_t size, int (*comparator) (const void*, const void*))
+void mysort(void *first, size_t number, size_t size, int (*comparator)(const void*, const void*))
 {
     char *p_end = (char*)first + number * size;
     char cur_elem[size];

@@ -10,7 +10,7 @@ START_TEST(test_key_sorted_arr)
     int *beg = NULL, *end = NULL;
     int error = key(array, array + 9, &beg, &end);
 
-    ck_assert_int_eq(end - beg - 1, 7);
+    ck_assert_int_eq(end - beg, 7);
     for (int i = 0; i < 7; i++)
         ck_assert_int_eq(*(beg + i), res[i]);
     ck_assert_int_eq(error, OK);
@@ -25,7 +25,7 @@ START_TEST(test_key_reverse_sorted_arr)
     int *beg = NULL, *end = NULL;
     int error = key(array, array + 9, &beg, &end);
     
-    ck_assert_int_eq(end - beg - 1, 7);
+    ck_assert_int_eq(end - beg, 7);
     for (int i = 0; i < 7; i++)
         ck_assert_int_eq(*(beg + i), res[i]);
     ck_assert_int_eq(error, OK);
@@ -40,7 +40,7 @@ START_TEST(test_key_multiple_max_min_elems)
     int *beg = NULL, *end = NULL;
     int error = key(array, array + 9, &beg, &end);
     
-    ck_assert_int_eq(end - beg - 1, 4);
+    ck_assert_int_eq(end - beg, 4);
     for (int i = 0; i < 4; i++)
         ck_assert_int_eq(*(beg + i), res[i]);
     ck_assert_int_eq(error, OK);

@@ -18,23 +18,18 @@ func: app.exe
 	./test.sh
 
 $(OUTPATH)main.o: $(SRCPATH)main.c
-	mkdir -p $(OUTPATH)
 	$(CC) $(CFLAGS) -c $(SRCPATH)main.c -o $(OUTPATH)main.o
 
 $(OUTPATH)io.o: $(SRCPATH)io.c
-	mkdir -p $(OUTPATH)
 	$(CC) $(CFLAGS) -c $(SRCPATH)io.c -o $(OUTPATH)io.o
 
 $(OUTPATH)sort.o : $(SRCPATH)sort.c
-	mkdir -p $(OUTPATH)
 	$(CC) $(CFLAGS) -c $(SRCPATH)sort.c -o $(OUTPATH)sort.o
 
 $(OUTPATH)filter.o : $(SRCPATH)filter.c
-	mkdir -p $(OUTPATH)
 	$(CC) $(CFLAGS) -c $(SRCPATH)filter.c -o $(OUTPATH)filter.o
 
 $(OUTPATH)check_filter.o: $(UNITTESTSPATH)check_filter.c
-	mkdir -p $(OUTPATH)
 	$(CC) $(CFLAGS) -c $(UNITTESTSPATH)check_filter.c -o $(OUTPATH)check_filter.o
 
 

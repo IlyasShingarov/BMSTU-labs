@@ -26,13 +26,13 @@ $(OUTPATH)filter.o : $(SRCPATH)filter.c
 	mkdir -p $(OUTPATH)
 	$(CC) $(CFLAGS) -c $(SRCPATH)filter.c -o $(OUTPATH)filter.o
 
-unit: $(OUTPATH)check_filter.o $(OUTPATH)check_sort.o $(OUTPATH)check_main.o
+unit: $(OUTPATH)check_filter.o  #$(OUTPATH)check_sort.o $(OUTPATH)check_main.o
 	$(CC) --coverage -o unit.exe $(OUTPATH)filter.o $(OUTPATH)check_key.o -lcheck
 	./unit.exe
 
-$(OUTPATH)check_key.o: $(UNITTESTSPATH)check_filter.c
+$(OUTPATH)check_filter.o: $(UNITTESTSPATH)check_filter.c
 	mkdir -p $(OUTPATH)
-	$(CC) $(CFLAGS) -c $(SRCPATH)check_key.c -o $(OUTPATH)check_key.o
+	$(CC) $(CFLAGS) -c $(UNITTESTSPATH)check_filter.c -o $(OUTPATH)check_filter.o
 
 #func: $(OUTPATH)io.o $(OUTPATH)sort.o $(OUTPATH)filter.o $(OUTPATH)main.o
 #	$(CC) $^ --coverage -g3 -o app.exe

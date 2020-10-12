@@ -10,10 +10,11 @@ CFLAGS := -std=c99 -Wall -Wextra -Werror -Wpedantic -I$(INCPATH) --coverage
 app.exe : $(OUTPATH)io.o $(OUTPATH)sort.o $(OUTPATH)filter.o $(OUTPATH)main.o
 	$(CC) $^ --coverage -o $@
 
-unit: $(OUTPATH)check_filter.o $(OUTPATH)filter.o #$(OUTPATH)check_sort.o $(OUTPATH)check_main.o
+unit: $(OUTPATH)check_filter.o $(OUTPATH)filter.o $(OUTPATH)check_sort.o $(OUTPATH)sort.o #$(OUTPATH)check_main.o
 	$(CC) -o unit.exe $(OUTPATH)filter.o $(OUTPATH)check_filter.o -lcheck --coverage
-	#./unit.exe
-
+	./unit.exe
+	$(CC) -o unit.exe $(OUTPATH)sort.o $(OUTPATH)check_sort.o -lcheck --coverage
+	./unit.exe
 func: app.exe
 	./test.sh
 
@@ -32,6 +33,8 @@ $(OUTPATH)filter.o : $(SRCPATH)filter.c
 $(OUTPATH)check_filter.o: $(UNITTESTSPATH)check_filter.c
 	$(CC) $(CFLAGS) -c $(UNITTESTSPATH)check_filter.c -o $(OUTPATH)check_filter.o
 
+$(OUTPATH)check_sort.o: $(UNITTESTSPATH)check_sort.c
+	$(CC) $(CFLAGS) -c $(UNITTESTSPATH)check_sort.c -o $(OUTPATH)check_sort.o
 
 clean:
 	rm -rf *.exe *.gcov ./out/*.o ./out/*.gcno ./out/*.gcda

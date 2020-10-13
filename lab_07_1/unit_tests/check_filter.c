@@ -13,6 +13,7 @@ START_TEST(test_key_sorted_arr)
     ck_assert_int_eq(end - beg, 7);
     for (int i = 0; i < 7; i++)
         ck_assert_int_eq(*(beg + i), res[i]);
+    free(beg);
     ck_assert_int_eq(error, OK);
 }
 END_TEST
@@ -28,6 +29,7 @@ START_TEST(test_key_reverse_sorted_arr)
     ck_assert_int_eq(end - beg, 7);
     for (int i = 0; i < 7; i++)
         ck_assert_int_eq(*(beg + i), res[i]);
+    free(beg);
     ck_assert_int_eq(error, OK);
 }
 END_TEST
@@ -43,6 +45,7 @@ START_TEST(test_key_multiple_max_min_elems)
     ck_assert_int_eq(end - beg, 4);
     for (int i = 0; i < 4; i++)
         ck_assert_int_eq(*(beg + i), res[i]);
+    free(beg);
     ck_assert_int_eq(error, OK);
 }
 END_TEST
@@ -53,6 +56,7 @@ START_TEST(test_key_single_element_array)
     int *beg = NULL, *end = NULL;
     int error = key(array, array + 1, &beg, &end);
 
+    free(beg);
     ck_assert_int_eq(error, ELEM_COUNT_ERR);
 }
 END_TEST
@@ -63,6 +67,7 @@ START_TEST(test_key_two_element_array)
     int *beg = NULL, *end = NULL;
     int error = key(array, array + 2, &beg, &end);
 
+    free(beg);
     ck_assert_int_eq(error, ELEM_COUNT_ERR);
 }
 END_TEST
@@ -73,6 +78,7 @@ START_TEST(test_key_same_element_array)
     int *beg = NULL, *end = NULL;
     int error = key(array, array + 7, &beg, &end);
 
+    free(beg);
     ck_assert_int_eq(error, ELEM_COUNT_ERR);
 }
 END_TEST
@@ -83,6 +89,7 @@ START_TEST(test_key_no_elements_between_max_and_min)
     int *beg = NULL, *end = NULL;
     int error = key(array, array + 9, &beg, &end);
 
+    free(beg);
     ck_assert_int_eq(error, ELEM_COUNT_ERR);
 }
 END_TEST

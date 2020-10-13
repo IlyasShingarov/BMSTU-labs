@@ -11,11 +11,8 @@ LFLAGS := --coverage -lcheck -lpthread -lrt
 app.exe : $(OUTPATH)io.o $(OUTPATH)sort.o $(OUTPATH)filter.o $(OUTPATH)main.o
 	$(CC) $^ -o $@
 	
-unit: $(OUTPATH)check_filter.o $(OUTPATH)filter.o $(OUTPATH)check_sort.o $(OUTPATH)sort.o
-	$(CC) -o unit.exe $(OUTPATH)filter.o $(OUTPATH)check_filter.o $(LFLAGS)
-	./unit.exe
-	$(CC) -o unit.exe $(OUTPATH)sort.o $(OUTPATH)check_sort.o $(LFLAGS)
-	./unit.exe
+unit_tests.exe: $(OUTPATH)check_filter.o $(OUTPATH)filter.o $(OUTPATH)check_sort.o $(OUTPATH)sort.o $(OUTPATH)check_main.o
+	$(CC) -o $@ $^ $(LFLAGS)
 
 func: CFLAGS += --coverage
 func: $(OUTPATH)io.o $(OUTPATH)sort.o $(OUTPATH)filter.o $(OUTPATH)main.o
@@ -34,11 +31,15 @@ $(OUTPATH)sort.o : $(SRCPATH)sort.c
 $(OUTPATH)filter.o : $(SRCPATH)filter.c
 	$(CC) $(CFLAGS) -c $(SRCPATH)filter.c -o $(OUTPATH)filter.o
 
+$(OUTPATH)check_main.o: $(UNITTESTSPATH)check_main.c
+	$(CC) $(CFLAGS) -c $(UNITTESTSPATH)check_main.c -o $(OUTPATH)check_main.o
+
 $(OUTPATH)check_filter.o: $(UNITTESTSPATH)check_filter.c
 	$(CC) $(CFLAGS) -c $(UNITTESTSPATH)check_filter.c -o $(OUTPATH)check_filter.o
 
 $(OUTPATH)check_sort.o: $(UNITTESTSPATH)check_sort.c
 	$(CC) $(CFLAGS) -c $(UNITTESTSPATH)check_sort.c -o $(OUTPATH)check_sort.o
+
 
 clean:
 	rm -rf *.exe *.gcov ./out/*.o ./out/*.gcno ./out/*.gcda

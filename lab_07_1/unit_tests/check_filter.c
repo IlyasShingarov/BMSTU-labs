@@ -113,6 +113,7 @@ Suite* key_filter_suite(void)
     return s;
 }
 
+/*
 int main(void)
 {
     int no_failed = 0;
@@ -131,3 +132,4 @@ int main(void)
 
     return (no_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
+*/

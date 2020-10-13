@@ -69,7 +69,7 @@ START_TEST(test_sort_negative_elements_arr)
 }
 END_TEST
 
-Suite* key_filter_suite(void)
+Suite* mysort_suite(void)
 {
     Suite *s;
     TCase *tc_pos;
@@ -89,13 +89,14 @@ Suite* key_filter_suite(void)
     return s;
 }
 
+/*
 int main(void)
 {
     int no_failed = 0;
     Suite *s;
     SRunner *runner;
 
-    s = key_filter_suite();
+    s = mysort_suite();
 
     runner = srunner_create(s);
 
@@ -107,3 +108,4 @@ int main(void)
 
     return (no_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
+*/

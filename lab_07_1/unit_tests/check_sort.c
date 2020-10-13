@@ -5,9 +5,9 @@
 
 START_TEST(test_sort_sorted_arr)
 {
-    int array_sorted[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int array_sorted[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-    int array[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int array[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     mysort(array, 9, sizeof(int), int_cmp);
     for (int i = 0; i < 9; i++)
         ck_assert_int_eq(array[i], array_sorted[i]);
@@ -16,9 +16,9 @@ END_TEST
 
 START_TEST(test_sort_reverse_arr)
 {
-    int array_sorted[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int array_sorted[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-    int array[] = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+    int array[9] = {9, 8, 7, 6, 5, 4, 3, 2, 1};
     mysort(array, 9, sizeof(int), int_cmp);
     for (int i = 0; i < 9; i++)
         ck_assert_int_eq(array[i], array_sorted[i]);
@@ -27,9 +27,9 @@ END_TEST
 
 START_TEST(test_sort_single_element_arr)
 {
-    int array_sorted[] = {1};
+    int array_sorted[1] = {1};
 
-    int array[] = {1};
+    int array[1] = {1};
     mysort(array, 1, sizeof(int), int_cmp);
     for (int i = 0; i < 1; i++)
         ck_assert_int_eq(array[i], array_sorted[i]);
@@ -38,9 +38,9 @@ END_TEST
 
 START_TEST(test_sort_random_arr)
 {
-    int array_sorted[] = {1, 3, 3, 6, 8};
+    int array_sorted[5] = {1, 3, 3, 6, 8};
 
-    int array[] = {6, 3, 8, 3, 1};
+    int array[5] = {6, 3, 8, 3, 1};
     mysort(array, 5, sizeof(int), int_cmp);
     for (int i = 0; i < 5; i++)
         ck_assert_int_eq(array[i], array_sorted[i]);
@@ -60,9 +60,9 @@ END_TEST
 
 START_TEST(test_sort_negative_elements_arr)
 {
-    int array_sorted[] = {-7, -2, -1, 1, 2, 3, 4, 5, 8};
+    int array_sorted[9] = {-7, -2, -1, 1, 2, 3, 4, 5, 8};
 
-    int array[] = {-1, 8, -7, -2, 5, 4, 3, 2, 1};
+    int array[9] = {-1, 8, -7, -2, 5, 4, 3, 2, 1};
     mysort(array, 9, sizeof(int), int_cmp);
     for (int i = 0; i < 9; i++)
         ck_assert_int_eq(array[i], array_sorted[i]);

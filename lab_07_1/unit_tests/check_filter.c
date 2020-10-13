@@ -5,8 +5,8 @@
 
 START_TEST(test_key_sorted_arr)
 {
-    int array[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-    int res[] = {2, 3, 4, 5, 6, 7, 8};
+    int array[9] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int res[7] = {2, 3, 4, 5, 6, 7, 8};
     int *beg = NULL, *end = NULL;
     int error = key(array, array + 9, &beg, &end);
 
@@ -19,8 +19,8 @@ END_TEST
 
 START_TEST(test_key_reverse_sorted_arr)
 {
-    int array[] = {9, 8, 7, 6, 5, 4, 3, 2, 1};
-    int res[] = {8, 7, 6, 5, 4, 3, 2};
+    int array[9] = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+    int res[7] = {8, 7, 6, 5, 4, 3, 2};
 
     int *beg = NULL, *end = NULL;
     int error = key(array, array + 9, &beg, &end);
@@ -34,8 +34,8 @@ END_TEST
 
 START_TEST(test_key_multiple_max_min_elems)
 {
-    int array[] = {4, 5, 1, 1, 3, 5, 7, 9, 9};
-    int res[] = {1, 3, 5, 7};
+    int array[9] = {4, 5, 1, 1, 3, 5, 7, 9, 9};
+    int res[4] = {1, 3, 5, 7};
 
     int *beg = NULL, *end = NULL;
     int error = key(array, array + 9, &beg, &end);
@@ -49,7 +49,7 @@ END_TEST
 
 START_TEST(test_key_single_element_array)
 {
-    int array[] = {1};
+    int array[1] = {1};
     int *beg = NULL, *end = NULL;
     int error = key(array, array + 1, &beg, &end);
 
@@ -59,7 +59,7 @@ END_TEST
 
 START_TEST(test_key_two_element_array)
 {
-    int array[] = {1, 2};
+    int array[2] = {1, 2};
     int *beg = NULL, *end = NULL;
     int error = key(array, array + 2, &beg, &end);
 
@@ -69,7 +69,7 @@ END_TEST
 
 START_TEST(test_key_same_element_array)
 {
-    int array[] = {1, 1, 1, 1, 1, 1, 1};
+    int array[7] = {1, 1, 1, 1, 1, 1, 1};
     int *beg = NULL, *end = NULL;
     int error = key(array, array + 7, &beg, &end);
 
@@ -79,7 +79,7 @@ END_TEST
 
 START_TEST(test_key_no_elements_between_max_and_min)
 {
-    int array[] = {4, 5, 6, 1, 9, 7, 4, 3, 2};
+    int array[9] = {4, 5, 6, 1, 9, 7, 4, 3, 2};
     int *beg = NULL, *end = NULL;
     int error = key(array, array + 9, &beg, &end);
 

@@ -4,19 +4,23 @@ SRCPATH := ./src/
 FUNCTESTSPATH := ./func_tests/
 UNITTESTSPATH := ./unit_tests/
 CC := gcc
-CFLAGS := -std=c99 -Wall -Wextra -Werror -Wpedantic -I$(INCPATH) --coverage
+CFLAGS := -std=c99 -Wall -Wextra -Werror -Wpedantic -I$(INCPATH)
+LFLAGS := --coverage -lcheck -lpthread -lrt
 .PHONY: clean unit func
 
 app.exe : $(OUTPATH)io.o $(OUTPATH)sort.o $(OUTPATH)filter.o $(OUTPATH)main.o
-	$(CC) $^ --coverage -o $@
+	$(CC) $^ -o $@
+	
+unit: $(OUTPATH)check_filter.o $(OUTPATH)filter.o $(OUTPATH)check_sort.o $(OUTPATH)sort.o
+	$(CC) -o unit.exe $(OUTPATH)filter.o $(OUTPATH)check_filter.o $(LFLAGS)
+	./unit.exe
+	$(CC) -o unit.exe $(OUTPATH)sort.o $(OUTPATH)check_sort.o $(LFLAGS)
+	./unit.exe
 
-unit: $(OUTPATH)check_filter.o $(OUTPATH)filter.o $(OUTPATH)check_sort.o $(OUTPATH)sort.o #$(OUTPATH)check_main.o
-	$(CC) -o unit.exe $(OUTPATH)filter.o $(OUTPATH)check_filter.o -lcheck --coverage
-	./unit.exe
-	$(CC) -o unit.exe $(OUTPATH)sort.o $(OUTPATH)check_sort.o -lcheck --coverage
-	./unit.exe
-func: app.exe
-	./test.sh
+func: CFLAGS += --coverage
+func: $(OUTPATH)io.o $(OUTPATH)sort.o $(OUTPATH)filter.o $(OUTPATH)main.o
+	$(CC) $^ --coverage -o ./app.exe
+	bash ./test.sh
 
 $(OUTPATH)main.o: $(SRCPATH)main.c
 	$(CC) $(CFLAGS) -c $(SRCPATH)main.c -o $(OUTPATH)main.o

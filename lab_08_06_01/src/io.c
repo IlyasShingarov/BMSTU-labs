@@ -2,27 +2,20 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "io.h"
-
-int check_column_count(int columns)
-{
-    return columns < 1 || columns > MAX_COLUMNS;
-}
-
-int check_row_count(int rows)
-{
-    return rows < 1 || rows > MAX_ROWS;
-}
+#include "../inc/io.h"
+#include "../inc/errors.h"
 
 int read_matrix_size(int *rows, int *columns)
 {
     int error = OK;
+    
+    printf("Введите кол-во строк и столбцов через пробел\n");
 
     if (scanf("%d%d", rows, columns) == 2)
     {
-        if (check_row_count(*rows))
+        if (*rows < 1)
             error = ROW_COUNT_ERR;
-        else if (check_column_count(*coulumns))
+        else if (*columns < 1)
             error = COLUMN_COUNT_ERR;
     }
     else
@@ -31,40 +24,69 @@ int read_matrix_size(int *rows, int *columns)
     return error;
 }
 
-int allocate_rows(int **matrix, int rows)
+void free_matrix(int **data, int n)
+{
+    for (int i = 0; i < n; i++)
+       free(data[i]);
+
+    free(data);
+}
+
+int** allocate_matrix(int n, int m)
 {
     int error = OK;
-    matrix = malloc(rows * sizeof(*matrix));
+
+    int **matrix = calloc(n, sizeof(int*));
     if (!matrix)
         error = MALLOC_ERR;
+    else
+        for (int i = 0; i < n; i++)
+        {
+            matrix[i] = malloc(m * sizeof(int));
+            if (!matrix[i])
+            {
+                free_matrix(matrix, n);
+                error = MALLOC_ERR;
+            }
+    }
+    return !error ? matrix : NULL;
+}
+
+int input_elements(int **matrix, int rows, int columns)
+{
+    int error = OK;
+    for (int i = 0; i < rows && !error; i++)
+        for (int j = 0; j < columns && !error; j++)
+            if (scanf("%d", matrix[i] + j) != 1)
+                error = READ_ERR;
     
     return error;
 }
 
-int allocate_columns(int **matrix, int rows, int columns)
-{
-    int error = OK;
-
-    for (int i = 0; i < rows && !error ; i++)
-    {
-        matrix[i] = malloc(columns * sizeof(**matrix));
-        if (!matrix[i])
-            error = MALLOC_ERR;
-    }
-
-    return error;
-}
-
-int read_matrix(int **matrix, int *rows, int *columns)
+int read_matrix(int ***matrix, int *rows, int *columns)
 {
     int error = OK;
 
     error = read_matrix_size(rows, columns);
     
     if (!error)
-        error = allocate_rows(matrix, rows);
-    if (!error)
-        error = allocate_columns(matrix, rows, columns);
+        *matrix = allocate_matrix(*rows, *columns);
+    if (matrix)
+        error = input_elements(*matrix, *rows, *columns);
+    else
+        error = MALLOC_ERR;
 
     return error;
 }
+
+void mat_out(int **matrix, int rows, int cols)
+{
+    printf("Matrix: \n");
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+            printf("%d ", matrix[i][j]);
+        printf("\n");
+    }
+}
+

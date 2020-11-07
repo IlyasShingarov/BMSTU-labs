@@ -8,7 +8,7 @@ CFLAGS := -std=c99 -Wall -Wextra -Werror -Wpedantic -I$(INCPATH) -g3
 LFLAGS := --coverage -lcheck -lpthread -lrt
 .PHONY: clean unit func
 
-app.exe : $(OUTPATH)io.o $(OUTPATH)main.o
+app.exe : $(OUTPATH)io.o $(OUTPATH)main.o $(OUTPATH)matrix_mutation.o
 	$(CC) $^ -o $@
 	
 unit_tests.exe: $(OUTPATH)check_filter.o $(OUTPATH)filter.o $(OUTPATH)check_sort.o $(OUTPATH)sort.o $(OUTPATH)check_main.o
@@ -24,6 +24,9 @@ $(OUTPATH)main.o: $(SRCPATH)main.c
 
 $(OUTPATH)io.o: $(SRCPATH)io.c
 	$(CC) $(CFLAGS) -c $(SRCPATH)io.c -o $(OUTPATH)io.o
+
+$(OUTPATH)matrix_mutation.o: $(SRCPATH)matrix_mutation.c
+	$(CC) $(CFLAGS) -c $(SRCPATH)matrix_mutation.c -o $(OUTPATH)matrix_mutation.o
 #
 #$(OUTPATH)sort.o : $(SRCPATH)sort.c
 #	$(CC) $(CFLAGS) -c $(SRCPATH)sort.c -o $(OUTPATH)sort.o

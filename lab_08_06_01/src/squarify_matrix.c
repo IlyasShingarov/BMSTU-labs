@@ -21,7 +21,7 @@ int find_last_min(int **matrix, int rows, int columns, int *min_row, int *min_co
     return min;
 }
 
-void swap(int **a, int **b)
+void swap_rows(int **a, int **b)
 {
     int *t = *a;
     *a = *b;
@@ -31,7 +31,7 @@ void swap(int **a, int **b)
 void shift_row_to_end(int **matrix, int rows, int index)
 {
     for (int i = index; i < rows - 1; i++)
-        swap(matrix + i, matrix + i + 1);
+        swap_rows(matrix + i, matrix + i + 1);
 }
 
 int delete_row_by_index(int ***matrix, int *rows, int min_row)
@@ -48,6 +48,41 @@ int delete_row_by_index(int ***matrix, int *rows, int min_row)
     if (!matrix)
         error = MALLOC_ERR;
     
+    return error;
+}
+
+void swap(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void shift_elem_to_end(int *arr, int n, int index)
+{
+    for (int i = index; i < n - 1; i++)
+        swap(arr + i, arr + i + 1);
+}
+
+void shift_column_to_end(int **matrix, int rows, int columns, int min_col)
+{
+    for (int i = 0; i < rows; i++)
+        shift_elem_to_end(matrix[i], columns, min_col);
+}
+
+int delete_column_by_index(int ***matrix, int *rows, int *columns, int min_column)
+{
+    int error = OK;
+
+    shift_column_to_end(*matrix, *rows, *columns, min_column);
+
+    *columns = *columns - 1;
+    for (int i = 0; i < *rows && !error; i++)
+    {
+        (*matrix)[i] = realloc((*matrix)[i], *columns * sizeof(int));
+        if (!matrix[i])
+            error = MALLOC_ERR;
+    }
 
     return error;
 }
@@ -66,11 +101,10 @@ int squarify_matrix(int ***matrix, int *rows, int *columns)
         {
             error = delete_row_by_index(matrix, rows, min_row);
         }
-        /*
         else
         {
-            error = find_column_by_index();
-        }*/       
+            error = delete_column_by_index(matrix, rows, columns, min_column);
+        }    
     }
 
     return error;

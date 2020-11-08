@@ -30,13 +30,7 @@ $(OUTPATH)matrix_normalization.o: $(SRCPATH)matrix_normalization.c
 
 $(OUTPATH)matrix_arithmetic.o: $(SRCPATH)matrix_arithmetic.c
 	$(CC) $(CFLAGS) -c $(SRCPATH)matrix_arithmetic.c -o $(OUTPATH)matrix_arithmetic.o
-#
-#$(OUTPATH)sort.o : $(SRCPATH)sort.c
-#	$(CC) $(CFLAGS) -c $(SRCPATH)sort.c -o $(OUTPATH)sort.o
-#
-#$(OUTPATH)filter.o : $(SRCPATH)filter.c
-#	$(CC) $(CFLAGS) -c $(SRCPATH)filter.c -o $(OUTPATH)filter.o
-#
+
 #$(OUTPATH)check_main.o: $(UNITTESTSPATH)check_main.c
 #	$(CC) $(CFLAGS) -c $(UNITTESTSPATH)check_main.c -o $(OUTPATH)check_main.o
 #

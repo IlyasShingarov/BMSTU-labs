@@ -9,7 +9,7 @@ int read_matrix_size(int *rows, int *columns)
 {
     int error = OK;
     
-    printf("Введите кол-во строк и столбцов через пробел\n");
+    //printf("Введите кол-во строк и столбцов через пробел\n");
 
     if (scanf("%d%d", rows, columns) == 2)
     {
@@ -79,9 +79,9 @@ int read_matrix(int ***matrix, int *rows, int *columns)
     return error;
 }
 
-void mat_out(int **matrix, int rows, int cols)
+void print_matrix(int **matrix, int rows, int cols)
 {
-    printf("Matrix: \n");
+    //printf("Matrix: \n");
     for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < cols; j++)
@@ -90,3 +90,16 @@ void mat_out(int **matrix, int rows, int cols)
     }
 }
 
+int read_powers(int *ro, int *gamma)
+{
+    int error = OK;
+
+    //printf("Введите ro и gamma\n");
+    if (scanf("%d", ro) != 1 && *ro < 0)
+        error = READ_ERR;
+    
+    if (scanf("%d", gamma) != 1 && *gamma < 0)
+        error = READ_ERR;
+
+    return error;
+}

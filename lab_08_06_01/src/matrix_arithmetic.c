@@ -47,9 +47,19 @@ void raise(int **a, int **a_, int **a__, int size)
         }
 }
 
+void raise_to_zeroth(int **a, int size)
+{
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++)
+            a[i][j] = 1;
+}
+
 // Assuming matrix is square
 void raise_matrix_to_power(int **a, int size, int power)
 {   
+    if (power == 0)
+        raise_to_zeroth(a, size);
+
     int **a_ = allocate_matrix(size, size);
     int **a__ = allocate_matrix(size, size);
     copy_matrix(a, a_, size);

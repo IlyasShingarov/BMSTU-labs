@@ -82,7 +82,7 @@ int delete_column_by_index(int ***matrix, int *rows, int *columns, int min_colum
     for (int i = 0; i < *rows && !error; i++)
     {
         (*matrix)[i] = realloc((*matrix)[i], *columns * sizeof(int));
-        if (!matrix[i])
+        if (!(*matrix)[i])
             error = MALLOC_ERR;
     }
 

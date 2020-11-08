@@ -8,31 +8,41 @@
 
 int main(void)
 {
-    int **a = NULL;// **b = NULL;
-    int a_rows, a_columns; //b_rows, b_columns;
+    int **a = NULL, **b = NULL;
+    int a_rows, a_columns, b_rows, b_columns;
 
     int error = read_matrix(&a, &a_rows, &a_columns);
-    //if (!error)
-    //    error = read_matrix(&b, &b_rows, &b_columns);
+    if (!error)
+        error = read_matrix(&b, &b_rows, &b_columns);
      
     if (!error)
     {
         error = squarify_matrix(&a, &a_rows, &a_columns);
-    //    error = squarify_matrix(&b, &b_rows, &b_columns);
+        error = squarify_matrix(&b, &b_rows, &b_columns);
     }
         
-    //if (!error)
-    //    error = equalize_matrices(&a, &b, &a_rows, &b_rows, &a_columns, &b_columns);
-
     if (!error)
-    {
-        raise_matrix_to_power(a, a_rows, 4);
-        mat_out(a, a_rows, a_columns);
-        //mat_out(b, b_rows, b_columns);
+        error = equalize_matrices(&a, &b, &a_rows, &b_rows, &a_columns, &b_columns);
 
-        free_matrix(a, a_rows);
-        //free_matrix(b, b_rows);
+    // Assuming that sizes are rqual at that point
+    int size = a_rows, ro, gamma;
+    if (!error && !read_powers(&ro, &gamma))
+    {
+        raise_matrix_to_power(a, size, ro);
+        raise_matrix_to_power(b, size, gamma);
+
+        print_matrix(a, size, size);
+        print_matrix(b, size, size);
+
+        int **result = muliply_matirices(a, b, size);
+
+        print_matrix(result, size, size);
+
+        free_matrix(result, size);
     }
+
+    free_matrix(a, a_rows);
+    free_matrix(b, b_rows);
 
     return error;
 }

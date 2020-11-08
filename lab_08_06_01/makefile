@@ -4,12 +4,12 @@ SRCPATH := ./src/
 FUNCTESTSPATH := ./func_tests/
 UNITTESTSPATH := ./unit_tests/
 CC := gcc
-CFLAGS := -std=c99 -Wall -Wextra -Werror -Wpedantic -I$(INCPATH) -g3
+CFLAGS := -std=c99 -Wall -Wextra -Werror -Wpedantic -I$(INCPATH) -g3 -o0
 LFLAGS := --coverage -lcheck -lpthread -lrt
 .PHONY: clean unit func
 
-app.exe : $(OUTPATH)io.o $(OUTPATH)main.o $(OUTPATH)squarify_matrix.o
-	$(CC) $^ -o $@
+app.exe : $(OUTPATH)io.o $(OUTPATH)main.o $(OUTPATH)matrix_normalization.o
+	$(CC) $^ -lm -o $@
 	
 unit_tests.exe: $(OUTPATH)check_filter.o $(OUTPATH)filter.o $(OUTPATH)check_sort.o $(OUTPATH)sort.o $(OUTPATH)check_main.o
 	$(CC) -o $@ $^ $(LFLAGS)
@@ -25,8 +25,11 @@ $(OUTPATH)main.o: $(SRCPATH)main.c
 $(OUTPATH)io.o: $(SRCPATH)io.c
 	$(CC) $(CFLAGS) -c $(SRCPATH)io.c -o $(OUTPATH)io.o
 
-$(OUTPATH)squarify_matrix.o: $(SRCPATH)squarify_matrix.c
-	$(CC) $(CFLAGS) -c $(SRCPATH)squarify_matrix.c -o $(OUTPATH)squarify_matrix.o
+$(OUTPATH)matrix_normalization.o: $(SRCPATH)matrix_normalization.c
+	$(CC) $(CFLAGS) -c $(SRCPATH)matrix_normalization.c -o $(OUTPATH)matrix_normalization.o
+
+#$(OUTPATH)equalize_matrix.o: $(SRCPATH)equalize_matrix.c
+#	$(CC) $(CFLAGS) -c $(SRCPATH)equalize_matrix.c -o $(OUTPATH)equalize_matrix.o
 #
 #$(OUTPATH)sort.o : $(SRCPATH)sort.c
 #	$(CC) $(CFLAGS) -c $(SRCPATH)sort.c -o $(OUTPATH)sort.o

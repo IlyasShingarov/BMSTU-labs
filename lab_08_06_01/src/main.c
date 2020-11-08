@@ -1,10 +1,9 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "../inc/io.h"
 #include "../inc/errors.h"
-#include "../inc/squarify_matrix.h"
+#include "../inc/matrix_normalization.h"
 
 int main(void)
 {
@@ -17,12 +16,18 @@ int main(void)
      
     if (!error)
     {
-        squarify_matrix(&a, &a_rows, &a_columns);
-        squarify_matrix(&b, &b_rows, &b_columns);
+        error = squarify_matrix(&a, &a_rows, &a_columns);
+        error = squarify_matrix(&b, &b_rows, &b_columns);
+    }
         
+    if (!error)
+        error = equalize_matrices(&a, &b, &a_rows, &b_rows, &a_columns, &b_columns);
+
+    if (!error)
+    {
         mat_out(a, a_rows, a_columns);
         mat_out(b, b_rows, b_columns);
-        
+
         free_matrix(a, a_rows);
         free_matrix(b, b_rows);
     }

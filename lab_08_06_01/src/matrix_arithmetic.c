@@ -14,11 +14,11 @@ void copy_matrix(int **src, int **dst, int size)
 // Assuming sizes are equal and matrices are square according to the task
 void multiplication(int **a, int **b, int **r, int size)
 {
-    for(int i = 0; i < size; i++)
-        for(int j = 0; j < size; j++)
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++)
         {
             r[i][j] = 0;
-            for(int k = 0; k < size; k++)
+            for (int k = 0; k < size; k++)
                 r[i][j] += a[i][k] * b[k][j];
         }
 }
@@ -38,11 +38,11 @@ int **muliply_matirices(int **a, int **b, int size)
 void raise(int **a, int **a_, int **a__, int size)
 {
     copy_matrix(a, a__, size);
-    for(int i = 0; i < size; i++)
-        for(int j = 0; j < size; j++)
+    for (int i = 0; i < size; i++)
+        for (int j = 0; j < size; j++)
         {
             a[i][j] = 0;
-            for(int k = 0; k < size; k++)
+            for (int k = 0; k < size; k++)
                 a[i][j] += a__[i][k] * a_[k][j];
         }
 }

@@ -5,7 +5,7 @@ int read_matrix(int ***matrix, int *rows, int *columns);
 
 int read_powers(int *ro, int *gamma);
 
-int** allocate_matrix(int n, int m);
+int **allocate_matrix(int n, int m);
 
 void print_matrix(int **matrix, int rows, int cols);
 

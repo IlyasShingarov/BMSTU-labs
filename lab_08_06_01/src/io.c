@@ -27,12 +27,12 @@ int read_matrix_size(int *rows, int *columns)
 void free_matrix(int **data, int n)
 {
     for (int i = 0; i < n; i++)
-       free(data[i]);
+        free(data[i]);
 
     free(data);
 }
 
-int** allocate_matrix(int n, int m)
+int **allocate_matrix(int n, int m)
 {
     int error = OK;
 
@@ -48,7 +48,7 @@ int** allocate_matrix(int n, int m)
                 free_matrix(matrix, n);
                 error = MALLOC_ERR;
             }
-    }
+        }
     return !error ? matrix : NULL;
 }
 

@@ -140,7 +140,7 @@ int add_row(int ***matrix, int *rows, int columns)
         error = MALLOC_ERR;
 
     if ((*matrix)[*rows - 1])
-            fill_last_row(*matrix, *rows, columns);
+        fill_last_row(*matrix, *rows, columns);
     else
         error = MALLOC_ERR;
     

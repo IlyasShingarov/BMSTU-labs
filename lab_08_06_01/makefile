@@ -8,7 +8,7 @@ CFLAGS := -std=c99 -Wall -Wextra -Werror -Wpedantic -I$(INCPATH) -g3 -o0
 LFLAGS := --coverage -lcheck -lpthread -lrt
 .PHONY: clean unit func
 
-app.exe : $(OUTPATH)io.o $(OUTPATH)main.o $(OUTPATH)matrix_normalization.o
+app.exe : $(OUTPATH)io.o $(OUTPATH)main.o $(OUTPATH)matrix_normalization.o $(OUTPATH)matrix_arithmetic.o
 	$(CC) $^ -lm -o $@
 	
 unit_tests.exe: $(OUTPATH)check_filter.o $(OUTPATH)filter.o $(OUTPATH)check_sort.o $(OUTPATH)sort.o $(OUTPATH)check_main.o
@@ -28,8 +28,8 @@ $(OUTPATH)io.o: $(SRCPATH)io.c
 $(OUTPATH)matrix_normalization.o: $(SRCPATH)matrix_normalization.c
 	$(CC) $(CFLAGS) -c $(SRCPATH)matrix_normalization.c -o $(OUTPATH)matrix_normalization.o
 
-#$(OUTPATH)equalize_matrix.o: $(SRCPATH)equalize_matrix.c
-#	$(CC) $(CFLAGS) -c $(SRCPATH)equalize_matrix.c -o $(OUTPATH)equalize_matrix.o
+$(OUTPATH)matrix_arithmetic.o: $(SRCPATH)matrix_arithmetic.c
+	$(CC) $(CFLAGS) -c $(SRCPATH)matrix_arithmetic.c -o $(OUTPATH)matrix_arithmetic.o
 #
 #$(OUTPATH)sort.o : $(SRCPATH)sort.c
 #	$(CC) $(CFLAGS) -c $(SRCPATH)sort.c -o $(OUTPATH)sort.o

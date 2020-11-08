@@ -41,8 +41,10 @@ int main(void)
         free_matrix(result, size);
     }
 
-    free_matrix(a, a_rows);
-    free_matrix(b, b_rows);
+    if (a)
+        free_matrix(a, a_rows);
+    if (b)
+        free_matrix(b, b_rows);
 
     return error;
 }

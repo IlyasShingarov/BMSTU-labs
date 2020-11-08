@@ -67,14 +67,16 @@ int read_matrix(int ***matrix, int *rows, int *columns)
 {
     int error = OK;
 
-    error = read_matrix_size(rows, columns);
-    
-    if (!error)
+    if (!read_matrix_size(rows, columns))
+    {
         *matrix = allocate_matrix(*rows, *columns);
-    if (matrix)
-        error = input_elements(*matrix, *rows, *columns);
+        if (matrix)
+            error = input_elements(*matrix, *rows, *columns);
+        else
+            error = MALLOC_ERR;
+    }
     else
-        error = MALLOC_ERR;
+        error = READ_ERR;
 
     return error;
 }

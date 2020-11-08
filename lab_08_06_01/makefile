@@ -11,7 +11,7 @@ LFLAGS := --coverage -lcheck -lpthread -lrt -lm
 app.exe : $(OUTPATH)io.o $(OUTPATH)main.o $(OUTPATH)matrix_normalization.o $(OUTPATH)matrix_arithmetic.o
 	$(CC) $^ -lm -o $@
 	
-unit_tests.exe: $(OUTPATH)check_normalization.o $(OUTPATH)matrix_normalization.o $(OUTPATH)check_main.o $(OUTPATH)io.o
+unit_tests.exe: $(OUTPATH)check_normalization.o $(OUTPATH)matrix_normalization.o $(OUTPATH)check_main.o $(OUTPATH)io.o $(OUTPATH)check_arithmetics.o $(OUTPATH)matrix_arithmetic.o
 	$(CC) -o $@ $^ $(LFLAGS)
 
 func: CFLAGS += --coverage
@@ -37,8 +37,8 @@ $(OUTPATH)check_main.o: $(UNITTESTSPATH)check_main.c
 $(OUTPATH)check_normalization.o: $(UNITTESTSPATH)check_normalization.c
 	$(CC) $(CFLAGS) -c $(UNITTESTSPATH)check_normalization.c -o $(OUTPATH)check_normalization.o
 
-#$(OUTPATH)check_sort.o: $(UNITTESTSPATH)check_sort.c
-#	$(CC) $(CFLAGS) -c $(UNITTESTSPATH)check_sort.c -o $(OUTPATH)check_sort.o
+$(OUTPATH)check_arithmetics.o: $(UNITTESTSPATH)check_arithmetics.c
+	$(CC) $(CFLAGS) -c $(UNITTESTSPATH)check_arithmetics.c -o $(OUTPATH)check_arithmetics.o
 
 
 clean:

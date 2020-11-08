@@ -54,12 +54,12 @@ END_TEST
 START_TEST(test_equalize)
 {
     int rows_a, cols_a, size_a, rows_b, cols_b, size_b;
-    cols_b = rows_b = size_b = 2;
     cols_a = rows_a = size_a = 3;
+    cols_b = rows_b = size_b = 2;
     int **a = allocate_matrix(size_a, size_a);
-    a[0][0] = 1, a[0][1] = 2; 
-    a[1][0] = 3, a[1][1] = 4; 
-    a[2][0] = 5, a[2][1] = 6;
+    a[0][0] = 1, a[0][1] = 2, a[0][2] = 3; 
+    a[1][0] = 4, a[1][1] = 5, a[1][2] = 6; 
+    a[2][0] = 7, a[2][1] = 8, a[2][2] = 9;
 
     int **b = allocate_matrix(size_b, size_b);
     b[0][0] = 1, b[0][1] = 2;

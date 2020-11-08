@@ -97,10 +97,10 @@ int read_powers(int *ro, int *gamma)
     int error = OK;
 
     //printf("Введите ro и gamma\n");
-    if (scanf("%d", ro) != 1 && *ro < 0)
+    if (scanf("%d", ro) != 1 || *ro < 0)
         error = READ_ERR;
     
-    if (scanf("%d", gamma) != 1 && *gamma < 0)
+    if (scanf("%d", gamma) != 1 || *gamma < 0)
         error = READ_ERR;
 
     return error;

@@ -5,13 +5,13 @@ FUNCTESTSPATH := ./func_tests/
 UNITTESTSPATH := ./unit_tests/
 CC := gcc
 CFLAGS := -std=c99 -Wall -Wextra -Werror -Wpedantic -I$(INCPATH) -g3 -o0
-LFLAGS := --coverage -lcheck -lpthread -lrt
+LFLAGS := --coverage -lcheck -lpthread -lrt -lm
 .PHONY: clean unit func
 
 app.exe : $(OUTPATH)io.o $(OUTPATH)main.o $(OUTPATH)matrix_normalization.o $(OUTPATH)matrix_arithmetic.o
 	$(CC) $^ -lm -o $@
 	
-unit_tests.exe: $(OUTPATH)check_filter.o $(OUTPATH)filter.o $(OUTPATH)check_sort.o $(OUTPATH)sort.o $(OUTPATH)check_main.o
+unit_tests.exe: $(OUTPATH)check_normalization.o $(OUTPATH)matrix_normalization.o $(OUTPATH)check_main.o $(OUTPATH)io.o
 	$(CC) -o $@ $^ $(LFLAGS)
 
 func: CFLAGS += --coverage
@@ -31,12 +31,12 @@ $(OUTPATH)matrix_normalization.o: $(SRCPATH)matrix_normalization.c
 $(OUTPATH)matrix_arithmetic.o: $(SRCPATH)matrix_arithmetic.c
 	$(CC) $(CFLAGS) -c $(SRCPATH)matrix_arithmetic.c -o $(OUTPATH)matrix_arithmetic.o
 
-#$(OUTPATH)check_main.o: $(UNITTESTSPATH)check_main.c
-#	$(CC) $(CFLAGS) -c $(UNITTESTSPATH)check_main.c -o $(OUTPATH)check_main.o
-#
-#$(OUTPATH)check_filter.o: $(UNITTESTSPATH)check_filter.c
-#	$(CC) $(CFLAGS) -c $(UNITTESTSPATH)check_filter.c -o $(OUTPATH)check_filter.o
-#
+$(OUTPATH)check_main.o: $(UNITTESTSPATH)check_main.c 
+	$(CC) $(CFLAGS) -c $(UNITTESTSPATH)check_main.c -o $(OUTPATH)check_main.o
+
+$(OUTPATH)check_normalization.o: $(UNITTESTSPATH)check_normalization.c
+	$(CC) $(CFLAGS) -c $(UNITTESTSPATH)check_normalization.c -o $(OUTPATH)check_normalization.o
+
 #$(OUTPATH)check_sort.o: $(UNITTESTSPATH)check_sort.c
 #	$(CC) $(CFLAGS) -c $(UNITTESTSPATH)check_sort.c -o $(OUTPATH)check_sort.o
 

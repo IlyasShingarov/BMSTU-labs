@@ -31,9 +31,6 @@ int main(void)
         raise_matrix_to_power(a, size, ro);
         raise_matrix_to_power(b, size, gamma);
 
-        print_matrix(a, size, size);
-        print_matrix(b, size, size);
-
         int **result = muliply_matirices(a, b, size);
 
         print_matrix(result, size, size);

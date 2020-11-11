@@ -177,6 +177,24 @@ int max(int a, int b)
     return a > b ? a : b;
 }
 
+/*
+int equalize(int ***matrix, int *size, int target_size, int *rows, int *columns)
+{
+    int error = OK;
+
+    while (!error && size < target_size)
+    {
+        add_row(matrix, rows, *columns);
+        if (!error)
+            add_column(matrix, *rows, columns);
+        
+        size++;
+    }
+
+    return error;
+}
+*/
+
 int equalize_matrices(int ***matrix_a, int ***matrix_b, int *rows_a, int *rows_b, int *cols_a, int *cols_b)
 {
     int error = OK;

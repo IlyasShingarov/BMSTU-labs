@@ -36,9 +36,7 @@ START_TEST(test_delete_rows)
     matrix[2][0] = 5, matrix[2][1] = 6;
     matrix[3][0] = 7, matrix[3][1] = 8;
 
-    int **matrix_res = allocate_matrix(rows, rows);
-    matrix_res[0][0] = 5, matrix_res[0][1] = 6;
-    matrix_res[1][0] = 7, matrix_res[1][1] = 8;
+    int matrix_res[2][2] = { {5, 6}, {7, 8} };
 
     squarify_matrix(&matrix, &rows, &columns);
 
@@ -46,7 +44,6 @@ START_TEST(test_delete_rows)
         for (int j = 0; j < columns; j++)
             ck_assert_int_eq(matrix[i][j], matrix_res[i][j]);
 
-    free_matrix(matrix_res, rows);
     free_matrix(matrix, rows);
 }
 END_TEST
@@ -80,7 +77,7 @@ Suite* normalization_suite(void)
     Suite *s;
     TCase *tc_pos;
     
-    s = suite_create("key");
+    s = suite_create("normalization");
 
     tc_pos = tcase_create("positives");
     tcase_add_test(tc_pos, test_delete_columns);

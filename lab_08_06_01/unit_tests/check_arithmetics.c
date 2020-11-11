@@ -85,7 +85,7 @@ Suite* arithmetics_suite(void)
     Suite *s;
     TCase *tc_pos;
     
-    s = suite_create("key");
+    s = suite_create("arithmetics");
 
     tc_pos = tcase_create("positives");
 

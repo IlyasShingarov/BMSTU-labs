@@ -107,7 +107,8 @@ Suite* normalization_suite(void)
     tc_pos = tcase_create("positives");
     tcase_add_test(tc_pos, test_delete_columns);
     tcase_add_test(tc_pos, test_delete_rows);
-    tcase_add_test(tc_pos, test_equalize);
+    tcase_add_test(tc_pos, test_equalize_a);
+    tcase_add_test(tc_pos, test_equalize_b);
 
     suite_add_tcase(s, tc_pos);
 

@@ -26,7 +26,10 @@ int main(void)
 
     // Assuming that sizes are rqual at that point
     int size = a_rows, ro, gamma;
-    if (!error && !read_powers(&ro, &gamma))
+    if (!error)
+        error = read_powers(&ro, &gamma);
+    
+    if (!error)
     {
         raise_matrix_to_power(a, size, ro);
         raise_matrix_to_power(b, size, gamma);

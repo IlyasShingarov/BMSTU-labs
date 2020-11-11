@@ -66,14 +66,14 @@ START_TEST(test_raise_to_0)
     a[1][0] = 3, a[1][1] = 4; 
 
     int **res = allocate_matrix(size, size);
-    res[0][0] = 1, res[0][1] = 1;
-    res[1][0] = 1, res[1][1] = 1;
+    res[0][0] = 1, res[0][1] = 0;
+    res[1][0] = 0, res[1][1] = 1;
 
     raise_matrix_to_power(a, size, 0);
 
     for (int i = 0; i < size; i++)
         for (int j = 0; j < size; j++)
-            ck_assert_int_eq(a[i][j], res[i][j]);
+                ck_assert_int_eq(a[i][j], res[i][j]);
 
     free_matrix(a, size);
     free_matrix(res, size);

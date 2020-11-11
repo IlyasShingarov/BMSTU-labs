@@ -55,7 +55,6 @@ void raise_to_zeroth(int **a, int size)
                 a[i][j] = 1;
             else
                 a[i][j] = 0;
-            
 }
 
 // Assuming matrix is square

@@ -57,7 +57,7 @@ int input_elements(int **matrix, int rows, int columns)
     int error = OK;
     for (int i = 0; i < rows && !error; i++)
         for (int j = 0; j < columns && !error; j++)
-            if (scanf("%d", matrix[i] + j) != 1 || matrix[i][j] < 0)
+            if (scanf("%d", matrix[i] + j) != 1 || matrix[i][j] <= 0)
                 error = READ_ERR;
     
     return error;

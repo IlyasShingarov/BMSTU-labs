@@ -51,7 +51,11 @@ void raise_to_zeroth(int **a, int size)
 {
     for (int i = 0; i < size; i++)
         for (int j = 0; j < size; j++)
-            a[i][j] = 1;
+            if (i == j)
+                a[i][j] = 1;
+            else
+                a[i][j] = 0;
+            
 }
 
 // Assuming matrix is square

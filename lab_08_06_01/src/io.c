@@ -19,7 +19,7 @@ int read_matrix_size(int *rows, int *columns)
             error = COLUMN_COUNT_ERR;
     }
     else
-        error = READ_ERR;
+        error = READ_SIZE_ERR;
 
     return error;
 }
@@ -57,8 +57,8 @@ int input_elements(int **matrix, int rows, int columns)
     int error = OK;
     for (int i = 0; i < rows && !error; i++)
         for (int j = 0; j < columns && !error; j++)
-            if (scanf("%d", matrix[i] + j) != 1 || matrix[i][j] < 0)
-                error = READ_ERR;
+            if (scanf("%d", matrix[i] + j) != 1)
+                error = READ_ELEM_ERR;
     
     return error;
 }
@@ -76,7 +76,7 @@ int read_matrix(int ***matrix, int *rows, int *columns)
             error = MALLOC_ERR;
     }
     else
-        error = READ_ERR;
+        error = READ_SIZE_ERR;
 
     return error;
 }
@@ -98,10 +98,10 @@ int read_powers(int *ro, int *gamma)
 
     //printf("Введите ro и gamma\n");
     if (scanf("%d", ro) != 1 || *ro < 0)
-        error = READ_ERR;
+        error = READ_RO_ERR;
     
     if (scanf("%d", gamma) != 1 || *gamma < 0)
-        error = READ_ERR;
+        error = READ_GAMMA_ERR;
 
     return error;
 }

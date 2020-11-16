@@ -119,7 +119,7 @@ void fill_last_row(int **matrix, int rows, int columns)
         double res = 1;
         for (int i = 0; i < rows - 1; i++)
         {
-            res *= matrix[i][j]; 
+            res *= abs(matrix[i][j]); 
         }
         res = pow(res, 1.0 / (double)(rows - 1));
         matrix[rows - 1][j] = (int)(res / 1);

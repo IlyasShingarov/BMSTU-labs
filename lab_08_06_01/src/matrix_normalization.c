@@ -112,23 +112,34 @@ int squarify_matrix(int ***matrix, int *rows, int *columns)
     return error;
 }
 
-void fill_last_row(int **matrix, int rows, int columns)
+double fill_last_row(int **matrix, int rows, int columns)
 {
+    double min_last;
+
     for (int j = 0; j < columns; j++)
     {
         double res = 1;
         for (int i = 0; i < rows - 1; i++)
-        {
             res *= abs(matrix[i][j]); 
-        }
+
         res = pow(res, 1.0 / (double)(rows - 1));
+        
+        if (j == 0)
+            min_last = res;
+
+        if (res < min_last)
+            min_last = res;
+
         matrix[rows - 1][j] = floor(res);
     }
+
+    return min_last;
 }
 
-int add_row(int ***matrix, int *rows, int columns)
+double add_row(int ***matrix, int *rows, int columns)
 {
     int error = OK;
+    double min_last;
 
     *rows = *rows + 1;
 
@@ -140,14 +151,14 @@ int add_row(int ***matrix, int *rows, int columns)
         error = MALLOC_ERR;
 
     if ((*matrix)[*rows - 1])
-        fill_last_row(*matrix, *rows, columns);
+        min_last = fill_last_row(*matrix, *rows, columns);
     else
         error = MALLOC_ERR;
     
-    return error;
+    return min_last ? min_last : error;
 }
 
-int add_column(int ***matrix, int rows, int *columns)
+int add_column(int ***matrix, int rows, int *columns, double min_last)
 {
     int error = OK;
 
@@ -158,12 +169,17 @@ int add_column(int ***matrix, int rows, int *columns)
         (*matrix)[i] = realloc((*matrix)[i], *columns * sizeof(int));
         if ((*matrix)[i])
         {
-            int min = (*matrix)[i][0];
-            for (int j = 1; j < *columns - 1; j++)
-                if ((*matrix)[i][j] < min)
-                    min = (*matrix)[i][j];
-            
-            (*matrix)[i][*columns - 1] = min;
+            if (i == rows - 1)
+                (*matrix)[i][*columns - 1] = floor(min_last);
+            else
+            {
+                int min = (*matrix)[i][0];
+                for (int j = 1; j < *columns - 1; j++)
+                    if ((*matrix)[i][j] < min)
+                        min = (*matrix)[i][j];
+                
+                (*matrix)[i][*columns - 1] = min;
+            }
         }
         else
             error = MALLOC_ERR;
@@ -206,18 +222,26 @@ int equalize_matrices(int ***matrix_a, int ***matrix_b, int *rows_a, int *rows_b
 
     while (!error && size_a < target_size)
     {
-        error = add_row(matrix_a, rows_a, *cols_a);
+        double min_last = add_row(matrix_a, rows_a, *cols_a);
+
+        if (!floor(min_last))
+            error = MALLOC_ERR;
+
         if (!error)
-            add_column(matrix_a, *rows_a, cols_a);
+            add_column(matrix_a, *rows_a, cols_a, min_last);
         
         size_a++;
     }
 
     while (!error && size_b < target_size)
     {
-        add_row(matrix_b, rows_b, *cols_b);
+        double min_last = add_row(matrix_a, rows_a, *cols_a);
+
+        if (!floor(min_last))
+            error = MALLOC_ERR;
+
         if (!error)
-            add_column(matrix_b, *rows_b, cols_b);
+            add_column(matrix_b, *rows_b, cols_b, min_last);
         
         size_b++;
     }
